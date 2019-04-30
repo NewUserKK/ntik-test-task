@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="center"
+              android:orientation="vertical"
+              tools:context=".presentation.view.role.SelectRoleActivity">
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/selectRoleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="@string/choose_role_text"/>
+
+
+    <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/selectRoleList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp"
+            android:gravity="center"
+            style="@style/Spinner"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/selectRoleButtonOk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:minWidth="130dp"
+            android:text="@string/ok"/>
+
+</LinearLayout>
