@@ -6,5 +6,6 @@
     <string name="department_administrator">Department administrator</string>
     <string name="employee_administrator">Employee administrator</string>
     <string name="title_activity_timekeeper_detail">TimekeeperDetail</string>
+    <string name="title_activity_department">DepartmentActivity</string>
 
 </resources>

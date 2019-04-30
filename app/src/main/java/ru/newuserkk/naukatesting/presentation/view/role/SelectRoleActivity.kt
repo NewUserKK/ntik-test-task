@@ -7,7 +7,8 @@ import android.widget.ArrayAdapter
 import kotlinx.android.synthetic.main.activity_select_role.*
 import ru.newuserkk.naukatesting.R
 import ru.newuserkk.naukatesting.presentation.presenter.role.SelectRolePresenter
-import ru.newuserkk.naukatesting.domain.model.Role
+import ru.newuserkk.naukatesting.domain.role.model.Role
+import ru.newuserkk.naukatesting.presentation.view.department.DepartmentListActivity
 import ru.newuserkk.naukatesting.presentation.view.timekeeper.TimekeeperActivity
 
 
@@ -40,6 +41,7 @@ class SelectRoleActivity : AppCompatActivity() {
     private fun startSpecializedActivity(role: Role) {
         val intent = when (role) {
             Role.TIMEKEEPER -> Intent(this, TimekeeperActivity::class.java)
+            Role.DEPARTMENT_ADMINISTRATOR -> Intent(this, DepartmentListActivity::class.java)
             else -> TODO()
         }
         startActivity(intent)

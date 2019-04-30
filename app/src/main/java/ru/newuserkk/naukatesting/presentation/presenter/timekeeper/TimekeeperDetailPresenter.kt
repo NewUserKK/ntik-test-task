@@ -1,32 +1,24 @@
 package ru.newuserkk.naukatesting.presentation.presenter.timekeeper
 
-import ru.newuserkk.naukatesting.domain.model.Address
-import ru.newuserkk.naukatesting.domain.model.Department
-import ru.newuserkk.naukatesting.domain.model.Employee
+import ru.newuserkk.naukatesting.domain.department.DepartmentRepository
+import ru.newuserkk.naukatesting.domain.employee.model.Address
+import ru.newuserkk.naukatesting.domain.department.model.Department
+import ru.newuserkk.naukatesting.domain.employee.EmployeeRepository
+import ru.newuserkk.naukatesting.domain.employee.model.Employee
 import java.sql.Date
-import kotlin.random.Random
 
 class TimekeeperDetailPresenter {
+
+    private val departmentRepository: DepartmentRepository = TODO()
+    private val employeeRepository: EmployeeRepository = TODO()
+
 
     companion object {
         const val LOG_TAG = "TimekeeperDetailPresenter"
     }
 
     fun getEmployeesData(): List<Employee> {
-        return listOf(
-            getRandomEmployee(),
-            getRandomEmployee(),
-            getRandomEmployee(),
-            getRandomEmployee(),
-            getRandomEmployee(),
-            getRandomEmployee(),
-            getRandomEmployee(),
-            getRandomEmployee(),
-            getRandomEmployee(),
-            getRandomEmployee(),
-            getRandomEmployee(),
-            getRandomEmployee()
-        )
+        return employeeRepository.getEmployees()
     }
 
     private fun getRandomEmployee(): Employee {

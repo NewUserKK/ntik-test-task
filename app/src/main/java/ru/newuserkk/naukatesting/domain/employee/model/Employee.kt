@@ -1,5 +1,6 @@
-package ru.newuserkk.naukatesting.domain.model
+package ru.newuserkk.naukatesting.domain.employee.model
 
+import ru.newuserkk.naukatesting.domain.department.model.Department
 import java.util.*
 
 data class Employee(

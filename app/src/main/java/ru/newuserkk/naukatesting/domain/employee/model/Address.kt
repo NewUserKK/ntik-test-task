@@ -1,4 +1,4 @@
-package ru.newuserkk.naukatesting.domain.model
+package ru.newuserkk.naukatesting.domain.employee.model
 
 data class Address(
     val country: String,

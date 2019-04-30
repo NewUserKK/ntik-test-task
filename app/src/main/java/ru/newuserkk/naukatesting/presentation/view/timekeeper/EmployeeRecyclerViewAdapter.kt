@@ -1,14 +1,13 @@
 package ru.newuserkk.naukatesting.presentation.view.timekeeper
 
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import kotlinx.android.synthetic.main.item_list_timekeeper_detail.view.*
 import ru.newuserkk.naukatesting.R
-import ru.newuserkk.naukatesting.domain.model.Employee
-import ru.newuserkk.naukatesting.domain.model.getFullName
+import ru.newuserkk.naukatesting.domain.employee.model.Employee
+import ru.newuserkk.naukatesting.domain.employee.model.getFullName
 
 class EmployeeRecyclerViewAdapter(val values: List<Employee>) :
     androidx.recyclerview.widget.RecyclerView.Adapter<EmployeeRecyclerViewAdapter.ViewHolder>() {

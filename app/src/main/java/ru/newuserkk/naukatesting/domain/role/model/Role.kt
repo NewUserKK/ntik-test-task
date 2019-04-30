@@ -1,4 +1,4 @@
-package ru.newuserkk.naukatesting.domain.model
+package ru.newuserkk.naukatesting.domain.role.model
 
 enum class Role {
     TIMEKEEPER,
