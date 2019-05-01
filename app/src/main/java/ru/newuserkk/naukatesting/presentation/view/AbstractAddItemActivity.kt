@@ -4,20 +4,17 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import ru.newuserkk.naukatesting.presentation.presenter.AbstractAddItemPresenter
-import ru.newuserkk.naukatesting.presentation.presenter.AbstractListPresenter
 import java.io.Serializable
 
 abstract class AbstractAddItemActivity<T: Serializable>: AppCompatActivity() {
 
     protected abstract val presenter: AbstractAddItemPresenter<T>
-    protected abstract val contentViewResId: Int
+    protected abstract val activityResId: Int
     protected abstract val progressBarResId: Int
     protected abstract val contentResId: Int
     protected abstract val submitButtonResId: Int
@@ -27,8 +24,8 @@ abstract class AbstractAddItemActivity<T: Serializable>: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(contentViewResId)
-        findViewById<Button>(submitButtonResId).setOnClickListener {
+        setContentView(activityResId)
+        findViewById<View>(submitButtonResId).setOnClickListener {
             presenter.addDepartment()
         }
     }
@@ -40,13 +37,13 @@ abstract class AbstractAddItemActivity<T: Serializable>: AppCompatActivity() {
     }
 
     fun showProgress() {
-        findViewById<ProgressBar>(progressBarResId).visibility = View.VISIBLE
-        findViewById<View>(contentViewResId).visibility = View.GONE
+        findViewById<View>(progressBarResId).visibility = View.VISIBLE
+        findViewById<View>(contentResId).visibility = View.GONE
     }
 
     fun hideProgress() {
-        findViewById<ProgressBar>(progressBarResId).visibility = View.GONE
-        findViewById<View>(contentViewResId).visibility = View.VISIBLE
+        findViewById<View>(progressBarResId).visibility = View.GONE
+//        findViewById<View>(contentResId).visibility = View.VISIBLE
     }
 
     fun showSuccessMessage() {

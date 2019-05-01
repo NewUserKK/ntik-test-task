@@ -25,5 +25,5 @@ abstract class AbstractAddItemPresenter<T: Serializable>(private val view: Abstr
     }
 
     abstract fun createItemFromOptions(options: AbstractAddItemActivity.ItemOptions): T
-    abstract fun addItem(item: T): Result<T>
+    abstract suspend fun addItem(item: T): Result<T>
 }

@@ -4,35 +4,20 @@ import android.util.Log
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import ru.newuserkk.naukatesting.domain.common.Result
 import ru.newuserkk.naukatesting.domain.department.DepartmentInteractor
 import ru.newuserkk.naukatesting.domain.department.DepartmentInteractorImpl
 import ru.newuserkk.naukatesting.domain.department.model.Department
+import ru.newuserkk.naukatesting.presentation.presenter.AbstractListPresenter
 import ru.newuserkk.naukatesting.presentation.view.department.DepartmentListActivity
 import kotlin.coroutines.CoroutineContext
 
-class DepartmentListPresenter(private val view: DepartmentListActivity) : CoroutineScope {
+class DepartmentListPresenter(view: DepartmentListActivity) : AbstractListPresenter<Department>(view) {
 
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main
 
     private val interactor: DepartmentInteractor = DepartmentInteractorImpl()
 
-    fun fillDepartmentList(values: MutableList<Department>) {
-        launch {
-            val result = interactor.getDepartments()
-            if (result.isSuccessful && result.value != null) {
-                values.clear()
-                values.addAll(result.value)
-                view.adapterNotifyDataSetChanged()
-
-            } else {
-                Log.e(LOG_TAG, result.error?.message ?: "null")
-                view.showListFillError()
-            }
-        }
-    }
-
-    companion object {
-        const val LOG_TAG = "DepartmentListPresenter"
-    }
+    override suspend fun getItems(): Result<List<Department>> = interactor.getDepartments()
 }

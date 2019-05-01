@@ -1,32 +1,27 @@
 package ru.newuserkk.naukatesting.presentation.view.department
 
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.TextView
 import kotlinx.android.synthetic.main.item_list_department.view.*
 import ru.newuserkk.naukatesting.R
 import ru.newuserkk.naukatesting.domain.department.model.Department
+import ru.newuserkk.naukatesting.presentation.view.AbstractItemRecyclerViewAdapter
 
-class DepartmentRecyclerViewAdapter(val values: MutableList<Department>) :
-    androidx.recyclerview.widget.RecyclerView.Adapter<DepartmentRecyclerViewAdapter.ViewHolder>() {
+class DepartmentRecyclerViewAdapter(values: MutableList<Department>) :
+    AbstractItemRecyclerViewAdapter<Department>(values) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_list_department, parent, false)
-        return ViewHolder(view)
-    }
+    override val listItemResId: Int
+        get() = R.layout.item_list_department
 
-    override fun getItemCount(): Int = values.size
+    override fun createViewHolder(view: View): AbstractItemRecyclerViewAdapter.AbstractViewHolder = ViewHolder(view)
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = values[position]
-        holder.apply {
+    override fun fillViewHolder(holder: AbstractItemRecyclerViewAdapter.AbstractViewHolder, item: Department) {
+        (holder as ViewHolder).apply {
             nameView.text = item.name
         }
     }
 
-    class ViewHolder(view: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View) : AbstractViewHolder(view) {
         val nameView: TextView = view.departmentName
     }
 }

@@ -3,7 +3,7 @@ package ru.newuserkk.naukatesting.presentation.view
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import ru.newuserkk.naukatesting.R
@@ -13,22 +13,22 @@ import java.io.Serializable
 abstract class AbstractListActivity<T: Serializable>: AppCompatActivity() {
 
     protected abstract val presenter: AbstractListPresenter<T>
-    protected abstract val contentViewResId: Int
+    protected abstract val activityResId: Int
     protected abstract val toolbarResId: Int
     protected abstract val addButtonResId: Int
     protected abstract val listResId: Int
-    protected abstract val addActivityTypeToken: Class<AbstractAddItemActivity<T>>
+    protected abstract val addActivityTypeToken: Class<out AbstractAddItemActivity<T>>
 
     protected abstract var adapter: AbstractItemRecyclerViewAdapter<T>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(contentViewResId)
+        setContentView(activityResId)
         setSupportActionBar(findViewById(toolbarResId))
 
         setupRecyclerView()
 
-        findViewById<Button>(addButtonResId).setOnClickListener {
+        findViewById<View>(addButtonResId).setOnClickListener {
             startAddItemActivity()
         }
     }

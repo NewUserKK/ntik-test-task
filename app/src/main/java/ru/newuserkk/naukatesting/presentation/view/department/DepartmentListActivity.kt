@@ -1,70 +1,27 @@
 package ru.newuserkk.naukatesting.presentation.view.department
 
-import android.app.AlertDialog
-import android.content.Intent
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity;
+
 import ru.newuserkk.naukatesting.R
 
-import kotlinx.android.synthetic.main.activity_department_list.*
-import kotlinx.android.synthetic.main.list_department.*
 import ru.newuserkk.naukatesting.domain.department.model.Department
 import ru.newuserkk.naukatesting.presentation.presenter.department.DepartmentListPresenter
+import ru.newuserkk.naukatesting.presentation.view.AbstractAddItemActivity
+import ru.newuserkk.naukatesting.presentation.view.AbstractItemRecyclerViewAdapter
+import ru.newuserkk.naukatesting.presentation.view.AbstractListActivity
 
-class DepartmentListActivity : AppCompatActivity() {
+class DepartmentListActivity : AbstractListActivity<Department>() {
 
-    private val presenter = DepartmentListPresenter(this)
-    private var adapter: DepartmentRecyclerViewAdapter? = null
+    override val presenter = DepartmentListPresenter(this)
+    override var adapter: AbstractItemRecyclerViewAdapter<Department> = DepartmentRecyclerViewAdapter(mutableListOf())
+    override val activityResId: Int
+        get() = R.layout.activity_department_list
+    override val toolbarResId: Int
+        get() = R.id.toolbar
+    override val addButtonResId: Int
+        get() = R.id.departmentListAddButton
+    override val listResId: Int
+        get() = R.id.departmentList
+    override val addActivityTypeToken: Class<out AbstractAddItemActivity<Department>>
+        get() = AddDepartmentActivity::class.java
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_department_list)
-        setSupportActionBar(toolbar)
-
-        setupRecyclerView()
-
-        fab.setOnClickListener {
-            startAddDepartmentActivity()
-        }
-    }
-
-    fun showListFillError() {
-        AlertDialog.Builder(this)
-            .setMessage(getString(R.string.department_load_fail))
-            .setPositiveButton(getString(R.string.ok)) { _, _ -> finish() }
-            .show()
-    }
-
-    fun adapterNotifyDataSetChanged() {
-        adapter?.notifyDataSetChanged()
-    }
-
-    private fun startAddDepartmentActivity() {
-        val intent = Intent(this, AddDepartmentActivity::class.java)
-        startActivityForResult(intent, REQUEST_CODE)
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
-            val item = data?.extras?.get(DEPARTMENT_RESULT_KEY) as Department
-            adapter?.apply {
-                values.add(item)
-                notifyItemInserted(itemCount)
-            }
-        }
-    }
-
-    private fun setupRecyclerView() {
-        adapter = DepartmentRecyclerViewAdapter(mutableListOf())
-        departmentList.adapter = adapter
-        presenter.fillDepartmentList(adapter?.values ?: return)
-    }
-
-    companion object {
-        const val REQUEST_CODE = 0
-        const val RESULT_OK = 0
-        const val RESULT_NULL = 1
-        const val DEPARTMENT_RESULT_KEY = "department_result"
-    }
 }
