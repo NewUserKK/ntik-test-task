@@ -37,6 +37,8 @@
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value="ru.newuserkk.naukatesting.presentation.view.timekeeper.TimekeeperActivity"/>
         </activity>
+        <activity android:name=".presentation.view.department.AddDepartmentActivity">
+        </activity>
     </application>
 
 </manifest>

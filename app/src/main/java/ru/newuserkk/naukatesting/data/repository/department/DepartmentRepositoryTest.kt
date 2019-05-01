@@ -10,7 +10,8 @@ class DepartmentRepositoryTest: DepartmentRepository {
     }
 
     override suspend fun addDepartment(department: Department) {
-        TODO("not implemented")
+        Thread.sleep(2000)
+        println("Add department: $department")
     }
 
     override suspend fun getDepartments(): List<Department> {
