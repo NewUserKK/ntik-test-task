@@ -17,12 +17,14 @@ class DepartmentListPresenter(private val view: DepartmentListActivity) : Corout
 
     private val interactor: DepartmentInteractor = DepartmentInteractorImpl()
 
-    fun addDepartments(values: MutableList<Department>) {
+    fun fillDepartmentList(values: MutableList<Department>) {
         launch {
             val result = interactor.getDepartments()
             if (result.isSuccessful && result.value != null) {
                 values.clear()
                 values.addAll(result.value)
+                view.adapterNotifyDataSetChanged()
+
             } else {
                 Log.e(LOG_TAG, result.error?.message ?: "null")
                 view.showFillError()

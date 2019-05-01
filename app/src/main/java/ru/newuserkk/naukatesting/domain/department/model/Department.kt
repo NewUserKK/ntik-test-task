@@ -1,3 +1,5 @@
 package ru.newuserkk.naukatesting.domain.department.model
 
-data class Department(val name: String)
+import java.io.Serializable
+
+data class Department(val name: String): Serializable

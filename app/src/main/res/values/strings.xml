@@ -10,4 +10,5 @@
     <string name="department_add_name_text">Name:</string>
     <string name="default_font">sans-serif-light</string>
     <string name="department_load_fail">Failed to load departments!</string>
+    <string name="add_department_error">Failed to add department. Detail:</string>
 </resources>

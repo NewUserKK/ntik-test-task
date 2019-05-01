@@ -1,20 +1,15 @@
 package ru.newuserkk.naukatesting.presentation.view.department
 
 import android.app.AlertDialog
-import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity;
 import ru.newuserkk.naukatesting.R
 
 import kotlinx.android.synthetic.main.activity_department_list.*
 import kotlinx.android.synthetic.main.list_department.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import ru.newuserkk.naukatesting.domain.department.model.Department
 import ru.newuserkk.naukatesting.presentation.presenter.department.DepartmentListPresenter
-import kotlin.coroutines.CoroutineContext
 
 class DepartmentListActivity : AppCompatActivity() {
 
@@ -40,14 +35,36 @@ class DepartmentListActivity : AppCompatActivity() {
             .show()
     }
 
-    private fun setupRecyclerView() {
-        adapter = DepartmentRecyclerViewAdapter(mutableListOf())
-        departmentList.adapter = adapter
-        presenter.addDepartments(adapter?.values ?: return)
+    fun adapterNotifyDataSetChanged() {
+        adapter?.notifyDataSetChanged()
     }
 
     private fun startAddDepartmentActivity() {
         val intent = Intent(this, AddDepartmentActivity::class.java)
-        startActivity(intent)
+        startActivityForResult(intent, REQUEST_CODE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
+            val item = data?.extras?.get(DEPARTMENT_RESULT_KEY) as Department
+            adapter?.apply {
+                values.add(item)
+                notifyItemInserted(itemCount)
+            }
+        }
+    }
+
+    private fun setupRecyclerView() {
+        adapter = DepartmentRecyclerViewAdapter(mutableListOf())
+        departmentList.adapter = adapter
+        presenter.fillDepartmentList(adapter?.values ?: return)
+    }
+
+    companion object {
+        const val REQUEST_CODE = 0
+        const val RESULT_OK = 0
+        const val RESULT_NULL = 1
+        const val DEPARTMENT_RESULT_KEY = "department_result"
     }
 }
