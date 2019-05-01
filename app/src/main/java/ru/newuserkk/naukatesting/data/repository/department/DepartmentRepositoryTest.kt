@@ -19,7 +19,7 @@ class DepartmentRepositoryTest: DepartmentRepository {
             Department("First"),
             Department("Second"),
             Department("Third"),
-            Department("VeeeeeeeeeeeeeeryLongNameBecauseICanDepartment"),
+            Department("VeeeeeeeeeeeeeeeeeeeeeeeeeeeryLongNameBecauseICanDepartment"),
             Department("Something else"),
             Department("Каво"),
             Department("Чево")

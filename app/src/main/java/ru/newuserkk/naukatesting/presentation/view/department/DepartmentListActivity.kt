@@ -28,7 +28,7 @@ class DepartmentListActivity : AppCompatActivity() {
         }
     }
 
-    fun showFillError() {
+    fun showListFillError() {
         AlertDialog.Builder(this)
             .setMessage(getString(R.string.department_load_fail))
             .setPositiveButton(getString(R.string.ok)) { _, _ -> finish() }

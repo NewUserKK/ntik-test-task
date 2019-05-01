@@ -10,6 +10,7 @@ class DepartmentInteractorImpl: DepartmentInteractor {
     private val repository: DepartmentRepository = DepartmentRepositoryImpl()
 
     override suspend fun addDepartment(department: Department): Result<Department> {
+        // TODO: validation
         return try {
             repository.addDepartment(department)
             Result(department, null)

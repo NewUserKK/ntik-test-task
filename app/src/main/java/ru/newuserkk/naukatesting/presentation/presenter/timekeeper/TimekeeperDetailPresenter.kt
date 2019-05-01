@@ -1,16 +1,26 @@
 package ru.newuserkk.naukatesting.presentation.presenter.timekeeper
 
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import ru.newuserkk.naukatesting.data.repository.department.DepartmentRepositoryImpl
+import ru.newuserkk.naukatesting.data.repository.department.DepartmentRepositoryTest
+import ru.newuserkk.naukatesting.data.repository.employee.EmployeeRepositoryTest
 import ru.newuserkk.naukatesting.domain.department.DepartmentRepository
 import ru.newuserkk.naukatesting.domain.employee.model.Address
 import ru.newuserkk.naukatesting.domain.department.model.Department
 import ru.newuserkk.naukatesting.domain.employee.EmployeeRepository
 import ru.newuserkk.naukatesting.domain.employee.model.Employee
 import java.sql.Date
+import kotlin.coroutines.CoroutineContext
 
-class TimekeeperDetailPresenter {
+class TimekeeperDetailPresenter: CoroutineScope {
 
-    private val departmentRepository: DepartmentRepository = TODO()
-    private val employeeRepository: EmployeeRepository = TODO()
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.Main
+
+    private val departmentRepository: DepartmentRepository = DepartmentRepositoryTest()
+    private val employeeRepository: EmployeeRepository = EmployeeRepositoryTest()
 
 
     companion object {
@@ -18,25 +28,10 @@ class TimekeeperDetailPresenter {
     }
 
     fun getEmployeesData(): List<Employee> {
-        return employeeRepository.getEmployees()
+        TODO()
     }
 
-    private fun getRandomEmployee(): Employee {
-        return Employee(
-            firstName = getRandomString(15),
-            lastName = getRandomString(15),
-            middleName = getRandomString(15),
-            birthDate = Date.valueOf("2019-04-28"),
-            department = Department("Department"),
-            position = "Android",
-            address = Address("Russia", "SPB", "1", "@", "3")
-        )
-    }
-
-    fun getRandomString(length: Int) : String {
-        val allowedChars = "ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz"
-        return (1..length)
-            .map { allowedChars.random() }
-            .joinToString("")
+    fun getDepartmentData(): List<Department> {
+        TODO()
     }
 }

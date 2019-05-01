@@ -27,7 +27,7 @@ class DepartmentListPresenter(private val view: DepartmentListActivity) : Corout
 
             } else {
                 Log.e(LOG_TAG, result.error?.message ?: "null")
-                view.showFillError()
+                view.showListFillError()
             }
         }
     }
