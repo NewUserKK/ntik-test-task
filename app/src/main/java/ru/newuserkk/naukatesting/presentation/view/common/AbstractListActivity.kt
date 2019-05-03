@@ -1,4 +1,4 @@
-package ru.newuserkk.naukatesting.presentation.view
+package ru.newuserkk.naukatesting.presentation.view.common
 
 import android.app.AlertDialog
 import android.content.Intent
@@ -7,7 +7,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import ru.newuserkk.naukatesting.R
-import ru.newuserkk.naukatesting.presentation.presenter.AbstractListPresenter
+import ru.newuserkk.naukatesting.presentation.presenter.common.AbstractListPresenter
 import java.io.Serializable
 
 abstract class AbstractListActivity<T: Serializable>: AppCompatActivity() {
@@ -17,9 +17,9 @@ abstract class AbstractListActivity<T: Serializable>: AppCompatActivity() {
     protected abstract val toolbarResId: Int
     protected abstract val addButtonResId: Int
     protected abstract val listResId: Int
-    protected abstract val addActivityTypeToken: Class<out AbstractAddItemActivity<T>>
+    protected abstract val itemAddActivityTypeToken: Class<out AbstractItemAddActivity<T>>
 
-    protected abstract var adapter: AbstractItemRecyclerViewAdapter<T>
+    protected abstract val adapter: AbstractItemRecyclerViewAdapter<T>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,16 +37,18 @@ abstract class AbstractListActivity<T: Serializable>: AppCompatActivity() {
         adapter.notifyDataSetChanged()
     }
 
-    fun showListFillError() {
+    fun showListFillError(message: String) {
         AlertDialog.Builder(this)
-            .setMessage(getString(R.string.department_load_fail))
+            .setMessage(message)
             .setPositiveButton(getString(R.string.ok)) { _, _ -> finish() }
             .show()
     }
 
     private fun startAddItemActivity() {
-        val intent = Intent(this, addActivityTypeToken)
-        startActivityForResult(intent, AbstractListActivity.ITEM_REQUEST_CODE)
+        val intent = Intent(this, itemAddActivityTypeToken)
+        startActivityForResult(intent,
+            ITEM_REQUEST_CODE
+        )
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

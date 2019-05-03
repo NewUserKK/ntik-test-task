@@ -9,6 +9,7 @@ import ru.newuserkk.naukatesting.R
 import ru.newuserkk.naukatesting.presentation.presenter.role.SelectRolePresenter
 import ru.newuserkk.naukatesting.domain.role.model.Role
 import ru.newuserkk.naukatesting.presentation.view.department.DepartmentListActivity
+import ru.newuserkk.naukatesting.presentation.view.employee.EmployeeListActivity
 import ru.newuserkk.naukatesting.presentation.view.timekeeper.TimekeeperActivity
 
 
@@ -26,15 +27,15 @@ class SelectRoleActivity : AppCompatActivity() {
     }
 
     private fun setupSpinner() {
-        selectRoleList.adapter = ArrayAdapter<RoleWithName>(this,
+        select_role_list.adapter = ArrayAdapter<RoleWithName>(this,
             R.layout.support_simple_spinner_dropdown_item,
             presenter.getRoleList().map { RoleWithName(it, getLocalizedRoleName(it)) }
         )
     }
 
     private fun setupListeners() {
-        selectRoleButtonOk.setOnClickListener {
-            startSpecializedActivity((selectRoleList.selectedItem as RoleWithName).role)
+        select_role_submit_button.setOnClickListener {
+            startSpecializedActivity((select_role_list.selectedItem as RoleWithName).role)
         }
     }
 
@@ -42,7 +43,7 @@ class SelectRoleActivity : AppCompatActivity() {
         val intent = when (role) {
             Role.TIMEKEEPER -> Intent(this, TimekeeperActivity::class.java)
             Role.DEPARTMENT_ADMINISTRATOR -> Intent(this, DepartmentListActivity::class.java)
-            else -> TODO()
+            Role.EMPLOYEE_ADMINISTRATOR -> Intent(this, EmployeeListActivity::class.java)
         }
         startActivity(intent)
     }

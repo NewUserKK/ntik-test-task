@@ -2,18 +2,18 @@ package ru.newuserkk.naukatesting
 
 import android.app.Application
 import androidx.room.Room
-import ru.newuserkk.naukatesting.data.db.department.DepartmentDatabase
+import ru.newuserkk.naukatesting.data.db.ApplicationDatabase
 
 class TimesheetApp: Application() {
 
     companion object {
-        lateinit var departmentDatabase: DepartmentDatabase
+        lateinit var applicationDatabase: ApplicationDatabase
     }
 
     override fun onCreate() {
         super.onCreate()
-        departmentDatabase = Room
-            .databaseBuilder(applicationContext, DepartmentDatabase::class.java, "DepartmentDatabase")
+        applicationDatabase = Room
+            .databaseBuilder(applicationContext, ApplicationDatabase::class.java, "ApplicationDatabase")
             .build()
     }
 }

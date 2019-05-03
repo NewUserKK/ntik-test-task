@@ -5,13 +5,13 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.view.department.AddDepartmentActivity">
+        tools:context=".presentation.view.department.DepartmentAddActivity">
 
     <include
             layout="@layout/progress_bar"
-            android:id="@+id/departmentAddProgressBar"/>
+            android:id="@+id/department_add_progress_bar"/>
 
-    <include layout="@layout/content_add_department"
-            android:id="@+id/departmentAddContent"/>
+    <include layout="@layout/content_department_add"
+            android:id="@+id/department_add_content"/>
 
 </FrameLayout>

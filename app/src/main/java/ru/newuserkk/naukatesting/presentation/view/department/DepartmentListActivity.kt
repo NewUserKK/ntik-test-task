@@ -5,9 +5,9 @@ import ru.newuserkk.naukatesting.R
 
 import ru.newuserkk.naukatesting.domain.department.model.Department
 import ru.newuserkk.naukatesting.presentation.presenter.department.DepartmentListPresenter
-import ru.newuserkk.naukatesting.presentation.view.AbstractAddItemActivity
-import ru.newuserkk.naukatesting.presentation.view.AbstractItemRecyclerViewAdapter
-import ru.newuserkk.naukatesting.presentation.view.AbstractListActivity
+import ru.newuserkk.naukatesting.presentation.view.common.AbstractItemAddActivity
+import ru.newuserkk.naukatesting.presentation.view.common.AbstractItemRecyclerViewAdapter
+import ru.newuserkk.naukatesting.presentation.view.common.AbstractListActivity
 
 class DepartmentListActivity : AbstractListActivity<Department>() {
 
@@ -16,12 +16,12 @@ class DepartmentListActivity : AbstractListActivity<Department>() {
     override val activityResId: Int
         get() = R.layout.activity_department_list
     override val toolbarResId: Int
-        get() = R.id.toolbar
+        get() = R.id.timekeeper_detail_toolbar
     override val addButtonResId: Int
-        get() = R.id.departmentListAddButton
+        get() = R.id.department_list_add_button
     override val listResId: Int
-        get() = R.id.departmentList
-    override val addActivityTypeToken: Class<out AbstractAddItemActivity<Department>>
-        get() = AddDepartmentActivity::class.java
+        get() = R.id.department_list
+    override val itemAddActivityTypeToken: Class<out AbstractItemAddActivity<Department>>
+        get() = DepartmentAddActivity::class.java
 
 }

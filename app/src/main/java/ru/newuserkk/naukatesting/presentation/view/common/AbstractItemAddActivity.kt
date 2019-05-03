@@ -1,4 +1,4 @@
-package ru.newuserkk.naukatesting.presentation.view
+package ru.newuserkk.naukatesting.presentation.view.common
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,12 +8,12 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import ru.newuserkk.naukatesting.presentation.presenter.AbstractAddItemPresenter
+import ru.newuserkk.naukatesting.presentation.presenter.common.AbstractItemAddPresenter
 import java.io.Serializable
 
-abstract class AbstractAddItemActivity<T: Serializable>: AppCompatActivity() {
+abstract class AbstractItemAddActivity<T: Serializable>: AppCompatActivity() {
 
-    protected abstract val presenter: AbstractAddItemPresenter<T>
+    protected abstract val presenter: AbstractItemAddPresenter<T>
     protected abstract val activityResId: Int
     protected abstract val progressBarResId: Int
     protected abstract val contentResId: Int
@@ -26,7 +26,7 @@ abstract class AbstractAddItemActivity<T: Serializable>: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(activityResId)
         findViewById<View>(submitButtonResId).setOnClickListener {
-            presenter.addDepartment()
+            presenter.addItem()
         }
     }
 
@@ -43,20 +43,18 @@ abstract class AbstractAddItemActivity<T: Serializable>: AppCompatActivity() {
 
     fun hideProgress() {
         findViewById<View>(progressBarResId).visibility = View.GONE
-//        findViewById<View>(contentResId).visibility = View.VISIBLE
+        findViewById<View>(contentResId).visibility = View.VISIBLE
     }
 
-    fun showSuccessMessage() {
-        Toast.makeText(this, "Successfully added department!", Toast.LENGTH_LONG).also {
-            val toastLayout = it.view as ViewGroup
-            val toastTextView = toastLayout.getChildAt(0) as TextView
-            toastTextView.textSize = 12f
-        }.show()
+    abstract fun showSuccessMessage()
+
+    fun showAddingError(e: Throwable) {
+        showError(getString(errorStringResId), e)
     }
 
-    fun showError(e: Throwable) {
+    fun showError(message: String, e: Throwable) {
         AlertDialog.Builder(this)
-            .setMessage(getString(errorStringResId) + e.localizedMessage)
+            .setMessage(message + " Details: " + e.localizedMessage)
             .show()
     }
 

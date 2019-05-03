@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="90">
+        <include layout="@layout/fields_employee_add" />
+    </ScrollView>
+
+    <Button
+            android:id="@+id/employee_add_submit_button"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="10"
+            android:layout_marginBottom="6dp"
+            android:layout_marginTop="6dp"
+            android:minWidth="100dp"
+            android:text="@string/ok"
+            android:gravity="center"
+            android:layout_gravity="center|bottom"/>
+</LinearLayout>

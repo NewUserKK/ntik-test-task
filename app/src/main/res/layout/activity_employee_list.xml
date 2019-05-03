@@ -5,7 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.view.department.DepartmentListActivity">
+        tools:context=".presentation.view.employee.EmployeeListActivity">
 
     <com.google.android.material.appbar.AppBarLayout
             android:layout_height="wrap_content"
@@ -21,10 +21,10 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/content_department_list"/>
+    <include layout="@layout/content_employee_list"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/department_list_add_button"
+            android:id="@+id/timekeeper_detail_add_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"

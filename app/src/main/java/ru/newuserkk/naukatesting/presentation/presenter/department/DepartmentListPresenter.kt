@@ -1,14 +1,12 @@
 package ru.newuserkk.naukatesting.presentation.presenter.department
 
-import android.util.Log
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import ru.newuserkk.naukatesting.R
 import ru.newuserkk.naukatesting.domain.common.Result
 import ru.newuserkk.naukatesting.domain.department.DepartmentInteractor
 import ru.newuserkk.naukatesting.domain.department.DepartmentInteractorImpl
 import ru.newuserkk.naukatesting.domain.department.model.Department
-import ru.newuserkk.naukatesting.presentation.presenter.AbstractListPresenter
+import ru.newuserkk.naukatesting.presentation.presenter.common.AbstractListPresenter
 import ru.newuserkk.naukatesting.presentation.view.department.DepartmentListActivity
 import kotlin.coroutines.CoroutineContext
 
@@ -20,4 +18,6 @@ class DepartmentListPresenter(view: DepartmentListActivity) : AbstractListPresen
     private val interactor: DepartmentInteractor = DepartmentInteractorImpl()
 
     override suspend fun getItems(): Result<List<Department>> = interactor.getDepartments()
+    override fun getFillListErrorMessage(result: Result<List<Department>>): String =
+        view.getString(R.string.department_load_fail) + "Details: \n\t" + result.error?.toString()
 }

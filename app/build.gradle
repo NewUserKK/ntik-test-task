@@ -30,7 +30,10 @@ android {
 
 dependencies {
     def room_version = "2.1.0-alpha04"
+
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(path: ':caldroid')
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0-alpha04'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha5'
@@ -38,8 +41,9 @@ dependencies {
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-coroutines:$room_version"
+    implementation 'org.kodein.di:kodein-di-generic-jvm:6.0.1'
+    implementation 'org.kodein.di:kodein-di-framework-android-x:6.0.1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0-alpha04'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0-alpha04'
-    implementation project(path: ':caldroid')
 }

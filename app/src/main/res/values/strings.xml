@@ -11,4 +11,7 @@
     <string name="default_font">sans-serif-light</string>
     <string name="department_load_fail">Failed to load departments!</string>
     <string name="add_department_error">Failed to add department. Detail:</string>
+    <string name="title_activity_employee_list">EmployeeListActivity</string>
+    <string name="error_add_employee">Failed to add employee.</string>
+    <string name="employees_load_fail">Failed to load employees!</string>
 </resources>

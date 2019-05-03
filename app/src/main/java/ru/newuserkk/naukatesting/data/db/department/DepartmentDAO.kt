@@ -10,6 +10,9 @@ interface DepartmentDAO {
     @Query("SELECT * FROM departments")
     suspend fun getAll(): List<DepartmentEntity>
 
+    @Query("SELECT * FROM departments WHERE name=:name")
+    suspend fun getDepartmentByName(name: String): Department
+
     @Insert
-    suspend fun add(department: DepartmentEntity)
+    suspend fun add(department: DepartmentEntity?)
 }

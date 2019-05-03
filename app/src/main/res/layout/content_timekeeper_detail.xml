@@ -10,7 +10,7 @@
         tools:context=".presentation.view.timekeeper.TimekeeperDetail">
 
     <TextView
-            android:id="@+id/timekeeperDetailDate"
+            android:id="@+id/timekeeper_detail_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -19,18 +19,18 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/timekeeperDetailListContainer"
+            app:layout_constraintBottom_toTopOf="@id/timekeeper_detail_list_container"
             tools:text="28.04.2019"/>
 
     <ScrollView
-            android:id="@+id/timekeeperDetailListContainer"
+            android:id="@+id/timekeeper_detail_list_container"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/timekeeperDetailDate">
+            app:layout_constraintTop_toBottomOf="@id/timekeeper_detail_date">
 
-        <include layout="@layout/list_timekeeper_detail" />
+        <include layout="@layout/list_employee" />
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

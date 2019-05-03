@@ -1,15 +1,14 @@
 package ru.newuserkk.naukatesting.presentation.view.timekeeper
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity;
 import ru.newuserkk.naukatesting.R
 
 import kotlinx.android.synthetic.main.activity_timekeeper_detail.*
 import kotlinx.android.synthetic.main.content_timekeeper_detail.*
-import kotlinx.android.synthetic.main.list_timekeeper_detail.*
+import kotlinx.android.synthetic.main.list_employee.*
 import ru.newuserkk.naukatesting.presentation.presenter.timekeeper.TimekeeperDetailPresenter
-import java.text.DateFormat
+import ru.newuserkk.naukatesting.presentation.view.employee.EmployeeRecyclerViewAdapter
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -24,12 +23,12 @@ class TimekeeperDetail : AppCompatActivity() {
 
         val date = intent?.extras?.getSerializable("date") as Date
         // using deprecated method since resources.configuration.locales is available only from APIv24
-        timekeeperDetailDate.text = SimpleDateFormat("dd MMMM y", resources.configuration.locale)
+        timekeeper_detail_date.text = SimpleDateFormat("dd MMMM y", resources.configuration.locale)
             .format(date)
 
         setupRecyclerView()
 
-        fab.setOnClickListener { view ->
+        timekeeper_detail_add_button.setOnClickListener { view ->
             startAddEmployeeActivity()
         }
 
@@ -40,13 +39,13 @@ class TimekeeperDetail : AppCompatActivity() {
     }
 
     private fun setupActionBar() {
-        setSupportActionBar(toolbar)
+        setSupportActionBar(timekeeper_detail_toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
     }
 
     private fun setupRecyclerView() {
-        timekeeperDetailEmployeeList.adapter = EmployeeRecyclerViewAdapter(presenter.getEmployeesData())
+        employee_list.adapter = EmployeeRecyclerViewAdapter(presenter.getEmployeesData().toMutableList())
     }
 
 }

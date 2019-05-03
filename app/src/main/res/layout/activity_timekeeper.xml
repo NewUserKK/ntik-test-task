@@ -9,7 +9,7 @@
         tools:context=".presentation.view.timekeeper.TimekeeperActivity">
 
     <FrameLayout
-            android:id="@+id/timekeeperCalendarFrame"
+            android:id="@+id/timekeeper_calendar_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

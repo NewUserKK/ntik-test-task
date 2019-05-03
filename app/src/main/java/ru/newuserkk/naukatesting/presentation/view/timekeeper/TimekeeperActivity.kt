@@ -31,7 +31,7 @@ class TimekeeperActivity : AppCompatActivity() {
         }
 
         supportFragmentManager.beginTransaction()
-            .add(R.id.timekeeperCalendarFrame, calendar)
+            .add(R.id.timekeeper_calendar_container, calendar)
             .commit()
     }
 

@@ -16,8 +16,9 @@ class EmployeeRepositoryTest: EmployeeRepository {
         }
     }
 
-    override suspend fun addEmployee(employee: Employee) {
+    override suspend fun addEmployee(employee: Employee): Employee? {
         employeeList.add(employee)
+        return employee
     }
 
     override suspend fun getEmployees(): List<Employee> {
@@ -32,7 +33,8 @@ class EmployeeRepositoryTest: EmployeeRepository {
             birthDate = Date.valueOf("2019-04-28"),
             department = Department("Department"),
             position = "Android",
-            address = Address("Russia", "SPB", "1", "@", "3")
+            address = Address("Russia", "SPB", "1", "@", "3"),
+            phone = "88005553535"
         )
     }
 

@@ -1,4 +1,4 @@
-package ru.newuserkk.naukatesting.presentation.view
+package ru.newuserkk.naukatesting.presentation.view.common
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +8,12 @@ abstract class AbstractItemRecyclerViewAdapter<T>(val values: MutableList<T>) :
     androidx.recyclerview.widget.RecyclerView.Adapter<AbstractItemRecyclerViewAdapter.AbstractViewHolder>() {
 
     protected abstract val listItemResId: Int
+    var onItemClickListener: ((View) -> Unit)? = null
+
+    init {
+        // TODO: remove default onClick
+        onItemClickListener = { view -> println(view.tag) }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AbstractViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -19,11 +25,14 @@ abstract class AbstractItemRecyclerViewAdapter<T>(val values: MutableList<T>) :
 
     override fun onBindViewHolder(holder: AbstractViewHolder, position: Int) {
         val item = values[position]
-        fillViewHolder(holder, item)
+        holder.itemView.tag = item
+        holder.itemView.setOnClickListener(onItemClickListener)
+        fillViewHolder(holder, position, item)
     }
 
-    abstract fun createViewHolder(view: View): AbstractViewHolder
-    abstract fun fillViewHolder(holder: AbstractViewHolder, item: T)
 
-    abstract class AbstractViewHolder(view: View): androidx.recyclerview.widget.RecyclerView.ViewHolder(view)
+    abstract fun createViewHolder(view: View): AbstractViewHolder
+    abstract fun fillViewHolder(holder: AbstractViewHolder, position: Int, item: T)
+
+    abstract class AbstractViewHolder(view: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view)
 }
