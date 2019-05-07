@@ -16,9 +16,9 @@ class DepartmentAddPresenter(view: DepartmentAddActivity) : AbstractItemAddPrese
 
     private val departmentInteractor: DepartmentInteractor = DepartmentInteractorImpl()
 
-    override fun createItemFromOptions(options: AbstractItemAddActivity.ItemOptions): Department {
+    override fun createItemFromOptions(options: AbstractItemAddActivity.ItemOptions): Result<Department> {
         (options as DepartmentAddActivity.DepartmentOptions)
-        return Department(options.departmentName)
+        return Result(Department(options.departmentName))
     }
 
     override suspend fun addItem(item: Department): Result<Department> =

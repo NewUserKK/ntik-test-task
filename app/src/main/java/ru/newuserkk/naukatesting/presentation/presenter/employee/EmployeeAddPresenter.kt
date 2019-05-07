@@ -20,10 +20,9 @@ class EmployeeAddPresenter(override val view: EmployeeAddActivity): AbstractItem
     private val departmentInteractor: DepartmentInteractor = DepartmentInteractorImpl()
     private val employeeInteractor: EmployeeInteractor = EmployeeInteractorImpl()
 
-    override fun createItemFromOptions(options: AbstractItemAddActivity.ItemOptions): Employee {
+    override fun createItemFromOptions(options: AbstractItemAddActivity.ItemOptions): Result<Employee> {
         options as EmployeeAddActivity.EmployeeOptions
-        // TODO: crash on null department, handle result
-        return employeeInteractor.buildEmployee(options).value!!
+        return employeeInteractor.buildEmployee(options)
     }
 
     override suspend fun addItem(item: Employee): Result<Employee> =

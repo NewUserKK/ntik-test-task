@@ -18,4 +18,20 @@
     <string name="timekeeper_add_status_error">Failed to add employee status!</string>
     <string name="departmen_add_success">Successfully added department!</string>
     <string name="timekeeper_employee_load_fail">Failed to load employees status!</string>
+    <string name="field_timekeeper_employee">Employee:</string>
+    <string name="field_timekeeper_status">Status:</string>
+    <string name="field_employee_first_name">First name:</string>
+    <string name="field_employee_last_name">Last name:</string>
+    <string name="field_employee_middle_name">Middle name:</string>
+    <string name="field_employee_birth_date">Birth date (dd.mm.yyyy):</string>
+    <string name="field_employee_department">Department:</string>
+    <string name="field_employee_position">Position:</string>
+    <string name="field_employee_address">Address:</string>
+    <string name="field_employee_country">Country:</string>
+    <string name="field_employee_city">City</string>
+    <string name="field_employee_street">Street:</string>
+    <string name="field_employee_house">House:</string>
+    <string name="field_employee_flat">Flat:</string>
+    <string name="field_employee_phone">Phone:</string>
+    <string name="field_employee_select_date">Select</string>
 </resources>

@@ -69,7 +69,7 @@ abstract class AbstractItemAddActivity<T: Serializable>: AppCompatActivity() {
     fun showError(message: String, e: Throwable) {
         Log.e(LOG_TAG, e.message)
         AlertDialog.Builder(this)
-            .setMessage(message)
+            .setMessage(message + "Details: ${e.message}")
             .show()
     }
 

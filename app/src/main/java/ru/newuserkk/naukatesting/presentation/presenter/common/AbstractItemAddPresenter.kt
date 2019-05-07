@@ -13,8 +13,15 @@ abstract class AbstractItemAddPresenter<T: Serializable>(protected open val view
     fun addItem() {
         launch {
             view.showProgress()
+            val itemResult = createItemFromOptions(view.getItemOptions())
+            if (!itemResult.isSuccessful || itemResult.value == null) {
+                view.showAddError(itemResult.error!!)
+                view.hideProgress()
+                return@launch
+            }
+
             val result = withContext(Dispatchers.IO) {
-                addItem(createItemFromOptions(view.getItemOptions()))
+                addItem(itemResult.value)
             }
             view.hideProgress()
             if (result.isSuccessful && result.value != null) {
@@ -28,6 +35,6 @@ abstract class AbstractItemAddPresenter<T: Serializable>(protected open val view
         }
     }
 
-    protected abstract fun createItemFromOptions(options: AbstractItemAddActivity.ItemOptions): T
+    protected abstract fun createItemFromOptions(options: AbstractItemAddActivity.ItemOptions): Result<T>
     protected abstract suspend fun addItem(item: T): Result<T>
 }

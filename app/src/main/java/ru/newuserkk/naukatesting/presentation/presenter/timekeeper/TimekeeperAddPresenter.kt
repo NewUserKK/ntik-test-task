@@ -23,9 +23,9 @@ class TimekeeperAddPresenter(override val view: TimekeeperAddActivity) :
     private val calendarInteractor: CalendarInteractor = CalendarInteractorImpl()
     private val employeeInteractor: EmployeeInteractor = EmployeeInteractorImpl()
 
-    override fun createItemFromOptions(options: AbstractItemAddActivity.ItemOptions): MarkedEmployee {
+    override fun createItemFromOptions(options: AbstractItemAddActivity.ItemOptions): Result<MarkedEmployee> {
         options as TimekeeperAddActivity.MarkedEmployeeOptions
-        return MarkedEmployee(options.date, options.employee, options.status)
+        return Result(MarkedEmployee(options.date, options.employee, options.status))
     }
 
     override suspend fun addItem(item: MarkedEmployee): Result<MarkedEmployee> {
