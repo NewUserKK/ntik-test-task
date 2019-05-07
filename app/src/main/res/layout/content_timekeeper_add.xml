@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+        >
 
     <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight=".9">
-        <include layout="@layout/fields_employee_add" />
+        <include layout="@layout/fields_timekeeper_add" />
     </ScrollView>
 
     <Button
-            android:id="@+id/employee_add_submit_button"
+            android:id="@+id/timekeeper_add_submit_button"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight=".1"
@@ -25,4 +23,5 @@
             android:text="@string/ok"
             android:gravity="center"
             android:layout_gravity="center|bottom"/>
+
 </LinearLayout>

@@ -20,7 +20,4 @@ class EmployeeListPresenter(view: EmployeeListActivity): AbstractListPresenter<E
     override suspend fun getItems(): Result<List<Employee>> {
         return interactor.getEmployees()
     }
-
-    override fun getFillListErrorMessage(result: Result<List<Employee>>): String =
-        view.getString(R.string.employees_load_fail) + "Details: \n\t" + result.error?.toString()
 }

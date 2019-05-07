@@ -10,7 +10,7 @@ import ru.newuserkk.naukatesting.presentation.presenter.role.SelectRolePresenter
 import ru.newuserkk.naukatesting.domain.role.model.Role
 import ru.newuserkk.naukatesting.presentation.view.department.DepartmentListActivity
 import ru.newuserkk.naukatesting.presentation.view.employee.EmployeeListActivity
-import ru.newuserkk.naukatesting.presentation.view.timekeeper.TimekeeperActivity
+import ru.newuserkk.naukatesting.presentation.view.timekeeper.TimekeeperCalendarActivity
 
 
 
@@ -41,7 +41,7 @@ class SelectRoleActivity : AppCompatActivity() {
 
     private fun startSpecializedActivity(role: Role) {
         val intent = when (role) {
-            Role.TIMEKEEPER -> Intent(this, TimekeeperActivity::class.java)
+            Role.TIMEKEEPER -> Intent(this, TimekeeperCalendarActivity::class.java)
             Role.DEPARTMENT_ADMINISTRATOR -> Intent(this, DepartmentListActivity::class.java)
             Role.EMPLOYEE_ADMINISTRATOR -> Intent(this, EmployeeListActivity::class.java)
         }

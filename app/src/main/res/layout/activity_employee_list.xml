@@ -13,7 +13,7 @@
             android:theme="@style/AppTheme.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
-                android:id="@+id/timekeeper_detail_toolbar"
+                android:id="@+id/employee_list_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
@@ -24,7 +24,7 @@
     <include layout="@layout/content_employee_list"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/timekeeper_detail_add_button"
+            android:id="@+id/employee_list_add_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"

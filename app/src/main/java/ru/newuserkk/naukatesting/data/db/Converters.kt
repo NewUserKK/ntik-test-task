@@ -1,85 +1,104 @@
 package ru.newuserkk.naukatesting.data.db
 
-import androidx.room.TypeConverter
 import kotlinx.coroutines.runBlocking
 import ru.newuserkk.naukatesting.TimesheetApp
 import ru.newuserkk.naukatesting.data.db.department.DepartmentEntity
 import ru.newuserkk.naukatesting.data.db.employee.AddressEntity
 import ru.newuserkk.naukatesting.data.db.employee.EmployeeEntity
+import ru.newuserkk.naukatesting.data.db.timekeeper.MarkedEmployeeEntity
 import ru.newuserkk.naukatesting.domain.department.model.Department
 import ru.newuserkk.naukatesting.domain.employee.model.Address
 import ru.newuserkk.naukatesting.domain.employee.model.Employee
-import java.util.*
+import ru.newuserkk.naukatesting.domain.timekeeper.model.MarkedEmployee
 
-object Converters {
+private val employeeDAO = TimesheetApp.applicationDatabase.employeeDAO()
+private val departmentDAO = TimesheetApp.applicationDatabase.departmentDAO()
+private val addressDAO = TimesheetApp.applicationDatabase.addressDAO()
 
-    private val departmentDAO = TimesheetApp.applicationDatabase.departmentDAO()
-    private val addressDAO = TimesheetApp.applicationDatabase.addressDAO()
+fun Department?.toEntity(): DepartmentEntity? {
+    return this?.run { DepartmentEntity(name) }
+}
 
-    fun departmentToEntity(department: Department?): DepartmentEntity? {
-        return department?.run { DepartmentEntity(name) }
+fun DepartmentEntity?.toDepartment(): Department? {
+    return this?.run {
+        Department(name)
     }
+}
 
-    fun departmentFromEntity(entity: DepartmentEntity?): Department? {
-        return entity?.run {
-            Department(name)
-        }
-    }
-
-    fun employeeFromEntity(entity: EmployeeEntity?): Employee? {
-        return runBlocking {
-            entity?.run {
-                System.err.println("id: $id")
-                Employee(
-                    firstName = firstName,
-                    lastName = lastName,
-                    middleName = middleName,
-                    birthDate = birthDate,
-                    department = departmentDAO.getDepartmentByName(departmentName),
-                    position = position,
-                    address = Converters.addressFromEntity(addressDAO.getAddressByEmployeeId(id)),
-                    phone = phone,
-                    id = id
-                )
-            }
-        }
-    }
-
-    fun employeeToEntity(employee: Employee?): EmployeeEntity? {
-        return employee?.run {
-            EmployeeEntity(
+fun EmployeeEntity?.toEmployee(): Employee? {
+    return runBlocking {
+        this@toEmployee?.run {
+            Employee(
                 firstName = firstName,
                 lastName = lastName,
                 middleName = middleName,
                 birthDate = birthDate,
-                departmentName = department.name,
+                department = departmentDAO.getDepartmentByName(departmentName),
                 position = position,
-                phone = phone
+                address = addressDAO.getAddressByEmployeeId(id).toAddress(),
+                phone = phone,
+                id = id
             )
         }
     }
+}
 
-    fun addressFromEntity(entity: AddressEntity?): Address? {
-        return entity?.run {
-            Address(
-                country = country,
-                city = city,
-                street = street,
-                houseNumber = house,
-                flatNumber = flat
+fun Employee?.toEntity(): EmployeeEntity? {
+    return this?.run {
+        EmployeeEntity(
+            firstName = firstName,
+            lastName = lastName,
+            middleName = middleName,
+            birthDate = birthDate,
+            departmentName = department.name,
+            position = position,
+            phone = phone
+        )
+    }
+}
+
+fun AddressEntity?.toAddress(): Address? {
+    return this?.run {
+        Address(
+            country = country,
+            city = city,
+            street = street,
+            houseNumber = house,
+            flatNumber = flat
+        )
+    }
+}
+
+fun Address?.toEntity(): AddressEntity? {
+    return this?.run {
+        AddressEntity(
+            country = country,
+            city = city,
+            street = street,
+            house = houseNumber,
+            flat = flatNumber
+        )
+    }
+}
+
+fun MarkedEmployeeEntity?.toMarkedEmployee(): MarkedEmployee? {
+    return runBlocking {
+        this@toMarkedEmployee?.run {
+            MarkedEmployee(
+                date,
+                employeeDAO.getById(employeeId).toEmployee() ?: return@runBlocking null,
+                status
             )
         }
     }
+}
 
-    fun addressToEntity(address: Address?): AddressEntity? {
-        return address?.run {
-            AddressEntity(
-                country = country,
-                city = city,
-                street = street,
-                house = houseNumber,
-                flat = flatNumber
-            )
-        }
+fun MarkedEmployee?.toEntity(): MarkedEmployeeEntity? {
+    return this?.let {
+        MarkedEmployeeEntity(
+            it.date,
+            it.employee.id,
+            it.status
+        )
     }
 }

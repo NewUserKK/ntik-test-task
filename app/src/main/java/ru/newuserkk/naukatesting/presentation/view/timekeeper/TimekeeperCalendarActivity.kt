@@ -9,11 +9,11 @@ import com.roomorama.caldroid.CaldroidListener
 import ru.newuserkk.naukatesting.R
 import java.util.*
 
-class TimekeeperActivity : AppCompatActivity() {
+class TimekeeperCalendarActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_timekeeper)
+        setContentView(R.layout.activity_timekeeper_calendar)
         setupCalendar()
     }
 
@@ -36,9 +36,13 @@ class TimekeeperActivity : AppCompatActivity() {
     }
 
     fun startDetailActivity(date: Date) {
-        val intent = Intent(this, TimekeeperDetail::class.java).apply {
-            putExtra("date", date)
+        val intent = Intent(this, TimekeeperListActivity::class.java).apply {
+            putExtra(DATE_KEY, date)
         }
         startActivity(intent)
+    }
+
+    companion object {
+        const val DATE_KEY = "date"
     }
 }

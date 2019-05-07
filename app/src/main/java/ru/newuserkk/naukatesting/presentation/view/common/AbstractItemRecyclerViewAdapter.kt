@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-abstract class AbstractItemRecyclerViewAdapter<T>(val values: MutableList<T>) :
+abstract class AbstractItemRecyclerViewAdapter<T>(val values: MutableList<T> = mutableListOf()) :
     androidx.recyclerview.widget.RecyclerView.Adapter<AbstractItemRecyclerViewAdapter.AbstractViewHolder>() {
 
     protected abstract val listItemResId: Int

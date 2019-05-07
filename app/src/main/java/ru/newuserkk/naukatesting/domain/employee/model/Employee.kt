@@ -15,7 +15,11 @@ data class Employee(
     val address: Address?,
     val phone: String,
     val id: Long = -1
-): Serializable
+): Serializable {
+    override fun toString(): String {
+        return getFullName()
+    }
+}
 
 fun Employee.getFullName(): String {
     return "$lastName $firstName" + if (middleName != null) " $middleName" else ""

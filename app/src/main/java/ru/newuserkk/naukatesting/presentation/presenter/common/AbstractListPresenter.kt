@@ -1,5 +1,6 @@
 package ru.newuserkk.naukatesting.presentation.presenter.common
 
+import android.util.Log
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -22,12 +23,16 @@ abstract class AbstractListPresenter<T : Serializable>(protected val view: Abstr
                 view.adapterNotifyDataSetChanged()
 
             } else {
-                view.showListFillError(getFillListErrorMessage(result))
+                Log.e(LOG_TAG, result.error?.message)
+                view.showListFillError()
             }
         }
     }
 
 
     abstract suspend fun getItems(): Result<List<T>>
-    abstract fun getFillListErrorMessage(result: Result<List<T>>): String
+
+    companion object {
+        const val LOG_TAG = "AbstractListPresenter"
+    }
 }

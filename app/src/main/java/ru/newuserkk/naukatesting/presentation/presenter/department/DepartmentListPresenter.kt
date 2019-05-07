@@ -18,6 +18,4 @@ class DepartmentListPresenter(view: DepartmentListActivity) : AbstractListPresen
     private val interactor: DepartmentInteractor = DepartmentInteractorImpl()
 
     override suspend fun getItems(): Result<List<Department>> = interactor.getDepartments()
-    override fun getFillListErrorMessage(result: Result<List<Department>>): String =
-        view.getString(R.string.department_load_fail) + "Details: \n\t" + result.error?.toString()
 }

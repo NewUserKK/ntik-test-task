@@ -5,7 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.view.timekeeper.TimekeeperDetail">
+        tools:context=".presentation.view.timekeeper.TimekeeperListActivity">
 
     <com.google.android.material.appbar.AppBarLayout
             android:layout_height="wrap_content"
@@ -13,7 +13,7 @@
             android:theme="@style/AppTheme.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
-                android:id="@+id/timekeeper_detail_toolbar"
+                android:id="@+id/timekeeper_list_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
@@ -21,10 +21,10 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/content_timekeeper_detail"/>
+    <include layout="@layout/content_timekeeper_list"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/timekeeper_detail_add_button"
+            android:id="@+id/timekeeper_list_add_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"

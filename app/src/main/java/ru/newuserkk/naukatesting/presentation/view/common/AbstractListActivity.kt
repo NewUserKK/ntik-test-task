@@ -12,7 +12,7 @@ import java.io.Serializable
 
 abstract class AbstractListActivity<T: Serializable>: AppCompatActivity() {
 
-    protected abstract val presenter: AbstractListPresenter<T>
+    protected lateinit var presenter: AbstractListPresenter<T>
     protected abstract val activityResId: Int
     protected abstract val toolbarResId: Int
     protected abstract val addButtonResId: Int
@@ -24,29 +24,40 @@ abstract class AbstractListActivity<T: Serializable>: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(activityResId)
-        setSupportActionBar(findViewById(toolbarResId))
+        presenter = initPresenter()
 
+        setSupportActionBar(findViewById(toolbarResId))
         setupRecyclerView()
 
         findViewById<View>(addButtonResId).setOnClickListener {
-            startAddItemActivity()
+            startAddItemActivity(getAddActivityBundle())
         }
+    }
+
+    abstract fun initPresenter(): AbstractListPresenter<T>
+
+    open fun getAddActivityBundle(): Bundle? {
+        return null
     }
 
     fun adapterNotifyDataSetChanged() {
         adapter.notifyDataSetChanged()
     }
 
-    fun showListFillError(message: String) {
+    fun showListFillError() {
         AlertDialog.Builder(this)
-            .setMessage(message)
+            .setMessage(getFillErrorMessage())
             .setPositiveButton(getString(R.string.ok)) { _, _ -> finish() }
             .show()
     }
+    abstract fun getFillErrorMessage(): String
 
-    private fun startAddItemActivity() {
-        val intent = Intent(this, itemAddActivityTypeToken)
-        startActivityForResult(intent,
+    private fun startAddItemActivity(bundle: Bundle?) {
+        val intent = Intent(this, itemAddActivityTypeToken).apply {
+            putExtra(ADD_BUNDLE_KEY, bundle)
+        }
+        startActivityForResult(
+            intent,
             ITEM_REQUEST_CODE
         )
     }
@@ -72,5 +83,6 @@ abstract class AbstractListActivity<T: Serializable>: AppCompatActivity() {
         const val ITEM_RESULT_OK = 0
         const val ITEM_RESULT_NULL = 1
         const val ITEM_RESULT_KEY = "item_result"
+        const val ADD_BUNDLE_KEY = "add_bundle"
     }
 }

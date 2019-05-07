@@ -10,8 +10,12 @@
     <string name="department_add_name_text">Name:</string>
     <string name="default_font">sans-serif-light</string>
     <string name="department_load_fail">Failed to load departments!</string>
-    <string name="add_department_error">Failed to add department. Detail:</string>
+    <string name="department_add_error">Failed to add department.</string>
     <string name="title_activity_employee_list">EmployeeListActivity</string>
-    <string name="error_add_employee">Failed to add employee.</string>
+    <string name="add_employee_error">Failed to add employee.</string>
     <string name="employees_load_fail">Failed to load employees!</string>
+    <string name="add_employee_success">Successfully added employee!</string>
+    <string name="timekeeper_add_status_error">Failed to add employee status!</string>
+    <string name="departmen_add_success">Successfully added department!</string>
+    <string name="timekeeper_employee_load_fail">Failed to load employees status!</string>
 </resources>

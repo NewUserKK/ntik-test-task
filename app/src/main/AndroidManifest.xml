@@ -20,17 +20,17 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".presentation.view.timekeeper.TimekeeperActivity"
+                android:name=".presentation.view.timekeeper.TimekeeperCalendarActivity"
                 android:screenOrientation="portrait">
         </activity>
         <activity
-                android:name=".presentation.view.timekeeper.TimekeeperDetail"
+                android:name=".presentation.view.timekeeper.TimekeeperListActivity"
                 android:label="@string/title_activity_timekeeper_detail"
-                android:parentActivityName=".presentation.view.timekeeper.TimekeeperActivity"
+                android:parentActivityName=".presentation.view.timekeeper.TimekeeperCalendarActivity"
                 android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
-                    android:value="ru.newuserkk.naukatesting.presentation.view.timekeeper.TimekeeperActivity"/>
+                    android:value="ru.newuserkk.naukatesting.presentation.view.timekeeper.TimekeeperCalendarActivity"/>
         </activity>
         <activity
                 android:name=".presentation.view.department.DepartmentListActivity"
@@ -55,6 +55,8 @@
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value="ru.newuserkk.naukatesting.presentation.view.employee.EmployeeListActivity"/>
+        </activity>
+        <activity android:name=".presentation.view.timekeeper.TimekeeperAddActivity">
         </activity>
     </application>
 

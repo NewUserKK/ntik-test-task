@@ -8,7 +8,7 @@ import ru.newuserkk.naukatesting.domain.common.Result
 import ru.newuserkk.naukatesting.presentation.view.common.AbstractItemAddActivity
 import java.io.Serializable
 
-abstract class AbstractItemAddPresenter<T: Serializable>(protected val view: AbstractItemAddActivity<T>) : CoroutineScope {
+abstract class AbstractItemAddPresenter<T: Serializable>(protected open val view: AbstractItemAddActivity<T>) : CoroutineScope {
 
     fun addItem() {
         launch {
@@ -23,7 +23,7 @@ abstract class AbstractItemAddPresenter<T: Serializable>(protected val view: Abs
                 view.finish()
 
             } else {
-                view.showAddingError(result.error!!)
+                view.showAddError(result.error!!)
             }
         }
     }

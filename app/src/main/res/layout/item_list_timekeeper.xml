@@ -5,7 +5,6 @@
               android:layout_height="wrap_content"
               android:weightSum="1"
               android:gravity="center"
-              android:layout_marginBottom="10dp"
               android:orientation="horizontal">
 
     <TextView
@@ -21,7 +20,16 @@
             android:id="@+id/employee_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight=".85"
+            android:layout_weight=".6"
             android:gravity="center"
             tools:text="Костин Константин Алексеевич"/>
+
+    <TextView
+            android:id="@+id/employee_status"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".15"
+            android:gravity="center"
+            android:minWidth="100dp"
+            tools:text="ОТ"/>
 </LinearLayout>

@@ -20,13 +20,11 @@ class EmployeeRecyclerViewAdapter(values: MutableList<Employee>): AbstractItemRe
         holder.apply {
             idView.text = item.id.toString()
             nameView.text = item.getFullName()
-            statusView.text = "RE"
         }
     }
 
     class ViewHolder(view: View): AbstractViewHolder(view) {
         val idView: TextView = view.employee_id
         val nameView: TextView = view.employee_name
-        val statusView: TextView = view.employee_status
     }
 }

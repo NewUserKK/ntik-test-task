@@ -1,10 +1,7 @@
 package ru.newuserkk.naukatesting.presentation.view.employee
 
 import android.os.Bundle
-import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.TextView
-import android.widget.Toast
 import kotlinx.android.synthetic.main.fields_employee_add.*
 import ru.newuserkk.naukatesting.R
 import ru.newuserkk.naukatesting.domain.department.model.Department
@@ -23,16 +20,15 @@ class EmployeeAddActivity : AbstractItemAddActivity<Employee>() {
         get() = R.id.employee_add_content
     override val submitButtonResId: Int
         get() = R.id.employee_add_submit_button
-    override val errorStringResId: Int
-        get() = R.string.error_add_employee
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        presenter.retrieveDepartments()
+        presenter.fillDepartmentsSpinner()
     }
 
-    fun setupAdapter(values: List<Department>) {
-        employee_add_department_spinner.adapter = ArrayAdapter<Department>(this,
+    fun setupDepartmentsAdapter(values: List<Department>) {
+        employee_add_department_spinner.adapter = ArrayAdapter<Department>(
+            this,
             R.layout.support_simple_spinner_dropdown_item,
             values
         )
@@ -53,15 +49,8 @@ class EmployeeAddActivity : AbstractItemAddActivity<Employee>() {
         phone = employee_add_phone_edit_text.text.toString()
     )
 
-    override fun showSuccessMessage() {
-        //TODO: string resource
-        Toast.makeText(this, "Successfully added employee!", Toast.LENGTH_LONG).also {
-            val toastLayout = it.view as ViewGroup
-            val toastTextView = toastLayout.getChildAt(0) as TextView
-            toastTextView.textSize = 12f
-        }.show()
-    }
-
+    override fun getSuccessMessage(): String = getString(R.string.add_employee_success)
+    override fun getAddErrorMessage(): String = getString(R.string.add_employee_error)
     class EmployeeOptions(
         val firstName: String,
         val lastName: String,
@@ -75,6 +64,6 @@ class EmployeeAddActivity : AbstractItemAddActivity<Employee>() {
         val house: String,
         val flat: String,
         val phone: String
-    ): ItemOptions()
+    ): ItemOptions
 
 }

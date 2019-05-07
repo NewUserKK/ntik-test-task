@@ -6,11 +6,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:showIn="@layout/activity_timekeeper_detail"
-        tools:context=".presentation.view.timekeeper.TimekeeperDetail">
+        tools:showIn="@layout/activity_timekeeper_list"
+        tools:context=".presentation.view.timekeeper.TimekeeperListActivity">
 
     <TextView
-            android:id="@+id/timekeeper_detail_date"
+            android:id="@+id/timekeeper_list_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -19,18 +19,18 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/timekeeper_detail_list_container"
+            app:layout_constraintBottom_toTopOf="@id/timekeeper_list_container"
             tools:text="28.04.2019"/>
 
-    <ScrollView
-            android:id="@+id/timekeeper_detail_list_container"
+    <androidx.core.widget.NestedScrollView
+            android:id="@+id/timekeeper_list_container"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/timekeeper_detail_date">
+            app:layout_constraintTop_toBottomOf="@id/timekeeper_list_date">
 
-        <include layout="@layout/list_employee" />
-    </ScrollView>
+        <include layout="@layout/list_timekeeper" />
+    </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

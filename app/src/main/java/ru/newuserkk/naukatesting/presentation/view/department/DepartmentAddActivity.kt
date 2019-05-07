@@ -24,21 +24,14 @@ class DepartmentAddActivity : AbstractItemAddActivity<Department>() {
         get() = R.id.department_add_content
     override val submitButtonResId: Int
         get() = R.id.department_add_submit_button
-    override val errorStringResId: Int
-        get() = R.string.add_department_error
 
     override fun getItemOptions(): DepartmentOptions {
         return DepartmentOptions(department_add_name_edit_text.text.toString())
     }
 
-    override fun showSuccessMessage() {
-        //TODO: string resource
-        Toast.makeText(this, "Successfully added department!", Toast.LENGTH_LONG).also {
-            val toastLayout = it.view as ViewGroup
-            val toastTextView = toastLayout.getChildAt(0) as TextView
-            toastTextView.textSize = 12f
-        }.show()
-    }
+    override fun getSuccessMessage(): String = getString(R.string.departmen_add_success)
+    override fun getAddErrorMessage(): String = getString(R.string.department_add_error)
 
-    class DepartmentOptions(val departmentName: String): ItemOptions()
+
+    class DepartmentOptions(val departmentName: String): ItemOptions
 }

@@ -5,20 +5,15 @@ import kotlinx.coroutines.launch
 import ru.newuserkk.naukatesting.domain.common.Result
 import ru.newuserkk.naukatesting.domain.department.DepartmentInteractor
 import ru.newuserkk.naukatesting.domain.department.DepartmentInteractorImpl
-import ru.newuserkk.naukatesting.domain.department.model.Department
 import ru.newuserkk.naukatesting.domain.employee.EmployeeInteractor
 import ru.newuserkk.naukatesting.domain.employee.EmployeeInteractorImpl
-import ru.newuserkk.naukatesting.domain.employee.model.Address
 import ru.newuserkk.naukatesting.domain.employee.model.Employee
 import ru.newuserkk.naukatesting.presentation.presenter.common.AbstractItemAddPresenter
 import ru.newuserkk.naukatesting.presentation.view.common.AbstractItemAddActivity
 import ru.newuserkk.naukatesting.presentation.view.employee.EmployeeAddActivity
-import java.text.DateFormat
-import java.text.SimpleDateFormat
-import java.util.*
 import kotlin.coroutines.CoroutineContext
 
-class EmployeeAddPresenter(view: EmployeeAddActivity): AbstractItemAddPresenter<Employee>(view) {
+class EmployeeAddPresenter(override val view: EmployeeAddActivity): AbstractItemAddPresenter<Employee>(view) {
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main
 
@@ -34,14 +29,13 @@ class EmployeeAddPresenter(view: EmployeeAddActivity): AbstractItemAddPresenter<
     override suspend fun addItem(item: Employee): Result<Employee> =
         employeeInteractor.addEmployee(item)
 
-    fun retrieveDepartments() {
+    fun fillDepartmentsSpinner() {
         launch {
             val result = departmentInteractor.getDepartments()
             if (result.isSuccessful && result.value != null) {
-                (view as EmployeeAddActivity).setupAdapter(result.value)
+                view.setupDepartmentsAdapter(result.value)
             } else {
-                // TODO: change message
-                view.showAddingError(result.error!!)
+                view.showAddError(result.error!!)
             }
         }
     }

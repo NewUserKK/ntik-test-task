@@ -2,6 +2,7 @@ package ru.newuserkk.naukatesting.presentation.view.common
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -13,12 +14,15 @@ import java.io.Serializable
 
 abstract class AbstractItemAddActivity<T: Serializable>: AppCompatActivity() {
 
+    companion object {
+        const val LOG_TAG = "AbstractItemAddActivity"
+    }
+
     protected abstract val presenter: AbstractItemAddPresenter<T>
     protected abstract val activityResId: Int
     protected abstract val progressBarResId: Int
     protected abstract val contentResId: Int
     protected abstract val submitButtonResId: Int
-    protected abstract val errorStringResId: Int
 
     private var result: T? = null
 
@@ -46,15 +50,26 @@ abstract class AbstractItemAddActivity<T: Serializable>: AppCompatActivity() {
         findViewById<View>(contentResId).visibility = View.VISIBLE
     }
 
-    abstract fun showSuccessMessage()
-
-    fun showAddingError(e: Throwable) {
-        showError(getString(errorStringResId), e)
+    fun showSuccessMessage() {
+        Toast.makeText(this, getSuccessMessage(), Toast.LENGTH_LONG).also {
+            val toastLayout = it.view as ViewGroup
+            val toastTextView = toastLayout.getChildAt(0) as TextView
+            toastTextView.textSize = 12f
+        }.show()
     }
 
+    abstract fun getSuccessMessage(): String
+
+    fun showAddError(e: Throwable) {
+        showError(getAddErrorMessage(), e)
+    }
+
+    abstract fun getAddErrorMessage(): String
+
     fun showError(message: String, e: Throwable) {
+        Log.e(LOG_TAG, e.message)
         AlertDialog.Builder(this)
-            .setMessage(message + " Details: " + e.localizedMessage)
+            .setMessage(message)
             .show()
     }
 
@@ -76,5 +91,5 @@ abstract class AbstractItemAddActivity<T: Serializable>: AppCompatActivity() {
         super.finish()
     }
 
-    abstract class ItemOptions
+    interface ItemOptions
 }
