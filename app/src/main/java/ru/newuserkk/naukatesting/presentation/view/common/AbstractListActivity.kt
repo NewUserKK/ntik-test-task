@@ -13,17 +13,20 @@ import java.io.Serializable
 abstract class AbstractListActivity<T: Serializable>: AppCompatActivity() {
 
     protected lateinit var presenter: AbstractListPresenter<T>
-    protected abstract val activityResId: Int
+    protected abstract val activityLayoutResId: Int
     protected abstract val toolbarResId: Int
     protected abstract val addButtonResId: Int
     protected abstract val listResId: Int
     protected abstract val itemAddActivityTypeToken: Class<out AbstractItemAddActivity<T>>
+//    protected abstract val itemEditActivityTypeToken: Class<out AbstractItemEditActivity<T>>
 
     protected abstract val adapter: AbstractItemRecyclerViewAdapter<T>
 
+    private var editItemPosition = -1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(activityResId)
+        setContentView(activityLayoutResId)
         presenter = initPresenter()
 
         setSupportActionBar(findViewById(toolbarResId))
@@ -32,27 +35,23 @@ abstract class AbstractListActivity<T: Serializable>: AppCompatActivity() {
         findViewById<View>(addButtonResId).setOnClickListener {
             startAddItemActivity(getAddActivityBundle())
         }
+
+        adapter.onItemClickListener = {
+            editItemPosition = adapter.values.indexOf(it.tag)
+            startEditItemActivity(it.tag as T)
+        }
     }
 
     abstract fun initPresenter(): AbstractListPresenter<T>
 
-    open fun getAddActivityBundle(): Bundle? {
-        return null
+    open fun getAddActivityBundle(): Bundle? = null
+
+    private fun setupRecyclerView() {
+        findViewById<RecyclerView>(listResId).adapter = adapter
+        presenter.fillList(adapter.values)
     }
 
-    fun adapterNotifyDataSetChanged() {
-        adapter.notifyDataSetChanged()
-    }
-
-    fun showListFillError() {
-        AlertDialog.Builder(this)
-            .setMessage(getFillErrorMessage())
-            .setPositiveButton(getString(R.string.ok)) { _, _ -> finish() }
-            .show()
-    }
-    abstract fun getFillErrorMessage(): String
-
-    private fun startAddItemActivity(bundle: Bundle?) {
+    private fun startAddItemActivity(bundle: Bundle? = null) {
         val intent = Intent(this, itemAddActivityTypeToken).apply {
             putExtra(ADD_BUNDLE_KEY, bundle)
         }
@@ -64,25 +63,52 @@ abstract class AbstractListActivity<T: Serializable>: AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == ITEM_REQUEST_CODE && resultCode == ITEM_RESULT_OK) {
-            val item = data?.extras?.get(ITEM_RESULT_KEY) as T
-            adapter.apply {
-                values.add(item)
-                notifyItemInserted(itemCount)
+        if (requestCode == ITEM_REQUEST_CODE) {
+            when (resultCode) {
+                ITEM_RESULT_ADD -> {
+                    val item = data?.extras?.get(ITEM_RESULT_KEY) as T
+                    adapter.apply {
+                        values.add(item)
+                        notifyItemInserted(itemCount)
+                    }
+                }
+
+                ITEM_RESULT_EDIT -> {
+                    val item = data?.extras?.get(ITEM_RESULT_KEY) as T
+                    adapter.values[editItemPosition] = item
+                    adapter.notifyItemChanged(editItemPosition)
+                }
             }
+
         }
     }
 
-    private fun setupRecyclerView() {
-        findViewById<RecyclerView>(listResId).adapter = adapter
-        presenter.fillList(adapter.values)
+    fun startEditItemActivity(item: T) {
+        val intent = Intent(this, itemAddActivityTypeToken).apply {
+            putExtra(EDIT_ITEM_KEY, item)
+        }
+        startActivityForResult(intent, ITEM_REQUEST_CODE)
+    }
+
+    fun showListFillError() {
+        AlertDialog.Builder(this)
+            .setMessage(getFillErrorMessage())
+            .setPositiveButton(getString(R.string.ok)) { _, _ -> finish() }
+            .show()
+    }
+    abstract fun getFillErrorMessage(): String
+
+    fun adapterNotifyDataSetChanged() {
+        adapter.notifyDataSetChanged()
     }
 
     companion object {
         const val ITEM_REQUEST_CODE = 0
-        const val ITEM_RESULT_OK = 0
-        const val ITEM_RESULT_NULL = 1
+        const val ITEM_RESULT_ADD = 0
+        const val ITEM_RESULT_EDIT = 1
+        const val ITEM_RESULT_NULL = 2
         const val ITEM_RESULT_KEY = "item_result"
         const val ADD_BUNDLE_KEY = "add_bundle"
+        const val EDIT_ITEM_KEY = "item_to_edit"
     }
 }

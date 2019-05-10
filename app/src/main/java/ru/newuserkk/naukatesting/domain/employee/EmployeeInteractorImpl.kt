@@ -1,5 +1,6 @@
 package ru.newuserkk.naukatesting.domain.employee
 
+import android.util.Log
 import ru.newuserkk.naukatesting.data.repository.employee.EmployeeRepositoryImpl
 import ru.newuserkk.naukatesting.data.repository.employee.EmployeeRepositoryTest
 import ru.newuserkk.naukatesting.domain.common.Result
@@ -34,6 +35,15 @@ class EmployeeInteractorImpl : EmployeeInteractor {
         }
     }
 
+    override suspend fun editEmployee(employee: Employee): Result<Employee> {
+        return try {
+            Result(repository.editEmployee(employee))
+        } catch (e: Throwable) {
+            Log.e(LOG_TAG, e.message)
+            Result(null, e)
+        }
+    }
+
     override fun buildEmployee(options: EmployeeAddActivity.EmployeeOptions): Result<Employee> {
         if (options.department == null) {
             return Result(null, IllegalArgumentException("No department is present"))
@@ -56,5 +66,9 @@ class EmployeeInteractorImpl : EmployeeInteractor {
         } catch (e: ParseException) {
             Result(null, IllegalArgumentException("Couldn't parse date! Required format: dd.mm.yyyy"))
         }
+    }
+
+    companion object {
+        const val LOG_TAG = "EmployeeInteractorImpl"
     }
 }

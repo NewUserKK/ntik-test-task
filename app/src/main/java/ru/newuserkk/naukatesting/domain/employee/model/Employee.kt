@@ -14,11 +14,13 @@ data class Employee(
     val position: String,
     val address: Address?,
     val phone: String,
-    val id: Long = -1
+    var id: Long = -1
 ): Serializable {
+
     override fun toString(): String {
         return getFullName()
     }
+
 }
 
 fun Employee.getFullName(): String {

@@ -10,11 +10,6 @@ abstract class AbstractItemRecyclerViewAdapter<T>(val values: MutableList<T> = m
     protected abstract val listItemResId: Int
     var onItemClickListener: ((View) -> Unit)? = null
 
-    init {
-        // TODO: remove default onClick
-        onItemClickListener = { view -> println(view.tag) }
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AbstractViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(listItemResId, parent, false)

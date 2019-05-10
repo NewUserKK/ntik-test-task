@@ -1,5 +1,6 @@
 package ru.newuserkk.naukatesting.presentation.view.employee
 
+import android.os.Bundle
 import ru.newuserkk.naukatesting.R
 import ru.newuserkk.naukatesting.domain.employee.model.Employee
 import ru.newuserkk.naukatesting.presentation.presenter.common.AbstractListPresenter
@@ -10,7 +11,7 @@ import ru.newuserkk.naukatesting.presentation.view.common.AbstractListActivity
 
 class EmployeeListActivity : AbstractListActivity<Employee>() {
 
-    override val activityResId: Int
+    override val activityLayoutResId: Int
         get() = R.layout.activity_employee_list
     override val toolbarResId: Int
         get() = R.id.employee_list_toolbar

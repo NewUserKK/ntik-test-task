@@ -9,9 +9,10 @@ class DepartmentRepositoryTest: DepartmentRepository {
         const val LOG_TAG = "DepartmentRepositoryTest"
     }
 
-    override suspend fun addDepartment(department: Department) {
+    override suspend fun addDepartment(department: Department): Department? {
         Thread.sleep(2000)
         println("Add department: $department")
+        return department
     }
 
     override suspend fun getDepartments(): List<Department> {
@@ -24,5 +25,9 @@ class DepartmentRepositoryTest: DepartmentRepository {
             Department("Каво"),
             Department("Чево")
         )
+    }
+
+    override suspend fun editDepartment(department: Department): Department? {
+        return department
     }
 }

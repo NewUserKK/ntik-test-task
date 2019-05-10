@@ -21,6 +21,15 @@ class DepartmentAddPresenter(view: DepartmentAddActivity) : AbstractItemAddPrese
         return Result(Department(options.departmentName))
     }
 
-    override suspend fun addItem(item: Department): Result<Department> =
-        departmentInteractor.addDepartment(item)
+    override suspend fun addItem(item: Department, edit: Boolean): Result<Department> {
+        return if (!edit) {
+            departmentInteractor.addDepartment(item)
+        } else {
+            departmentInteractor.editDepartment(item)
+        }
+    }
+
+    override fun changeItemId(oldItem: Department, newItem: Department) {
+        newItem.id = oldItem.id
+    }
 }

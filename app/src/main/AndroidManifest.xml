@@ -58,6 +58,8 @@
         </activity>
         <activity android:name=".presentation.view.timekeeper.TimekeeperAddActivity">
         </activity>
+        <activity android:name=".presentation.view.department.DepartmentEditActivity">
+        </activity>
     </application>
 
 </manifest>

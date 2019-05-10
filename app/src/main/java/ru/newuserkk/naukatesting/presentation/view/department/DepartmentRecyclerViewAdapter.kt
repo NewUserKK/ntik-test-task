@@ -17,11 +17,13 @@ class DepartmentRecyclerViewAdapter(values: MutableList<Department>) :
 
     override fun fillViewHolder(holder: AbstractItemRecyclerViewAdapter.AbstractViewHolder, position: Int, item: Department) {
         (holder as ViewHolder).apply {
+            idView.text = item.id.toString()
             nameView.text = item.name
         }
     }
 
     class ViewHolder(view: View) : AbstractViewHolder(view) {
+        val idView: TextView = view.department_id
         val nameView: TextView = view.department_name
     }
 }

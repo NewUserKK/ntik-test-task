@@ -2,14 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent"
-        >
+              android:layout_height="match_parent" >
 
     <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight=".9">
-        <include layout="@layout/fields_timekeeper_add" />
+
+        <include layout="@layout/fields_timekeeper_add"/>
     </ScrollView>
 
     <Button

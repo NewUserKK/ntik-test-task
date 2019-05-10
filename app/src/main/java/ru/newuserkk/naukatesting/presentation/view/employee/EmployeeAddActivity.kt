@@ -8,6 +8,8 @@ import ru.newuserkk.naukatesting.domain.department.model.Department
 import ru.newuserkk.naukatesting.domain.employee.model.Employee
 import ru.newuserkk.naukatesting.presentation.presenter.employee.EmployeeAddPresenter
 import ru.newuserkk.naukatesting.presentation.view.common.AbstractItemAddActivity
+import java.text.SimpleDateFormat
+import java.util.*
 
 class EmployeeAddActivity : AbstractItemAddActivity<Employee>() {
 
@@ -21,8 +23,7 @@ class EmployeeAddActivity : AbstractItemAddActivity<Employee>() {
     override val submitButtonResId: Int
         get() = R.id.employee_add_submit_button
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun fillSpinners() {
         presenter.fillDepartmentsSpinner()
     }
 
@@ -48,6 +49,30 @@ class EmployeeAddActivity : AbstractItemAddActivity<Employee>() {
         flat = employee_add_flat_edit_text.text.toString(),
         phone = employee_add_phone_edit_text.text.toString()
     )
+
+    override fun fillFields(item: Employee) {
+        item.let {
+            employee_add_first_name_edit_text.setText(it.firstName)
+            employee_add_last_name_edit_text.setText(it.lastName)
+            employee_add_middle_name_edit_text.setText(it.middleName)
+            employee_add_birth_date_edit_text.setText(
+                SimpleDateFormat("dd.MM.yyyy", Locale.US).format(it.birthDate)
+            )
+            employee_add_department_spinner.setSelection(
+                (employee_add_department_spinner.adapter as ArrayAdapter<Department>)
+                    .getPosition(it.department)
+            )
+            employee_add_position_edit_text.setText(it.position)
+            it.address?.let { address ->
+                employee_add_country_edit_text.setText(address.country)
+                employee_add_city_edit_text.setText(address.city)
+                employee_add_street_edit_text.setText(address.street)
+                employee_add_house_number_edit_text.setText(address.houseNumber)
+                employee_add_flat_edit_text.setText(address.flatNumber)
+            }
+            employee_add_phone_edit_text.setText(it.phone)
+        }
+    }
 
     override fun getSuccessMessage(): String = getString(R.string.add_employee_success)
     override fun getAddErrorMessage(): String = getString(R.string.add_employee_error)

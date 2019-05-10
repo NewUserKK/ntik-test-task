@@ -24,15 +24,38 @@ abstract class AbstractItemAddActivity<T: Serializable>: AppCompatActivity() {
     protected abstract val contentResId: Int
     protected abstract val submitButtonResId: Int
 
+    var itemToEdit: T? = null
+        private set
+
+    val isEditing: Boolean
+        get() = itemToEdit != null
+
     private var result: T? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(activityResId)
-        findViewById<View>(submitButtonResId).setOnClickListener {
-            presenter.addItem()
+
+        fillSpinners()
+
+        itemToEdit = intent?.extras?.getSerializable(AbstractListActivity.EDIT_ITEM_KEY) as? T
+        if (itemToEdit != null) {
+            fillFields(itemToEdit!!)
+            findViewById<View>(submitButtonResId).setOnClickListener {
+                Log.d(LOG_TAG, "$itemToEdit")
+                presenter.addItem(getItemOptions(), edit = true)
+            }
+
+        } else {
+            findViewById<View>(submitButtonResId).setOnClickListener {
+                presenter.addItem(getItemOptions())
+            }
         }
+
     }
+
+    open fun fillSpinners() {}
+    abstract fun fillFields(item: T)
 
     abstract fun getItemOptions(): ItemOptions
 
@@ -82,7 +105,13 @@ abstract class AbstractItemAddActivity<T: Serializable>: AppCompatActivity() {
                 )
             }
             if (result != null) {
-                setResult(AbstractListActivity.ITEM_RESULT_OK, returnIntent)
+                val code = if (isEditing) {
+                    AbstractListActivity.ITEM_RESULT_EDIT
+                } else {
+                    AbstractListActivity.ITEM_RESULT_ADD
+                }
+                
+                setResult(code, returnIntent)
             } else {
                 setResult(AbstractListActivity.ITEM_RESULT_NULL, returnIntent)
             }

@@ -10,18 +10,22 @@ import java.io.Serializable
 
 abstract class AbstractItemAddPresenter<T: Serializable>(protected open val view: AbstractItemAddActivity<T>) : CoroutineScope {
 
-    fun addItem() {
+    fun addItem(options: AbstractItemAddActivity.ItemOptions, edit: Boolean = false) {
         launch {
             view.showProgress()
-            val itemResult = createItemFromOptions(view.getItemOptions())
+            val itemResult = createItemFromOptions(options)
             if (!itemResult.isSuccessful || itemResult.value == null) {
                 view.showAddError(itemResult.error!!)
                 view.hideProgress()
                 return@launch
             }
 
+            if (edit) {
+                changeItemId(view.itemToEdit!!, itemResult.value)
+            }
+
             val result = withContext(Dispatchers.IO) {
-                addItem(itemResult.value)
+                addItem(itemResult.value, edit)
             }
             view.hideProgress()
             if (result.isSuccessful && result.value != null) {
@@ -36,5 +40,6 @@ abstract class AbstractItemAddPresenter<T: Serializable>(protected open val view
     }
 
     protected abstract fun createItemFromOptions(options: AbstractItemAddActivity.ItemOptions): Result<T>
-    protected abstract suspend fun addItem(item: T): Result<T>
+    protected abstract fun changeItemId(oldItem: T, newItem: T)
+    protected abstract suspend fun addItem(item: T, edit: Boolean): Result<T>
 }

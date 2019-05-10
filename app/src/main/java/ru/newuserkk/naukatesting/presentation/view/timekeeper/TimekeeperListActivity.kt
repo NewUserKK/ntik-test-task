@@ -14,7 +14,7 @@ import java.util.*
 
 class TimekeeperListActivity : AbstractListActivity<MarkedEmployee>() {
 
-    override val activityResId = R.layout.activity_timekeeper_list
+    override val activityLayoutResId = R.layout.activity_timekeeper_list
     override val toolbarResId = R.id.timekeeper_list_toolbar
     override val addButtonResId = R.id.timekeeper_list_add_button
     override val listResId = R.id.timekeeper_employee_list

@@ -28,8 +28,12 @@ class TimekeeperAddPresenter(override val view: TimekeeperAddActivity) :
         return Result(MarkedEmployee(options.date, options.employee, options.status))
     }
 
-    override suspend fun addItem(item: MarkedEmployee): Result<MarkedEmployee> {
+    override suspend fun addItem(item: MarkedEmployee, edit: Boolean): Result<MarkedEmployee> {
         return calendarInteractor.addEmployeeMark(item)
+    }
+
+    override fun changeItemId(oldItem: MarkedEmployee, newItem: MarkedEmployee) {
+        TODO("not implemented")
     }
 
     fun fillEmployeesSpinner() {

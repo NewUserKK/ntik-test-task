@@ -5,4 +5,9 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "departments")
-data class DepartmentEntity(@PrimaryKey var name: String)
+data class DepartmentEntity(@ColumnInfo var name: String) {
+
+    @PrimaryKey(autoGenerate = true)
+    var id = 0
+
+}

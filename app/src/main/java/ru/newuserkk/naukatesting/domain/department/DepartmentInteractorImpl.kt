@@ -10,10 +10,8 @@ class DepartmentInteractorImpl: DepartmentInteractor {
     private val repository: DepartmentRepository = DepartmentRepositoryImpl()
 
     override suspend fun addDepartment(department: Department): Result<Department> {
-        // TODO: validation
         return try {
-            repository.addDepartment(department)
-            Result(department, null)
+            Result(repository.addDepartment(department), null)
         } catch (e: Throwable) {
             Result(null, e)
         }
@@ -22,6 +20,14 @@ class DepartmentInteractorImpl: DepartmentInteractor {
     override suspend fun getDepartments(): Result<List<Department>> {
         return try {
             Result(repository.getDepartments(), null)
+        } catch (e: Throwable) {
+            Result(null, e)
+        }
+    }
+
+    override suspend fun editDepartment(department: Department): Result<Department> {
+        return try {
+            Result(repository.editDepartment(department))
         } catch (e: Throwable) {
             Result(null, e)
         }

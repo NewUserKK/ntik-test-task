@@ -9,7 +9,7 @@ interface AddressDAO {
     suspend fun getAddressByEmployeeId(id: Long): AddressEntity
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun addAddress(address: AddressEntity?): Long
+    suspend fun add(address: AddressEntity?): Long
 
     @Query("UPDATE address SET employeeId=:employeeId WHERE addressId=:addressId")
     suspend fun updateEmployeeId(addressId: Long, employeeId: Long)

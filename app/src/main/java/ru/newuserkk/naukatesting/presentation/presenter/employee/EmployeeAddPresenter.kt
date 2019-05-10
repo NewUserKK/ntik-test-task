@@ -25,8 +25,9 @@ class EmployeeAddPresenter(override val view: EmployeeAddActivity): AbstractItem
         return employeeInteractor.buildEmployee(options)
     }
 
-    override suspend fun addItem(item: Employee): Result<Employee> =
-        employeeInteractor.addEmployee(item)
+    override suspend fun addItem(item: Employee, edit: Boolean): Result<Employee> {
+        return employeeInteractor.addEmployee(item)
+    }
 
     fun fillDepartmentsSpinner() {
         launch {
@@ -37,5 +38,9 @@ class EmployeeAddPresenter(override val view: EmployeeAddActivity): AbstractItem
                 view.showAddError(result.error!!)
             }
         }
+    }
+
+    override fun changeItemId(oldItem: Employee, newItem: Employee) {
+        newItem.id = oldItem.id
     }
 }

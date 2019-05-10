@@ -15,13 +15,17 @@ private val employeeDAO = TimesheetApp.applicationDatabase.employeeDAO()
 private val departmentDAO = TimesheetApp.applicationDatabase.departmentDAO()
 private val addressDAO = TimesheetApp.applicationDatabase.addressDAO()
 
-fun Department?.toEntity(): DepartmentEntity? {
-    return this?.run { DepartmentEntity(name) }
-}
-
 fun DepartmentEntity?.toDepartment(): Department? {
     return this?.run {
-        Department(name)
+        Department(name, id)
+    }
+}
+
+fun Department?.toEntity(): DepartmentEntity? {
+    return this?.let {
+        DepartmentEntity(it.name).apply {
+            id = it.id
+        }
     }
 }
 
@@ -33,7 +37,7 @@ fun EmployeeEntity?.toEmployee(): Employee? {
                 lastName = lastName,
                 middleName = middleName,
                 birthDate = birthDate,
-                department = departmentDAO.getDepartmentByName(departmentName),
+                department = departmentDAO.getDepartmentByName(departmentName).toDepartment() ?: return@run null,
                 position = position,
                 address = addressDAO.getAddressByEmployeeId(id).toAddress(),
                 phone = phone,

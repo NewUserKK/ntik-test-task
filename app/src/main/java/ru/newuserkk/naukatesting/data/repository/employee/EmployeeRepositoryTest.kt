@@ -25,6 +25,10 @@ class EmployeeRepositoryTest: EmployeeRepository {
         return employeeList
     }
 
+    override suspend fun editEmployee(employee: Employee): Employee? {
+        return employee
+    }
+
     private fun getRandomEmployee(): Employee {
         return Employee(
             firstName = getRandomString(15),
