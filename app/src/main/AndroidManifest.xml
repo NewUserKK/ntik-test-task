@@ -19,47 +19,63 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+
         <activity
                 android:name=".presentation.view.timekeeper.TimekeeperCalendarActivity"
+                android:label="@string/title_activity_timekeeper_calendar"
                 android:screenOrientation="portrait">
         </activity>
+
         <activity
                 android:name=".presentation.view.timekeeper.TimekeeperListActivity"
-                android:label="@string/title_activity_timekeeper_detail"
+                android:label="@string/title_activity_timekeeper_list"
                 android:parentActivityName=".presentation.view.timekeeper.TimekeeperCalendarActivity"
                 android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value="ru.newuserkk.naukatesting.presentation.view.timekeeper.TimekeeperCalendarActivity"/>
         </activity>
+
+        <activity android:name=".presentation.view.timekeeper.TimekeeperAddActivity"
+                android:label="@string/title_activity_timekeeper_add"
+                android:parentActivityName=".presentation.view.timekeeper.TimekeeperListActivity">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".presentation.view.timekeeper.TimekeeperListActivity" />
+        </activity>
+
+
         <activity
                 android:name=".presentation.view.department.DepartmentListActivity"
-                android:label="@string/title_activity_department"
+                android:label="@string/title_activity_department_list"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
+
         <activity
                 android:name=".presentation.view.department.DepartmentAddActivity"
+                android:label="@string/title_activity_department_add"
                 android:parentActivityName=".presentation.view.department.DepartmentListActivity">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value="ru.newuserkk.naukatesting.presentation.view.department.DepartmentListActivity"/>
         </activity>
+
+
         <activity
                 android:name=".presentation.view.employee.EmployeeListActivity"
                 android:label="@string/title_activity_employee_list"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
+
         <activity
                 android:name=".presentation.view.employee.EmployeeAddActivity"
+                android:label="@string/title_activity_add_employee"
                 android:parentActivityName=".presentation.view.employee.EmployeeListActivity">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value="ru.newuserkk.naukatesting.presentation.view.employee.EmployeeListActivity"/>
         </activity>
-        <activity android:name=".presentation.view.timekeeper.TimekeeperAddActivity">
-        </activity>
-        <activity android:name=".presentation.view.department.DepartmentEditActivity">
-        </activity>
-    </application>
 
+    </application>
 </manifest>

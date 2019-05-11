@@ -68,7 +68,7 @@ class EmployeeAddActivity : AbstractItemAddActivity<Employee>() {
                 SimpleDateFormat("dd.MM.yyyy", Locale.US).format(it.birthDate)
             )
             employee_add_position_edit_text.setText(it.position)
-            it.address?.let { address ->
+            it.address.let { address ->
                 employee_add_country_edit_text.setText(address.country)
                 employee_add_city_edit_text.setText(address.city)
                 employee_add_street_edit_text.setText(address.street)

@@ -5,7 +5,9 @@
               android:layout_height="wrap_content"
               android:weightSum="1"
               android:gravity="center"
-              android:orientation="horizontal">
+              android:orientation="horizontal"
+              android:layout_marginBottom="@dimen/item_list_vertical_margin"
+              style="@style/ListItemStyle">
 
     <TextView
             android:id="@+id/mark_employee_id"

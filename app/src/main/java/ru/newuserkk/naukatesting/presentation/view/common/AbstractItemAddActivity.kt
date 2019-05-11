@@ -57,19 +57,6 @@ abstract class AbstractItemAddActivity<T: Serializable>: AppCompatActivity() {
 
     abstract fun fillFields(item: T)
 
-//    fun <E> setupAdapter(values: List<E>, selectionItem: E?) {
-//        val spinner = getSpinner() ?: return
-//        val adapter = ArrayAdapter<E>(
-//            this,
-//            R.layout.support_simple_spinner_dropdown_item,
-//            values
-//        )
-//        spinner.adapter = adapter
-//        spinner.setSelection(adapter.getPosition(selectionItem))
-//    }
-//
-//    open fun getSpinner(): Spinner? { return null }
-
     abstract fun getItemOptions(): ItemOptions
 
     fun setResult(result: T) {

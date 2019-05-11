@@ -22,7 +22,7 @@
             app:layout_constraintBottom_toTopOf="@id/timekeeper_list_container"
             tools:text="28.04.2019"/>
 
-    <androidx.core.widget.NestedScrollView
+    <FrameLayout
             android:id="@+id/timekeeper_list_container"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
@@ -32,5 +32,5 @@
             app:layout_constraintTop_toBottomOf="@id/timekeeper_list_date">
 
         <include layout="@layout/list_timekeeper" />
-    </androidx.core.widget.NestedScrollView>
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

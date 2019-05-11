@@ -1,6 +1,7 @@
 package ru.newuserkk.naukatesting.presentation.view.timekeeper
 
 import android.os.Bundle
+import kotlinx.android.synthetic.main.activity_department_list.*
 import kotlinx.android.synthetic.main.content_timekeeper_list.*
 import kotlinx.android.synthetic.main.list_timekeeper.*
 import ru.newuserkk.naukatesting.R
@@ -30,6 +31,8 @@ class TimekeeperListActivity : AbstractListActivity<MarkedEmployee>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
 
         timekeeper_list_date.text = SimpleDateFormat("dd MMMM y", resources.configuration.locale)
             .format(date)

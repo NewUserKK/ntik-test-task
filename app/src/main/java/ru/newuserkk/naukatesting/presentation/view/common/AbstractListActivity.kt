@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import ru.newuserkk.naukatesting.R
 import ru.newuserkk.naukatesting.presentation.presenter.common.AbstractListPresenter
@@ -46,7 +47,9 @@ abstract class AbstractListActivity<T : Serializable> : AppCompatActivity() {
     open fun getAddActivityBundle(): Bundle? = null
 
     private fun setupRecyclerView() {
-        findViewById<RecyclerView>(listResId).adapter = adapter
+        val list = findViewById<RecyclerView>(listResId)
+        list.adapter = adapter
+        list.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         presenter.fillList(adapter.values)
     }
 

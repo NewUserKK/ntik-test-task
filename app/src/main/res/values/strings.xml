@@ -1,17 +1,22 @@
 <resources>
-    <string name="app_name">NaukaTesting</string>
-    <string name="choose_role_text">Choose your role:</string>
+    <string name="app_name">TimesheetApp</string>
+    <string name="title_activity_timekeeper_list">Employee marks</string>
+    <string name="title_activity_department_list">Departments</string>
+    <string name="title_activity_employee_list">Employees</string>
+    <string name="title_activity_timekeeper_add">Add mark</string>
+    <string name="title_activity_timekeeper_calendar">Calendar</string>
+    <string name="title_activity_department_add">Add department</string>
+    <string name="title_activity_add_employee">Add employee</string>
+
     <string name="ok">OK</string>
+    <string name="choose_role_text">Choose your role:</string>
     <string name="timekeeper">Timekeeper</string>
     <string name="department_administrator">Department administrator</string>
     <string name="employee_administrator">Employee administrator</string>
-    <string name="title_activity_timekeeper_detail">TimekeeperDetail</string>
-    <string name="title_activity_department">DepartmentActivity</string>
     <string name="department_add_name_text">Name:</string>
     <string name="default_font">sans-serif-light</string>
     <string name="department_load_fail">Failed to load departments!</string>
     <string name="department_add_error">Failed to add department.</string>
-    <string name="title_activity_employee_list">EmployeeListActivity</string>
     <string name="add_employee_error">Failed to add employee.</string>
     <string name="employees_load_fail">Failed to load employees!</string>
     <string name="add_employee_success">Successfully added employee!</string>
@@ -35,4 +40,5 @@
     <string name="field_employee_phone">Phone:</string>
     <string name="field_employee_select_date">Select</string>
     <string name="remove_item_fail">Failed to remove item!</string>
+
 </resources>
