@@ -12,9 +12,7 @@ interface EmployeeDAO {
     @Query("SELECT * FROM employees WHERE id=:id")
     suspend fun getById(id: Long): Employee?
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun add(employee: Employee): Long
 
-    @Update
-    suspend fun update(employee: Employee)
 }

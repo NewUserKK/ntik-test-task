@@ -26,8 +26,4 @@ class DepartmentRepositoryTest: DepartmentRepository {
             Department("Чево")
         )
     }
-
-    override suspend fun editDepartment(department: Department): Department? {
-        return department
-    }
 }

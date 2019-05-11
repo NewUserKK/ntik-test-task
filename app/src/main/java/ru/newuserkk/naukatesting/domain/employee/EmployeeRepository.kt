@@ -6,6 +6,5 @@ interface EmployeeRepository {
 
     suspend fun addEmployee(employee: Employee): Employee?
     suspend fun getEmployees(): List<Employee>
-    suspend fun editEmployee(employee: Employee): Employee?
 
 }

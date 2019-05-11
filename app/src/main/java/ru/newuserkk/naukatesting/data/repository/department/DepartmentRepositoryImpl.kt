@@ -16,11 +16,6 @@ class DepartmentRepositoryImpl : DepartmentRepository {
         return departmentDAO.getAll()
     }
 
-    override suspend fun editDepartment(department: Department): Department? {
-        departmentDAO.update(department)
-        return department
-    }
-
     companion object {
         const val LOG_TAG = "DepartmentRepository"
     }

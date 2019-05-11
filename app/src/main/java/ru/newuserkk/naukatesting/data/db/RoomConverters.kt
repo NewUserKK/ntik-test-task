@@ -39,7 +39,7 @@ class RoomConverters {
     fun departmentFromId(id: Long?): Department? {
         return runBlocking {
             id?.let {
-                TimesheetApp.applicationDatabase.departmentDAO().getDepartmentById(it)
+                TimesheetApp.applicationDatabase.departmentDAO().getById(it)
             }
         }
     }

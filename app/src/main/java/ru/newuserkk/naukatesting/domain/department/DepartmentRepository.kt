@@ -6,6 +6,5 @@ interface DepartmentRepository {
 
     suspend fun addDepartment(department: Department): Department?
     suspend fun getDepartments(): List<Department>
-    suspend fun editDepartment(department: Department): Department?
 
 }

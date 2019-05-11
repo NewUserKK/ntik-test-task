@@ -17,9 +17,7 @@ class CalendarRepositoryImpl: CalendarRepository {
 
     override suspend fun addEmployeeMark(markedEmployee: MarkedEmployee): MarkedEmployee? {
         Log.d(LOG_TAG, "Adding marked employee for date: ${markedEmployee.date}")
-        val addedId = calendarDAO.addMark(markedEmployee)
-        val addedEmployee = calendarDAO.getById(addedId)
-        return addedEmployee
+        return markedEmployee.apply { id = calendarDAO.add(markedEmployee) }
     }
 
     companion object {

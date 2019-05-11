@@ -4,6 +4,7 @@ import android.util.Log
 import ru.newuserkk.naukatesting.TimesheetApp
 import ru.newuserkk.naukatesting.domain.employee.EmployeeRepository
 import ru.newuserkk.naukatesting.domain.employee.model.Employee
+import java.io.IOException
 
 
 class EmployeeRepositoryImpl : EmployeeRepository {
@@ -13,17 +14,11 @@ class EmployeeRepositoryImpl : EmployeeRepository {
 
     override suspend fun addEmployee(employee: Employee): Employee? {
         Log.d(LOG_TAG, "Adding employee to db...")
-//        employee.address?.employee = employee
-//        employee.address?.id = addressDAO.add(employee.address).toInt()
-//        return employeeDAO.getById(employeeDAO.add(employee))
         val addressId = addressDAO.add(employee.address)
-        employee.address?.id = addressId ?: return null
+        employee.address?.id = addressId ?: throw IOException("Couldn't add address ${employee.address}!")
 
         val employeeId = employeeDAO.add(employee)
         employee.id = employeeId
-
-        addressDAO.updateEmployee(addressId, employee)
-        employee.address?.employee = employee
 
         return employee
 
@@ -32,10 +27,6 @@ class EmployeeRepositoryImpl : EmployeeRepository {
     override suspend fun getEmployees(): List<Employee> {
         Log.d(LOG_TAG, "Fetching employees from db...")
         return employeeDAO.getAll()
-    }
-
-    override suspend fun editEmployee(employee: Employee): Employee? {
-        TODO()
     }
 
     companion object {

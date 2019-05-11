@@ -27,15 +27,6 @@ class DepartmentInteractorImpl: DepartmentInteractor {
         }
     }
 
-    override suspend fun editDepartment(department: Department): Result<Department> {
-        return try {
-            Result(repository.editDepartment(department))
-        } catch (e: Throwable) {
-            Log.e(LOG_TAG, e.message)
-            Result(null, e)
-        }
-    }
-
     companion object {
         const val LOG_TAG = "DepartmentInteractor"
     }

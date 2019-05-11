@@ -49,19 +49,27 @@ class TimekeeperAddActivity : AbstractItemAddActivity<MarkedEmployee>() {
             .getPosition(item.status)
     }
 
-    fun setupEmployeesAdapter(values: List<Employee>) {
-        timekeeper_add_employee_spinner.adapter = ArrayAdapter<Employee>(
+    fun setupEmployeesAdapter(values: List<Employee>, selectionItem: Employee?) {
+        val adapter = ArrayAdapter<Employee>(
             this,
             R.layout.support_simple_spinner_dropdown_item,
             values
         )
+        timekeeper_add_employee_spinner.adapter = adapter
+        timekeeper_add_employee_spinner.setSelection(
+            adapter.getPosition(selectionItem)
+        )
     }
 
-    fun setupStatusAdapter(values: Array<AttendanceStatus>) {
-        timekeeper_add_status_spinner.adapter = ArrayAdapter<AttendanceStatus>(
+    fun setupStatusAdapter(values: Array<AttendanceStatus>, selectionItem: AttendanceStatus?) {
+        val adapter = ArrayAdapter<AttendanceStatus>(
             this,
             R.layout.support_simple_spinner_dropdown_item,
             values
+        )
+        timekeeper_add_status_spinner.adapter = adapter
+        timekeeper_add_status_spinner.setSelection(
+            adapter.getPosition(selectionItem)
         )
     }
 

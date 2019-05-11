@@ -1,9 +1,6 @@
 package ru.newuserkk.naukatesting.data.db.department
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 import ru.newuserkk.naukatesting.domain.department.model.Department
 
 @Dao
@@ -12,14 +9,11 @@ interface DepartmentDAO {
     suspend fun getAll(): List<Department>
 
     @Query("SELECT * FROM departments WHERE name=:name")
-    suspend fun getDepartmentByName(name: String): Department?
+    suspend fun getByName(name: String): Department?
 
     @Query("SELECT * FROM departments WHERE id=:id")
-    suspend fun getDepartmentById(id: Long): Department?
+    suspend fun getById(id: Long): Department?
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun add(department: Department?): Long
-
-    @Update
-    suspend fun update(department: Department?): Int
 }

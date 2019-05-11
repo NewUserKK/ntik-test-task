@@ -5,10 +5,13 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import ru.newuserkk.naukatesting.R
 import ru.newuserkk.naukatesting.presentation.presenter.common.AbstractItemAddPresenter
 import java.io.Serializable
 
@@ -53,6 +56,19 @@ abstract class AbstractItemAddActivity<T: Serializable>: AppCompatActivity() {
     }
 
     abstract fun fillFields(item: T)
+
+//    fun <E> setupAdapter(values: List<E>, selectionItem: E?) {
+//        val spinner = getSpinner() ?: return
+//        val adapter = ArrayAdapter<E>(
+//            this,
+//            R.layout.support_simple_spinner_dropdown_item,
+//            values
+//        )
+//        spinner.adapter = adapter
+//        spinner.setSelection(adapter.getPosition(selectionItem))
+//    }
+//
+//    open fun getSpinner(): Spinner? { return null }
 
     abstract fun getItemOptions(): ItemOptions
 

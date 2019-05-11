@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
+import com.amitshekhar.DebugDB
 import kotlinx.android.synthetic.main.activity_select_role.*
 import kotlinx.coroutines.runBlocking
 import ru.newuserkk.naukatesting.R
@@ -25,13 +26,9 @@ class SelectRoleActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_role)
-        // TODO: REMOVE DEBUG
-        runBlocking {
-            Log.d("ACIJAS;KAFJAS;LKFJASD;LKFJASD", TimesheetApp.applicationDatabase.employeeDAO().getAll().toString())
-        }
         setupSpinner()
         setupListeners()
-
+        Log.d("fsdfsd", DebugDB.getAddressLog())
     }
 
     private fun setupSpinner() {

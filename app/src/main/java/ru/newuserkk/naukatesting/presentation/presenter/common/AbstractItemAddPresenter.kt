@@ -9,7 +9,8 @@ import ru.newuserkk.naukatesting.domain.common.Result
 import ru.newuserkk.naukatesting.presentation.view.common.AbstractItemAddActivity
 import java.io.Serializable
 
-abstract class AbstractItemAddPresenter<T: Serializable>(protected open val view: AbstractItemAddActivity<T>) : CoroutineScope {
+abstract class AbstractItemAddPresenter<T : Serializable>(protected open val view: AbstractItemAddActivity<T>) :
+    CoroutineScope {
 
     fun addItem(options: AbstractItemAddActivity.ItemOptions, edit: Boolean = false) {
         launch {
@@ -23,13 +24,13 @@ abstract class AbstractItemAddPresenter<T: Serializable>(protected open val view
 
             val item = itemResult.value
             if (edit) {
-                changeItemId(oldItem = view.itemToEdit!!, newItem = item)
+                changeItemId(editingItem = view.itemToEdit!!, itemToAdd = item)
             }
 
             Log.d(LOG_TAG, "item: $item")
 
             val result = withContext(Dispatchers.IO) {
-                addItem(item, edit)
+                addItem(item)
             }
             view.hideProgress()
             if (result.isSuccessful && result.value != null) {
@@ -44,8 +45,9 @@ abstract class AbstractItemAddPresenter<T: Serializable>(protected open val view
     }
 
     protected abstract fun createItemFromOptions(options: AbstractItemAddActivity.ItemOptions): Result<T>
-    protected abstract fun changeItemId(oldItem: T, newItem: T)
-    protected abstract suspend fun addItem(item: T, edit: Boolean): Result<T>
+    protected abstract fun changeItemId(editingItem: T, itemToAdd: T)
+    protected abstract suspend fun addItem(item: T): Result<T>
+
 
     companion object {
         const val LOG_TAG = "AbstrItemAddPresenter"

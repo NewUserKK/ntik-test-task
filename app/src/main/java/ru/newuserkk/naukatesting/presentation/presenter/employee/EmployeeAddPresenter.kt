@@ -2,7 +2,6 @@ package ru.newuserkk.naukatesting.presentation.presenter.employee
 
 import android.util.Log
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ru.newuserkk.naukatesting.domain.common.Result
@@ -28,7 +27,7 @@ class EmployeeAddPresenter(override val view: EmployeeAddActivity) : AbstractIte
         return employeeInteractor.buildEmployee(options)
     }
 
-    override suspend fun addItem(item: Employee, edit: Boolean): Result<Employee> {
+    override suspend fun addItem(item: Employee): Result<Employee> {
         return employeeInteractor.addEmployee(item)
     }
 
@@ -47,8 +46,8 @@ class EmployeeAddPresenter(override val view: EmployeeAddActivity) : AbstractIte
         }
     }
 
-
-    override fun changeItemId(oldItem: Employee, newItem: Employee) {
-        newItem.id = oldItem.id
+    override fun changeItemId(editingItem: Employee, itemToAdd: Employee) {
+        itemToAdd.id = editingItem.id
+        itemToAdd.address?.id = editingItem.address?.id ?: 0L
     }
 }

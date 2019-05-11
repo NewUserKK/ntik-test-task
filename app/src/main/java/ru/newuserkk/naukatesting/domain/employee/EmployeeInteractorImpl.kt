@@ -35,15 +35,6 @@ class EmployeeInteractorImpl : EmployeeInteractor {
         }
     }
 
-    override suspend fun editEmployee(employee: Employee): Result<Employee> {
-        return try {
-            Result(repository.editEmployee(employee))
-        } catch (e: Throwable) {
-            Log.e(LOG_TAG, e.message)
-            Result(null, e)
-        }
-    }
-
     override fun buildEmployee(options: EmployeeAddActivity.EmployeeOptions): Result<Employee> {
         if (options.department == null) {
             return Result(null, IllegalArgumentException("No department is present"))

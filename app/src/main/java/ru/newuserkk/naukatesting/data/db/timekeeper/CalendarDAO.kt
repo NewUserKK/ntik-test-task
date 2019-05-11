@@ -2,6 +2,7 @@ package ru.newuserkk.naukatesting.data.db.timekeeper
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import ru.newuserkk.naukatesting.domain.timekeeper.model.MarkedEmployee
 import java.util.*
@@ -18,6 +19,6 @@ interface CalendarDAO {
     @Query("SELECT * FROM attendance WHERE id=:id")
     suspend fun getById(id: Long): MarkedEmployee?
 
-    @Insert
-    suspend fun addMark(employee: MarkedEmployee?): Long
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun add(employee: MarkedEmployee?): Long
 }

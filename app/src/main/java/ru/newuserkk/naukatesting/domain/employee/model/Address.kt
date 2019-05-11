@@ -12,6 +12,5 @@ data class Address(
     @ColumnInfo val street: String,
     @ColumnInfo val house: String,
     @ColumnInfo val flat: String?,
-    @ColumnInfo var employee: Employee? = null,
     @PrimaryKey(autoGenerate = true) var id: Long = 0
 ): Serializable

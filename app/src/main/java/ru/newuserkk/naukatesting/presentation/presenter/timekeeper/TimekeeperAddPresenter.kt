@@ -28,12 +28,12 @@ class TimekeeperAddPresenter(override val view: TimekeeperAddActivity) :
         return Result(MarkedEmployee(options.date, options.employee, options.status))
     }
 
-    override suspend fun addItem(item: MarkedEmployee, edit: Boolean): Result<MarkedEmployee> {
+    override suspend fun addItem(item: MarkedEmployee): Result<MarkedEmployee> {
         return calendarInteractor.addEmployeeMark(item)
     }
 
-    override fun changeItemId(oldItem: MarkedEmployee, newItem: MarkedEmployee) {
-        TODO("not implemented")
+    override fun changeItemId(editingItem: MarkedEmployee, itemToAdd: MarkedEmployee) {
+        editingItem.id = itemToAdd.id
     }
 
     fun fillEmployeesSpinner() {
@@ -42,7 +42,7 @@ class TimekeeperAddPresenter(override val view: TimekeeperAddActivity) :
                 employeeInteractor.getEmployees()
             }
             if (employees.isSuccessful && employees.value != null) {
-                view.setupEmployeesAdapter(employees.value)
+                view.setupEmployeesAdapter(employees.value, view.itemToEdit?.employee)
             } else {
                 view.showAddError(employees.error!!)
             }
@@ -50,6 +50,6 @@ class TimekeeperAddPresenter(override val view: TimekeeperAddActivity) :
     }
 
     fun fillStatusSpinner() {
-        view.setupStatusAdapter(AttendanceStatus.values())
+        view.setupStatusAdapter(AttendanceStatus.values(), view.itemToEdit?.status)
     }
 }

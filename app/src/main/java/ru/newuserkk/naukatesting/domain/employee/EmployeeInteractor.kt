@@ -10,8 +10,6 @@ interface EmployeeInteractor {
 
     suspend fun getEmployees(): Result<List<Employee>>
 
-    suspend fun editEmployee(employee: Employee): Result<Employee>
-
     fun buildEmployee(options: EmployeeAddActivity.EmployeeOptions): Result<Employee>
 
 }

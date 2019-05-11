@@ -28,10 +28,8 @@ class EmployeeAddActivity : AbstractItemAddActivity<Employee>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        runBlocking {
-//            Log.d(LOG_TAG, TimesheetApp.applicationDatabase.departmentDAO().getDepartmentById(1).toString())
-//        }
-//        presenter.fillDepartmentsSpinner()
+
+        presenter.fillDepartmentsSpinner()
     }
 
     fun setupDepartmentsAdapter(values: List<Department>, selectionItem: Department?) {
