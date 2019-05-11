@@ -20,4 +20,8 @@ class EmployeeListPresenter(view: EmployeeListActivity): AbstractListPresenter<E
     override suspend fun getItems(): Result<List<Employee>> {
         return interactor.getEmployees()
     }
+
+    override suspend fun removeItemImpl(item: Employee): Result<Employee> {
+        return interactor.removeEmployee(item)
+    }
 }

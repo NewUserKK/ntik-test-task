@@ -10,16 +10,14 @@ import java.io.IOException
 class EmployeeRoomRepository : EmployeeRepository {
 
     private val employeeDAO = TimesheetApp.applicationDatabase.employeeDAO()
-//    TODO: private val addressDAO = TimesheetApp.applicationDatabase.addressDAO()
 
     override suspend fun addEmployee(employee: Employee): Employee? {
         Log.d(LOG_TAG, "Adding employee to db...")
-//        val addressId = addressDAO.add(employee.address)
-//        employee.address?.id = addressId ?: throw IOException("Couldn't add address ${employee.address}!")
 
         val employeeId = employeeDAO.add(employee)
         employee.id = employeeId
 
+        Log.d(LOG_TAG, "OK")
         return employee
 
     }
@@ -27,6 +25,18 @@ class EmployeeRoomRepository : EmployeeRepository {
     override suspend fun getEmployees(): List<Employee> {
         Log.d(LOG_TAG, "Fetching employees from db...")
         return employeeDAO.getAll()
+    }
+
+    override suspend fun updateEmployee(id: Long, employee: Employee): Employee? {
+        val itemToUpdate = employee.apply { this.id = id }
+        employeeDAO.update(itemToUpdate)
+        return itemToUpdate
+    }
+
+    override suspend fun removeEmployee(employee: Employee) {
+        employee.deleted = true
+        employeeDAO.update(employee)
+//        employeeDAO.remove(employee)
     }
 
     companion object {

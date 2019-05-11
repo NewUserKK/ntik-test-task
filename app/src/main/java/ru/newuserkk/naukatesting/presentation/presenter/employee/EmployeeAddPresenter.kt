@@ -24,11 +24,19 @@ class EmployeeAddPresenter(override val view: EmployeeAddActivity) : AbstractIte
 
     override fun createItemFromOptions(options: AbstractItemAddActivity.ItemOptions): Result<Employee> {
         options as EmployeeAddActivity.EmployeeOptions
-        return employeeInteractor.buildEmployee(options)
+        return employeeInteractor.buildEmployeeFromOptions(options)
     }
 
     override suspend fun addItem(item: Employee): Result<Employee> {
         return employeeInteractor.addEmployee(item)
+    }
+
+    override suspend fun updateItem(id: Long, item: Employee): Result<Employee> {
+        return employeeInteractor.updateEmployee(id, item)
+    }
+
+    override fun getItemId(editingItem: Employee): Long {
+        return editingItem.id!!
     }
 
     fun fillDepartmentsSpinner() {
@@ -47,9 +55,5 @@ class EmployeeAddPresenter(override val view: EmployeeAddActivity) : AbstractIte
                 view.showAddError(result.error!!)
             }
         }
-    }
-
-    override fun changeItemId(editingItem: Employee, itemToAdd: Employee) {
-        itemToAdd.id = editingItem.id
     }
 }

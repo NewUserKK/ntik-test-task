@@ -7,9 +7,10 @@ import ru.newuserkk.naukatesting.presentation.view.employee.EmployeeAddActivity
 interface EmployeeInteractor {
 
     suspend fun addEmployee(employee: Employee): Result<Employee>
-
     suspend fun getEmployees(): Result<List<Employee>>
+    suspend fun removeEmployee(employee: Employee): Result<Employee>
+    suspend fun updateEmployee(id: Long, employee: Employee): Result<Employee>
 
-    fun buildEmployee(options: EmployeeAddActivity.EmployeeOptions): Result<Employee>
+    fun buildEmployeeFromOptions(options: EmployeeAddActivity.EmployeeOptions): Result<Employee>
 
 }

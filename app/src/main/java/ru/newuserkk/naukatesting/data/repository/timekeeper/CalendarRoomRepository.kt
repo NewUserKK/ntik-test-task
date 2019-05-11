@@ -21,9 +21,19 @@ class CalendarRoomRepository : CalendarRepository {
         return employees
     }
 
-    override suspend fun addEmployeeMark(markedEmployee: MarkedEmployee): MarkedEmployee? {
-        Log.d(LOG_TAG, "Adding marked employee for date: ${markedEmployee.date}")
-        return markedEmployee.apply { id = calendarDAO.add(markedEmployee) }
+    override suspend fun addEmployeeMark(employeeMark: MarkedEmployee): MarkedEmployee? {
+        Log.d(LOG_TAG, "Adding marked employee for date: ${employeeMark.date}")
+        return employeeMark.apply { id = calendarDAO.add(employeeMark) }
+    }
+
+    override suspend fun updateEmployeeMark(id: Long, employee: MarkedEmployee): MarkedEmployee? {
+        val itemToUpdate = employee.apply { this.id = id }
+        calendarDAO.update(itemToUpdate)
+        return itemToUpdate
+    }
+
+    override suspend fun removeEmployeeMark(markedEmployee: MarkedEmployee) {
+        calendarDAO.remove(markedEmployee)
     }
 
     companion object {

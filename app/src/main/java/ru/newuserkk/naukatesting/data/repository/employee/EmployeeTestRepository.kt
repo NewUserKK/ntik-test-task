@@ -1,5 +1,6 @@
 package ru.newuserkk.naukatesting.data.repository.employee
 
+import ru.newuserkk.naukatesting.domain.department.model.Department
 import ru.newuserkk.naukatesting.domain.employee.EmployeeRepository
 import ru.newuserkk.naukatesting.domain.employee.model.Address
 import ru.newuserkk.naukatesting.domain.employee.model.Employee
@@ -42,5 +43,13 @@ class EmployeeTestRepository: EmployeeRepository {
         return (1..length)
             .map { allowedChars.random() }
             .joinToString("")
+    }
+
+    override suspend fun updateEmployee(id: Long, employee: Employee): Employee? {
+        TODO("not implemented")
+    }
+
+    override suspend fun removeEmployee(employee: Employee) {
+        employeeList.remove(employee)
     }
 }

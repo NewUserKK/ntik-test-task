@@ -23,16 +23,18 @@ abstract class AbstractItemAddPresenter<T : Serializable>(protected open val vie
             }
 
             val item = itemResult.value
-            if (edit) {
-                changeItemId(editingItem = view.itemToEdit!!, itemToAdd = item)
-            }
 
             Log.d(LOG_TAG, "item: $item")
 
             val result = withContext(Dispatchers.IO) {
-                addItem(item)
+                if (edit) {
+                    updateItem(getItemId(view.itemToEdit!!), item)
+                } else {
+                    addItem(item)
+                }
             }
             view.hideProgress()
+
             if (result.isSuccessful && result.value != null) {
                 view.showSuccessMessage()
                 view.setResult(result.value)
@@ -45,11 +47,13 @@ abstract class AbstractItemAddPresenter<T : Serializable>(protected open val vie
     }
 
     protected abstract fun createItemFromOptions(options: AbstractItemAddActivity.ItemOptions): Result<T>
-    protected abstract fun changeItemId(editingItem: T, itemToAdd: T)
+    protected abstract fun getItemId(editingItem: T): Long
+
     protected abstract suspend fun addItem(item: T): Result<T>
 
+    protected abstract suspend fun updateItem(id: Long, item: T): Result<T>
 
     companion object {
-        const val LOG_TAG = "AbstrItemAddPresenter"
+        const val LOG_TAG = "A_ItemAddPresenter"
     }
 }

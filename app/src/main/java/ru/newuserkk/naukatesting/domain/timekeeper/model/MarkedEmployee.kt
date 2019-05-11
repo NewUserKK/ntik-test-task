@@ -11,7 +11,8 @@ import java.util.*
         ForeignKey(
             entity = Employee::class,
             childColumns = ["employee_id"],
-            parentColumns = ["id"]
+            parentColumns = ["id"],
+            onDelete = ForeignKey.CASCADE
         )
     ]
 )

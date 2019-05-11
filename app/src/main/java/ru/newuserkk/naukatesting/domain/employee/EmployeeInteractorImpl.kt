@@ -1,5 +1,6 @@
 package ru.newuserkk.naukatesting.domain.employee
 
+import android.util.Log
 import ru.newuserkk.naukatesting.data.repository.employee.EmployeeRoomRepository
 import ru.newuserkk.naukatesting.domain.common.Result
 import ru.newuserkk.naukatesting.domain.employee.model.Address
@@ -19,7 +20,7 @@ class EmployeeInteractorImpl : EmployeeInteractor {
             val result = repository.addEmployee(employee)
             Result(result, null)
         } catch (e: Throwable) {
-            e.printStackTrace()
+            Log.e(LOG_TAG, e.message)
             Result(null, e)
         }
     }
@@ -28,14 +29,33 @@ class EmployeeInteractorImpl : EmployeeInteractor {
         return try {
             Result(repository.getEmployees(), null)
         } catch (e: Throwable) {
-            e.printStackTrace()
+            Log.e(LOG_TAG, e.message)
             Result(null, e)
         }
     }
 
-    override fun buildEmployee(options: EmployeeAddActivity.EmployeeOptions): Result<Employee> {
+    override suspend fun updateEmployee(id: Long, employee: Employee): Result<Employee> {
+        return try {
+            Result(repository.updateEmployee(id, employee))
+        } catch (e: Throwable) {
+            Log.e(LOG_TAG, e.message)
+            Result(null, e)
+        }
+    }
+
+    override suspend fun removeEmployee(employee: Employee): Result<Employee> {
+        return try {
+            repository.removeEmployee(employee)
+            Result(null)
+        } catch (e: Throwable) {
+            Log.e(LOG_TAG, e.message)
+            Result(null, e)
+        }
+    }
+
+    override fun buildEmployeeFromOptions(options: EmployeeAddActivity.EmployeeOptions): Result<Employee> {
         if (options.department == null) {
-            return Result(null, IllegalArgumentException("No departmentId is present"))
+            return Result(null, IllegalArgumentException("No department is present"))
         }
         return try {
             Result(
@@ -45,7 +65,7 @@ class EmployeeInteractorImpl : EmployeeInteractor {
                         lastName = lastName,
                         middleName = middleName,
                         birthDate = SimpleDateFormat("dd.MM.yyyy", Locale.US).parse(birthDate),
-                        departmentId = department!!.id,
+                        departmentId = department!!.id!!,
                         position = position,
                         address = Address(country, city, street, house, flat),
                         phone = phone

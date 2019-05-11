@@ -11,7 +11,8 @@ import java.util.*
         ForeignKey(
             entity = Department::class,
             parentColumns = ["id"],
-            childColumns = ["department_id"]
+            childColumns = ["department_id"],
+            onDelete = ForeignKey.CASCADE
         )
     ]
 )
@@ -24,8 +25,10 @@ data class Employee(
     @ColumnInfo val position: String,
     @Embedded val address: Address,
     @ColumnInfo val phone: String,
-    @PrimaryKey(autoGenerate = true) var id: Long = 0
+    @PrimaryKey(autoGenerate = true) var id: Long? = null
 ) : Serializable {
+
+    @ColumnInfo var deleted: Boolean = false
 
     override fun toString(): String {
         return getFullName()

@@ -11,21 +11,23 @@ import ru.newuserkk.naukatesting.presentation.view.common.AbstractListActivity
 
 class EmployeeListActivity : AbstractListActivity<Employee>() {
 
-    override val activityLayoutResId: Int
-        get() = R.layout.activity_employee_list
-    override val toolbarResId: Int
-        get() = R.id.employee_list_toolbar
-    override val addButtonResId: Int
-        get() = R.id.employee_list_add_button
-    override val listResId: Int
-        get() = R.id.employee_list
-    override val itemAddActivityTypeToken: Class<out AbstractItemAddActivity<Employee>>
-        get() = EmployeeAddActivity::class.java
-    override val adapter: AbstractItemRecyclerViewAdapter<Employee> = EmployeeRecyclerViewAdapter(mutableListOf())
+    override val activityLayoutResId = R.layout.activity_employee_list
+    override val toolbarResId = R.id.employee_list_toolbar
+    override val addButtonResId = R.id.employee_list_add_button
+    override val listResId = R.id.employee_list
+    override val itemAddActivityTypeToken = EmployeeAddActivity::class.java
+    override val adapter: AbstractItemRecyclerViewAdapter<Employee> =
+        EmployeeRecyclerViewAdapter(mutableListOf()).apply {
+            onRemoveClickListener = {
+                presenter.removeItem(it.tag as Employee)
+            }
+        }
 
     override fun initPresenter(): AbstractListPresenter<Employee> {
         return EmployeeListPresenter(this)
     }
 
     override fun getFillErrorMessage(): String = getString(R.string.employees_load_fail)
+
+    override fun getRemoveErrorMessage(): String = getString(R.string.remove_item_fail)
 }

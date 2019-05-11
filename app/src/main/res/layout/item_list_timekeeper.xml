@@ -8,7 +8,7 @@
               android:orientation="horizontal">
 
     <TextView
-            android:id="@+id/employee_id"
+            android:id="@+id/mark_employee_id"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".15"
@@ -17,19 +17,27 @@
             tools:text="285"/>
 
     <TextView
-            android:id="@+id/employee_name"
+            android:id="@+id/mark_employee_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight=".6"
+            android:layout_weight=".5"
             android:gravity="center"
             tools:text="Костин Константин Алексеевич"/>
 
     <TextView
-            android:id="@+id/employee_status"
+            android:id="@+id/mark_status"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".15"
             android:gravity="center"
             android:minWidth="100dp"
             tools:text="ОТ"/>
+
+    <ImageView
+            android:id="@+id/mark_remove_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".1"
+            android:src="@android:drawable/ic_delete"
+            />
 </LinearLayout>

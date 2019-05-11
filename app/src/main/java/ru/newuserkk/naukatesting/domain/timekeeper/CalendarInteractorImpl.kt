@@ -4,6 +4,8 @@ import android.util.Log
 import ru.newuserkk.naukatesting.data.repository.timekeeper.CalendarRoomRepository
 import ru.newuserkk.naukatesting.domain.common.Result
 import ru.newuserkk.naukatesting.domain.timekeeper.model.MarkedEmployee
+import ru.newuserkk.naukatesting.presentation.view.timekeeper.TimekeeperAddActivity
+import java.lang.IllegalArgumentException
 import java.util.*
 
 class CalendarInteractorImpl: CalendarInteractor {
@@ -27,6 +29,37 @@ class CalendarInteractorImpl: CalendarInteractor {
             Log.e(LOG_TAG, e.message)
             Result(null, e)
         }
+    }
+
+    override suspend fun updateEmployeeMark(id: Long, newMark: MarkedEmployee): Result<MarkedEmployee> {
+        return try {
+            Result(calendarRepository.updateEmployeeMark(id, newMark))
+        } catch (e: Throwable) {
+            Log.e(LOG_TAG, e.message)
+            Result(null, e)
+        }
+    }
+
+    override suspend fun removeEmployeeMark(employeeMark: MarkedEmployee): Result<MarkedEmployee> {
+        return try {
+            calendarRepository.removeEmployeeMark(employeeMark)
+            Result(null)
+        } catch (e: Throwable) {
+            Log.e(LOG_TAG, e.message)
+            Result(null, e)
+        }
+    }
+
+    override fun buildItemFromOptions(options: TimekeeperAddActivity.MarkedEmployeeOptions): Result<MarkedEmployee> {
+        if (options.employee == null) {
+            return Result(null, IllegalArgumentException("No employee is present"))
+        }
+
+        return Result(
+            MarkedEmployee(options.date, options.employee.id!!, options.status).apply {
+                employee = options.employee
+            }
+        )
     }
 
     companion object {

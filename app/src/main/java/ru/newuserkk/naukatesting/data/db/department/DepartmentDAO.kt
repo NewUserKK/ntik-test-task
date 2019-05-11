@@ -5,7 +5,7 @@ import ru.newuserkk.naukatesting.domain.department.model.Department
 
 @Dao
 interface DepartmentDAO {
-    @Query("SELECT * FROM departments")
+    @Query("SELECT * FROM departments WHERE deleted=0")
     suspend fun getAll(): List<Department>
 
     @Query("SELECT * FROM departments WHERE name=:name")
@@ -14,6 +14,12 @@ interface DepartmentDAO {
     @Query("SELECT * FROM departments WHERE id=:id")
     suspend fun getById(id: Long): Department?
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun add(department: Department?): Long
+    @Insert
+    suspend fun add(department: Department): Long
+
+    @Update
+    suspend fun update(department: Department)
+
+    @Delete
+    suspend fun remove(department: Department)
 }

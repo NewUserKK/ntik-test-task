@@ -20,15 +20,29 @@ abstract class AbstractListPresenter<T : Serializable>(protected val view: Abstr
             if (result.isSuccessful && result.value != null) {
                 values.clear()
                 values.addAll(result.value)
-                view.adapterNotifyDataSetChanged()
+                view.notifyDataSetChanged()
 
             } else {
-                Log.e(LOG_TAG, result.error?.message)
                 view.showListFillError()
             }
         }
     }
 
+    fun removeItem(item: T) {
+        launch {
+            val result = withContext(Dispatchers.IO) {
+                removeItemImpl(item)
+            }
+
+            if (result.isSuccessful) {
+                view.removeItemFromAdapter(item)
+            } else {
+                view.showRemoveError()
+            }
+        }
+    }
+
+    abstract suspend fun removeItemImpl(item: T): Result<T>
 
     abstract suspend fun getItems(): Result<List<T>>
 

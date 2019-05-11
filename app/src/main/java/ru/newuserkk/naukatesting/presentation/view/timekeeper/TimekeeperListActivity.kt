@@ -19,7 +19,12 @@ class TimekeeperListActivity : AbstractListActivity<MarkedEmployee>() {
     override val addButtonResId = R.id.timekeeper_list_add_button
     override val listResId = R.id.timekeeper_employee_list
     override val itemAddActivityTypeToken = TimekeeperAddActivity::class.java
-    override val adapter: AbstractItemRecyclerViewAdapter<MarkedEmployee> = MarkedEmployeeRecyclerViewAdapter()
+    override val adapter: AbstractItemRecyclerViewAdapter<MarkedEmployee> =
+        MarkedEmployeeRecyclerViewAdapter().apply {
+            onRemoveClickListener = {
+                presenter.removeItem(it.tag as MarkedEmployee)
+            }
+        }
 
     lateinit var date: Date
 
@@ -40,4 +45,6 @@ class TimekeeperListActivity : AbstractListActivity<MarkedEmployee>() {
     }
 
     override fun getFillErrorMessage(): String = getString(R.string.timekeeper_employee_load_fail)
+
+    override fun getRemoveErrorMessage(): String = getString(R.string.remove_item_fail)
 }

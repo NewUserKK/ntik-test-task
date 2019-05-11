@@ -37,7 +37,7 @@ class TimekeeperAddActivity : AbstractItemAddActivity<MarkedEmployee>() {
     override fun getItemOptions(): ItemOptions =
         MarkedEmployeeOptions(
             date,
-            timekeeper_add_employee_spinner.selectedItem as Employee,
+            timekeeper_add_employee_spinner.selectedItem as? Employee,
             timekeeper_add_status_spinner.selectedItem as AttendanceStatus
         )
 
@@ -70,5 +70,5 @@ class TimekeeperAddActivity : AbstractItemAddActivity<MarkedEmployee>() {
     override fun getSuccessMessage(): String = getString(R.string.ok)
     override fun getAddErrorMessage(): String = getString(R.string.timekeeper_add_status_error)
 
-    class MarkedEmployeeOptions(val date: Date, val employee: Employee, val status: AttendanceStatus) : ItemOptions
+    class MarkedEmployeeOptions(val date: Date, val employee: Employee?, val status: AttendanceStatus) : ItemOptions
 }

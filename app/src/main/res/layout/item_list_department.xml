@@ -21,6 +21,14 @@
             android:id="@+id/department_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight=".85"
+            android:layout_weight=".75"
             tools:text="Department"/>
+
+    <ImageView
+            android:id="@+id/department_remove_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".1"
+            android:src="@android:drawable/ic_delete"
+            />
 </LinearLayout>

@@ -12,12 +12,16 @@ import kotlin.coroutines.CoroutineContext
 
 class TimekeeperListPresenter(view: TimekeeperListActivity, val date: Date) : AbstractListPresenter<MarkedEmployee>(view) {
 
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.Main
+
     private val calendarInteractor: CalendarInteractor = CalendarInteractorImpl()
 
     override suspend fun getItems(): Result<List<MarkedEmployee>> {
         return calendarInteractor.getEmployeesByDate(date)
     }
 
-    override val coroutineContext: CoroutineContext
-        get() = Dispatchers.Main
+    override suspend fun removeItemImpl(item: MarkedEmployee): Result<MarkedEmployee> {
+        return calendarInteractor.removeEmployeeMark(item)
+    }
 }

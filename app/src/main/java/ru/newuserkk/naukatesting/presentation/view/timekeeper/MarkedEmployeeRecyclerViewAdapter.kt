@@ -1,6 +1,7 @@
 package ru.newuserkk.naukatesting.presentation.view.timekeeper
 
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import kotlinx.android.synthetic.main.item_list_timekeeper.view.*
 import ru.newuserkk.naukatesting.R
@@ -24,8 +25,10 @@ class MarkedEmployeeRecyclerViewAdapter(values: MutableList<MarkedEmployee> = mu
     }
 
     class ViewHolder(view: View): AbstractViewHolder(view) {
-        val idView: TextView = view.employee_id
-        val nameView: TextView = view.employee_name
-        val statusView: TextView = view.employee_status
+        val idView: TextView = view.mark_employee_id
+        val nameView: TextView = view.mark_employee_name
+        val statusView: TextView = view.mark_status
+
+        override val removeButtonView: ImageView = view.mark_remove_button
     }
 }

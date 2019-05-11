@@ -10,7 +10,7 @@ import ru.newuserkk.naukatesting.R
 import ru.newuserkk.naukatesting.presentation.presenter.common.AbstractListPresenter
 import java.io.Serializable
 
-abstract class AbstractListActivity<T: Serializable>: AppCompatActivity() {
+abstract class AbstractListActivity<T : Serializable> : AppCompatActivity() {
 
     protected lateinit var presenter: AbstractListPresenter<T>
     protected abstract val activityLayoutResId: Int
@@ -18,7 +18,6 @@ abstract class AbstractListActivity<T: Serializable>: AppCompatActivity() {
     protected abstract val addButtonResId: Int
     protected abstract val listResId: Int
     protected abstract val itemAddActivityTypeToken: Class<out AbstractItemAddActivity<T>>
-//    protected abstract val itemEditActivityTypeToken: Class<out AbstractItemEditActivity<T>>
 
     protected abstract val adapter: AbstractItemRecyclerViewAdapter<T>
 
@@ -91,15 +90,30 @@ abstract class AbstractListActivity<T: Serializable>: AppCompatActivity() {
         startActivityForResult(intent, ITEM_REQUEST_CODE)
     }
 
+    fun removeItemFromAdapter(item: T) {
+        adapter.values.remove(item)
+        adapter.notifyDataSetChanged()
+    }
+
     fun showListFillError() {
         AlertDialog.Builder(this)
             .setMessage(getFillErrorMessage())
             .setPositiveButton(getString(R.string.ok)) { _, _ -> finish() }
             .show()
     }
+
     abstract fun getFillErrorMessage(): String
 
-    fun adapterNotifyDataSetChanged() {
+    fun showRemoveError() {
+        AlertDialog.Builder(this)
+            .setMessage(getRemoveErrorMessage())
+            .setPositiveButton(getString(R.string.ok)) { _, _ -> }
+            .show()
+    }
+
+    abstract fun getRemoveErrorMessage(): String
+
+    fun notifyDataSetChanged() {
         adapter.notifyDataSetChanged()
     }
 

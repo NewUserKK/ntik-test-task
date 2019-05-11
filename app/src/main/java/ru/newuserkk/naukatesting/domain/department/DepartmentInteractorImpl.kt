@@ -27,6 +27,25 @@ class DepartmentInteractorImpl: DepartmentInteractor {
         }
     }
 
+    override suspend fun updateDepartment(id: Long, department: Department): Result<Department> {
+        return try {
+            Result(repository.updateDepartment(id, department))
+        } catch (e: Throwable) {
+            Log.e(LOG_TAG, e.message)
+            Result(null, e)
+        }
+    }
+
+    override suspend fun removeDepartment(department: Department): Result<Department> {
+        return try {
+            repository.removeDepartment(department)
+            Result(null)
+        } catch (e: Throwable) {
+            Log.e(LOG_TAG, e.message)
+            Result(null, e)
+        }
+    }
+
     companion object {
         const val LOG_TAG = "DepartmentInteractor"
     }

@@ -1,6 +1,7 @@
 package ru.newuserkk.naukatesting.presentation.view.department
 
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import kotlinx.android.synthetic.main.item_list_department.view.*
 import ru.newuserkk.naukatesting.R
@@ -25,5 +26,7 @@ class DepartmentRecyclerViewAdapter(values: MutableList<Department>) :
     class ViewHolder(view: View) : AbstractViewHolder(view) {
         val idView: TextView = view.department_id
         val nameView: TextView = view.department_name
+
+        override val removeButtonView: ImageView = view.department_remove_button
     }
 }

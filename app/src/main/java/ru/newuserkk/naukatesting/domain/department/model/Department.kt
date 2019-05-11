@@ -8,8 +8,10 @@ import java.io.Serializable
 @Entity(tableName = "departments")
 data class Department(
     @ColumnInfo val name: String,
-    @PrimaryKey(autoGenerate = true) var id: Long = 0
+    @PrimaryKey(autoGenerate = true) var id: Long? = null
 ) : Serializable {
+
+    @ColumnInfo var deleted: Boolean = false
 
     override fun toString(): String {
         return name

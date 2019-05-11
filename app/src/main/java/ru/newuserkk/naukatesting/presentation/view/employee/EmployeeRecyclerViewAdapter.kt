@@ -1,6 +1,7 @@
 package ru.newuserkk.naukatesting.presentation.view.employee
 
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import kotlinx.android.synthetic.main.item_list_employee.view.*
 import ru.newuserkk.naukatesting.R
@@ -10,8 +11,7 @@ import ru.newuserkk.naukatesting.presentation.view.common.AbstractItemRecyclerVi
 
 
 class EmployeeRecyclerViewAdapter(values: MutableList<Employee>): AbstractItemRecyclerViewAdapter<Employee>(values) {
-    override val listItemResId: Int
-        get() = R.layout.item_list_employee
+    override val listItemResId = R.layout.item_list_employee
 
     override fun createViewHolder(view: View): AbstractViewHolder = ViewHolder(view)
 
@@ -24,7 +24,9 @@ class EmployeeRecyclerViewAdapter(values: MutableList<Employee>): AbstractItemRe
     }
 
     class ViewHolder(view: View): AbstractViewHolder(view) {
-        val idView: TextView = view.employee_id
-        val nameView: TextView = view.employee_name
+        val idView: TextView = view.mark_employee_id
+        val nameView: TextView = view.mark_employee_name
+
+        override val removeButtonView: ImageView = view.employee_remove_button
     }
 }

@@ -34,4 +34,5 @@
     <string name="field_employee_flat">Flat:</string>
     <string name="field_employee_phone">Phone:</string>
     <string name="field_employee_select_date">Select</string>
+    <string name="remove_item_fail">Failed to remove item!</string>
 </resources>
