@@ -3,15 +3,9 @@ package ru.newuserkk.naukatesting.presentation.view.role
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.ArrayAdapter
-import com.amitshekhar.DebugDB
 import kotlinx.android.synthetic.main.activity_select_role.*
-import kotlinx.coroutines.runBlocking
 import ru.newuserkk.naukatesting.R
-import ru.newuserkk.naukatesting.TimesheetApp
-import ru.newuserkk.naukatesting.data.repository.employee.EmployeeRepositoryTest
-import ru.newuserkk.naukatesting.domain.employee.model.Employee
 import ru.newuserkk.naukatesting.presentation.presenter.role.SelectRolePresenter
 import ru.newuserkk.naukatesting.domain.role.model.Role
 import ru.newuserkk.naukatesting.presentation.view.department.DepartmentListActivity
@@ -28,7 +22,6 @@ class SelectRoleActivity : AppCompatActivity() {
         setContentView(R.layout.activity_select_role)
         setupSpinner()
         setupListeners()
-        Log.d("fsdfsd", DebugDB.getAddressLog())
     }
 
     private fun setupSpinner() {

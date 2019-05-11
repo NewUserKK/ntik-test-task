@@ -1,24 +1,31 @@
 package ru.newuserkk.naukatesting.domain.employee.model
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.*
 import ru.newuserkk.naukatesting.domain.department.model.Department
 import java.io.Serializable
 import java.util.*
 
-@Entity(tableName = "employees")
+@Entity(
+    tableName = "employees",
+    foreignKeys = [
+        ForeignKey(
+            entity = Department::class,
+            parentColumns = ["id"],
+            childColumns = ["department_id"]
+        )
+    ]
+)
 data class Employee(
     @ColumnInfo val firstName: String,
     @ColumnInfo val lastName: String,
     @ColumnInfo val middleName: String?,
     @ColumnInfo val birthDate: Date,
-    @ColumnInfo val department: Department,
+    @ColumnInfo(name = "department_id") val departmentId: Long,
     @ColumnInfo val position: String,
-    @ColumnInfo val address: Address?,
+    @Embedded val address: Address,
     @ColumnInfo val phone: String,
     @PrimaryKey(autoGenerate = true) var id: Long = 0
-): Serializable {
+) : Serializable {
 
     override fun toString(): String {
         return getFullName()

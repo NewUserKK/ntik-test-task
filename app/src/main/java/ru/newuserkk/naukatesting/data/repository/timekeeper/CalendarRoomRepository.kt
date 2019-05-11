@@ -6,13 +6,19 @@ import ru.newuserkk.naukatesting.domain.timekeeper.CalendarRepository
 import ru.newuserkk.naukatesting.domain.timekeeper.model.MarkedEmployee
 import java.util.*
 
-class CalendarRepositoryImpl: CalendarRepository {
+class CalendarRoomRepository : CalendarRepository {
 
     private val calendarDAO = TimesheetApp.applicationDatabase.calendarDAO()
 
     override suspend fun getEmployeesByDate(date: Date): List<MarkedEmployee> {
         Log.d(LOG_TAG, "Fetching employees for date: $date")
-        return calendarDAO.getEmployeesByDate(date)
+        val employees = calendarDAO.getEmployeesByDate(date)
+        employees.forEach {
+            it.employee = TimesheetApp.applicationDatabase
+                .employeeDAO()
+                .getById(it.employeeId)!!
+        }
+        return employees
     }
 
     override suspend fun addEmployeeMark(markedEmployee: MarkedEmployee): MarkedEmployee? {
@@ -21,7 +27,7 @@ class CalendarRepositoryImpl: CalendarRepository {
     }
 
     companion object {
-        const val LOG_TAG = "CalendarRepositoryImpl"
+        const val LOG_TAG = "CalendarRoomRepository"
     }
 
 }

@@ -1,14 +1,14 @@
 package ru.newuserkk.naukatesting.domain.timekeeper
 
 import android.util.Log
-import ru.newuserkk.naukatesting.data.repository.timekeeper.CalendarRepositoryImpl
+import ru.newuserkk.naukatesting.data.repository.timekeeper.CalendarRoomRepository
 import ru.newuserkk.naukatesting.domain.common.Result
 import ru.newuserkk.naukatesting.domain.timekeeper.model.MarkedEmployee
 import java.util.*
 
 class CalendarInteractorImpl: CalendarInteractor {
 
-    private val calendarRepository: CalendarRepository = CalendarRepositoryImpl()
+    private val calendarRepository: CalendarRepository = CalendarRoomRepository()
 
     override suspend fun getEmployeesByDate(date: Date): Result<List<MarkedEmployee>> {
         return try {

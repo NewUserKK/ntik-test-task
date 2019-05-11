@@ -1,8 +1,6 @@
 package ru.newuserkk.naukatesting.domain.employee
 
-import android.util.Log
-import ru.newuserkk.naukatesting.data.repository.employee.EmployeeRepositoryImpl
-import ru.newuserkk.naukatesting.data.repository.employee.EmployeeRepositoryTest
+import ru.newuserkk.naukatesting.data.repository.employee.EmployeeRoomRepository
 import ru.newuserkk.naukatesting.domain.common.Result
 import ru.newuserkk.naukatesting.domain.employee.model.Address
 import ru.newuserkk.naukatesting.domain.employee.model.Employee
@@ -14,7 +12,7 @@ import java.util.*
 
 class EmployeeInteractorImpl : EmployeeInteractor {
 
-    private val repository: EmployeeRepository = EmployeeRepositoryImpl()
+    private val repository: EmployeeRepository = EmployeeRoomRepository()
 
     override suspend fun addEmployee(employee: Employee): Result<Employee> {
         return try {
@@ -37,7 +35,7 @@ class EmployeeInteractorImpl : EmployeeInteractor {
 
     override fun buildEmployee(options: EmployeeAddActivity.EmployeeOptions): Result<Employee> {
         if (options.department == null) {
-            return Result(null, IllegalArgumentException("No department is present"))
+            return Result(null, IllegalArgumentException("No departmentId is present"))
         }
         return try {
             Result(
@@ -47,7 +45,7 @@ class EmployeeInteractorImpl : EmployeeInteractor {
                         lastName = lastName,
                         middleName = middleName,
                         birthDate = SimpleDateFormat("dd.MM.yyyy", Locale.US).parse(birthDate),
-                        department = department!!,
+                        departmentId = department!!.id,
                         position = position,
                         address = Address(country, city, street, house, flat),
                         phone = phone

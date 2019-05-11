@@ -3,15 +3,15 @@ package ru.newuserkk.naukatesting.data.repository.department
 import ru.newuserkk.naukatesting.domain.department.DepartmentRepository
 import ru.newuserkk.naukatesting.domain.department.model.Department
 
-class DepartmentRepositoryTest: DepartmentRepository {
+class DepartmentTestRepository: DepartmentRepository {
 
     companion object {
-        const val LOG_TAG = "DepartmentRepositoryTest"
+        const val LOG_TAG = "DepartmentTestRepository"
     }
 
     override suspend fun addDepartment(department: Department): Department? {
         Thread.sleep(2000)
-        println("Add department: $department")
+        println("Add departmentId: $department")
         return department
     }
 

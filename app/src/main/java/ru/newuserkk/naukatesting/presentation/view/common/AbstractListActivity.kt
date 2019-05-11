@@ -38,7 +38,7 @@ abstract class AbstractListActivity<T: Serializable>: AppCompatActivity() {
 
         adapter.onItemClickListener = {
             editItemPosition = adapter.values.indexOf(it.tag)
-            startEditItemActivity(it.tag as T)
+            startEditItemActivity(it.tag as T, getAddActivityBundle())
         }
     }
 
@@ -83,8 +83,9 @@ abstract class AbstractListActivity<T: Serializable>: AppCompatActivity() {
         }
     }
 
-    fun startEditItemActivity(item: T) {
+    fun startEditItemActivity(item: T, bundle: Bundle? = null) {
         val intent = Intent(this, itemAddActivityTypeToken).apply {
+            putExtra(ADD_BUNDLE_KEY, bundle)
             putExtra(EDIT_ITEM_KEY, item)
         }
         startActivityForResult(intent, ITEM_REQUEST_CODE)

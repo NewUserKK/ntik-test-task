@@ -25,7 +25,11 @@ class TimekeeperAddPresenter(override val view: TimekeeperAddActivity) :
 
     override fun createItemFromOptions(options: AbstractItemAddActivity.ItemOptions): Result<MarkedEmployee> {
         options as TimekeeperAddActivity.MarkedEmployeeOptions
-        return Result(MarkedEmployee(options.date, options.employee, options.status))
+        return Result(
+            MarkedEmployee(options.date, options.employee.id, options.status).apply {
+                employee = options.employee
+            }
+        )
     }
 
     override suspend fun addItem(item: MarkedEmployee): Result<MarkedEmployee> {
@@ -33,7 +37,7 @@ class TimekeeperAddPresenter(override val view: TimekeeperAddActivity) :
     }
 
     override fun changeItemId(editingItem: MarkedEmployee, itemToAdd: MarkedEmployee) {
-        editingItem.id = itemToAdd.id
+        itemToAdd.id = editingItem.id
     }
 
     fun fillEmployeesSpinner() {

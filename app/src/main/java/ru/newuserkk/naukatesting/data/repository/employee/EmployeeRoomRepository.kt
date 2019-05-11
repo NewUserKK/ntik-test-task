@@ -7,15 +7,15 @@ import ru.newuserkk.naukatesting.domain.employee.model.Employee
 import java.io.IOException
 
 
-class EmployeeRepositoryImpl : EmployeeRepository {
+class EmployeeRoomRepository : EmployeeRepository {
 
     private val employeeDAO = TimesheetApp.applicationDatabase.employeeDAO()
-    private val addressDAO = TimesheetApp.applicationDatabase.addressDAO()
+//    TODO: private val addressDAO = TimesheetApp.applicationDatabase.addressDAO()
 
     override suspend fun addEmployee(employee: Employee): Employee? {
         Log.d(LOG_TAG, "Adding employee to db...")
-        val addressId = addressDAO.add(employee.address)
-        employee.address?.id = addressId ?: throw IOException("Couldn't add address ${employee.address}!")
+//        val addressId = addressDAO.add(employee.address)
+//        employee.address?.id = addressId ?: throw IOException("Couldn't add address ${employee.address}!")
 
         val employeeId = employeeDAO.add(employee)
         employee.id = employeeId
@@ -30,6 +30,6 @@ class EmployeeRepositoryImpl : EmployeeRepository {
     }
 
     companion object {
-        const val LOG_TAG = "EmployeeRepositoryImpl"
+        const val LOG_TAG = "EmployeeRoomRepository"
     }
 }

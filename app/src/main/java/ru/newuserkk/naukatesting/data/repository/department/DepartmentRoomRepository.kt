@@ -4,7 +4,7 @@ import ru.newuserkk.naukatesting.TimesheetApp
 import ru.newuserkk.naukatesting.domain.department.DepartmentRepository
 import ru.newuserkk.naukatesting.domain.department.model.Department
 
-class DepartmentRepositoryImpl : DepartmentRepository {
+class DepartmentRoomRepository : DepartmentRepository {
 
     private val departmentDAO = TimesheetApp.applicationDatabase.departmentDAO()
 

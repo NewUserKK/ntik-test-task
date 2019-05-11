@@ -1,13 +1,13 @@
 package ru.newuserkk.naukatesting.domain.department
 
 import android.util.Log
-import ru.newuserkk.naukatesting.data.repository.department.DepartmentRepositoryImpl
+import ru.newuserkk.naukatesting.data.repository.department.DepartmentRoomRepository
 import ru.newuserkk.naukatesting.domain.common.Result
 import ru.newuserkk.naukatesting.domain.department.model.Department
 
 class DepartmentInteractorImpl: DepartmentInteractor {
 
-    private val repository: DepartmentRepository = DepartmentRepositoryImpl()
+    private val repository: DepartmentRepository = DepartmentRoomRepository()
 
     override suspend fun addDepartment(department: Department): Result<Department> {
         return try {

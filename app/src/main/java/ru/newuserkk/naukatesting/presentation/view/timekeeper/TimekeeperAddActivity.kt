@@ -41,13 +41,7 @@ class TimekeeperAddActivity : AbstractItemAddActivity<MarkedEmployee>() {
             timekeeper_add_status_spinner.selectedItem as AttendanceStatus
         )
 
-    override fun fillFields(item: MarkedEmployee) {
-        (timekeeper_add_employee_spinner.adapter as ArrayAdapter<Employee>)
-            .getPosition(item.employee)
-
-        (timekeeper_add_status_spinner.adapter as ArrayAdapter<AttendanceStatus>)
-            .getPosition(item.status)
-    }
+    override fun fillFields(item: MarkedEmployee) {}
 
     fun setupEmployeesAdapter(values: List<Employee>, selectionItem: Employee?) {
         val adapter = ArrayAdapter<Employee>(

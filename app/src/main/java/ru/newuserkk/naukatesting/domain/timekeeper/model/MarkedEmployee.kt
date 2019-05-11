@@ -1,20 +1,27 @@
 package ru.newuserkk.naukatesting.domain.timekeeper.model
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.*
 import ru.newuserkk.naukatesting.domain.employee.model.Employee
 import java.io.Serializable
 import java.util.*
 
-@Entity(tableName = "attendance")
+@Entity(
+    tableName = "attendance",
+    foreignKeys = [
+        ForeignKey(
+            entity = Employee::class,
+            childColumns = ["employee_id"],
+            parentColumns = ["id"]
+        )
+    ]
+)
 data class MarkedEmployee(
     @ColumnInfo val date: Date,
-    @ColumnInfo val employee: Employee,
+    @ColumnInfo(name = "employee_id") val employeeId: Long,
     @ColumnInfo val status: AttendanceStatus
-): Serializable {
+) : Serializable {
 
-    @PrimaryKey(autoGenerate = true)
-    var id = 0L
+    @Ignore lateinit var employee: Employee
 
+    @PrimaryKey(autoGenerate = true) var id: Long = 0
 }

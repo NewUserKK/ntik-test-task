@@ -39,7 +39,10 @@ class EmployeeAddPresenter(override val view: EmployeeAddActivity) : AbstractIte
             }
             Log.d(LOG_TAG, "OK")
             if (result.isSuccessful && result.value != null) {
-                view.setupDepartmentsAdapter(result.value, view.itemToEdit?.department)
+                view.setupDepartmentsAdapter(
+                    result.value,
+                    result.value.find { it.id == view.itemToEdit?.departmentId }
+                )
             } else {
                 view.showAddError(result.error!!)
             }
@@ -48,6 +51,5 @@ class EmployeeAddPresenter(override val view: EmployeeAddActivity) : AbstractIte
 
     override fun changeItemId(editingItem: Employee, itemToAdd: Employee) {
         itemToAdd.id = editingItem.id
-        itemToAdd.address?.id = editingItem.address?.id ?: 0L
     }
 }

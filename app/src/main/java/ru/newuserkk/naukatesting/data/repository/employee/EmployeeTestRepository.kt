@@ -1,12 +1,11 @@
 package ru.newuserkk.naukatesting.data.repository.employee
 
-import ru.newuserkk.naukatesting.domain.department.model.Department
 import ru.newuserkk.naukatesting.domain.employee.EmployeeRepository
 import ru.newuserkk.naukatesting.domain.employee.model.Address
 import ru.newuserkk.naukatesting.domain.employee.model.Employee
 import java.sql.Date
 
-class EmployeeRepositoryTest: EmployeeRepository {
+class EmployeeTestRepository: EmployeeRepository {
 
     private val employeeList = mutableListOf<Employee>()
 
@@ -31,7 +30,7 @@ class EmployeeRepositoryTest: EmployeeRepository {
             lastName = getRandomString(15),
             middleName = getRandomString(15),
             birthDate = Date.valueOf("2019-04-28"),
-            department = Department("Department"),
+            departmentId = 0,
             position = "Android",
             address = Address("Russia", "SPB", "1", "3", "3"),
             phone = "88005553535"
