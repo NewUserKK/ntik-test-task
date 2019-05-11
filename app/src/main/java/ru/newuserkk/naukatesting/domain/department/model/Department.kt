@@ -1,11 +1,14 @@
 package ru.newuserkk.naukatesting.domain.department.model
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import java.io.Serializable
 
+@Entity(tableName = "departments")
 data class Department(
-    val name: String,
-    var id: Int = -1
-
+    @ColumnInfo val name: String,
+    @PrimaryKey(autoGenerate = true) var id: Long = 0
 ) : Serializable {
 
     override fun toString(): String {

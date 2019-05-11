@@ -4,21 +4,21 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import ru.newuserkk.naukatesting.data.db.department.DepartmentDAO
-import ru.newuserkk.naukatesting.data.db.department.DepartmentEntity
 import ru.newuserkk.naukatesting.data.db.employee.AddressDAO
-import ru.newuserkk.naukatesting.data.db.employee.AddressEntity
 import ru.newuserkk.naukatesting.data.db.employee.EmployeeDAO
-import ru.newuserkk.naukatesting.data.db.employee.EmployeeEntity
 import ru.newuserkk.naukatesting.data.db.timekeeper.CalendarDAO
-import ru.newuserkk.naukatesting.data.db.timekeeper.MarkedEmployeeEntity
+import ru.newuserkk.naukatesting.domain.department.model.Department
+import ru.newuserkk.naukatesting.domain.employee.model.Address
+import ru.newuserkk.naukatesting.domain.employee.model.Employee
+import ru.newuserkk.naukatesting.domain.timekeeper.model.MarkedEmployee
 
 
 @Database(
     entities = [
-        DepartmentEntity::class,
-        EmployeeEntity::class,
-        AddressEntity::class,
-        MarkedEmployeeEntity::class
+        Department::class,
+        Employee::class,
+        Address::class,
+        MarkedEmployee::class
     ],
     version = 1
 )

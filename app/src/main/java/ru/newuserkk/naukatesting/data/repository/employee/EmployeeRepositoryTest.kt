@@ -29,7 +29,7 @@ class EmployeeRepositoryTest: EmployeeRepository {
         return employee
     }
 
-    private fun getRandomEmployee(): Employee {
+    fun getRandomEmployee(): Employee {
         return Employee(
             firstName = getRandomString(15),
             lastName = getRandomString(15),
@@ -37,7 +37,7 @@ class EmployeeRepositoryTest: EmployeeRepository {
             birthDate = Date.valueOf("2019-04-28"),
             department = Department("Department"),
             position = "Android",
-            address = Address("Russia", "SPB", "1", "@", "3"),
+            address = Address("Russia", "SPB", "1", "3", "3"),
             phone = "88005553535"
         )
     }

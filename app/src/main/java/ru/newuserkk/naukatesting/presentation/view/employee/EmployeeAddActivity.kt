@@ -1,9 +1,12 @@
 package ru.newuserkk.naukatesting.presentation.view.employee
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.ArrayAdapter
 import kotlinx.android.synthetic.main.fields_employee_add.*
+import kotlinx.coroutines.runBlocking
 import ru.newuserkk.naukatesting.R
+import ru.newuserkk.naukatesting.TimesheetApp
 import ru.newuserkk.naukatesting.domain.department.model.Department
 import ru.newuserkk.naukatesting.domain.employee.model.Employee
 import ru.newuserkk.naukatesting.presentation.presenter.employee.EmployeeAddPresenter
@@ -23,15 +26,23 @@ class EmployeeAddActivity : AbstractItemAddActivity<Employee>() {
     override val submitButtonResId: Int
         get() = R.id.employee_add_submit_button
 
-    override fun fillSpinners() {
-        presenter.fillDepartmentsSpinner()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+//        runBlocking {
+//            Log.d(LOG_TAG, TimesheetApp.applicationDatabase.departmentDAO().getDepartmentById(1).toString())
+//        }
+//        presenter.fillDepartmentsSpinner()
     }
 
-    fun setupDepartmentsAdapter(values: List<Department>) {
-        employee_add_department_spinner.adapter = ArrayAdapter<Department>(
+    fun setupDepartmentsAdapter(values: List<Department>, selectionItem: Department?) {
+        val adapter = ArrayAdapter<Department>(
             this,
             R.layout.support_simple_spinner_dropdown_item,
             values
+        )
+        employee_add_department_spinner.adapter = adapter
+        employee_add_department_spinner.setSelection(
+            adapter.getPosition(selectionItem)
         )
     }
 
@@ -58,17 +69,13 @@ class EmployeeAddActivity : AbstractItemAddActivity<Employee>() {
             employee_add_birth_date_edit_text.setText(
                 SimpleDateFormat("dd.MM.yyyy", Locale.US).format(it.birthDate)
             )
-            employee_add_department_spinner.setSelection(
-                (employee_add_department_spinner.adapter as ArrayAdapter<Department>)
-                    .getPosition(it.department)
-            )
             employee_add_position_edit_text.setText(it.position)
             it.address?.let { address ->
                 employee_add_country_edit_text.setText(address.country)
                 employee_add_city_edit_text.setText(address.city)
                 employee_add_street_edit_text.setText(address.street)
-                employee_add_house_number_edit_text.setText(address.houseNumber)
-                employee_add_flat_edit_text.setText(address.flatNumber)
+                employee_add_house_number_edit_text.setText(address.house)
+                employee_add_flat_edit_text.setText(address.flat)
             }
             employee_add_phone_edit_text.setText(it.phone)
         }

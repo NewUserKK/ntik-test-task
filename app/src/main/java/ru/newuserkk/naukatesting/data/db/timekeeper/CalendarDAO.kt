@@ -10,14 +10,14 @@ import java.util.*
 interface CalendarDAO {
 
     @Query("SELECT * FROM attendance WHERE date=:date")
-    suspend fun getEmployeesByDate(date: Date): List<MarkedEmployeeEntity>
+    suspend fun getEmployeesByDate(date: Date): List<MarkedEmployee>
 
     @Query("SELECT * FROM attendance")
-    suspend fun getAll(): List<MarkedEmployeeEntity>
+    suspend fun getAll(): List<MarkedEmployee>
 
     @Query("SELECT * FROM attendance WHERE id=:id")
-    suspend fun getById(id: Long): MarkedEmployeeEntity
+    suspend fun getById(id: Long): MarkedEmployee?
 
     @Insert
-    suspend fun addMark(employee: MarkedEmployeeEntity?): Long
+    suspend fun addMark(employee: MarkedEmployee?): Long
 }

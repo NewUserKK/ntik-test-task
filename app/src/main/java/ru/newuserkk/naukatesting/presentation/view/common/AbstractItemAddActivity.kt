@@ -36,13 +36,11 @@ abstract class AbstractItemAddActivity<T: Serializable>: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(activityResId)
 
-        fillSpinners()
-
         itemToEdit = intent?.extras?.getSerializable(AbstractListActivity.EDIT_ITEM_KEY) as? T
         if (itemToEdit != null) {
             fillFields(itemToEdit!!)
             findViewById<View>(submitButtonResId).setOnClickListener {
-                Log.d(LOG_TAG, "$itemToEdit")
+                Log.d(LOG_TAG, "item to edit: $itemToEdit")
                 presenter.addItem(getItemOptions(), edit = true)
             }
 
@@ -54,7 +52,6 @@ abstract class AbstractItemAddActivity<T: Serializable>: AppCompatActivity() {
 
     }
 
-    open fun fillSpinners() {}
     abstract fun fillFields(item: T)
 
     abstract fun getItemOptions(): ItemOptions

@@ -1,7 +1,7 @@
 package ru.newuserkk.naukatesting.domain.department
 
+import android.util.Log
 import ru.newuserkk.naukatesting.data.repository.department.DepartmentRepositoryImpl
-import ru.newuserkk.naukatesting.data.repository.department.DepartmentRepositoryTest
 import ru.newuserkk.naukatesting.domain.common.Result
 import ru.newuserkk.naukatesting.domain.department.model.Department
 
@@ -13,6 +13,7 @@ class DepartmentInteractorImpl: DepartmentInteractor {
         return try {
             Result(repository.addDepartment(department), null)
         } catch (e: Throwable) {
+            Log.e(LOG_TAG, e.message)
             Result(null, e)
         }
     }
@@ -21,6 +22,7 @@ class DepartmentInteractorImpl: DepartmentInteractor {
         return try {
             Result(repository.getDepartments(), null)
         } catch (e: Throwable) {
+            Log.e(LOG_TAG, e.message)
             Result(null, e)
         }
     }
@@ -29,7 +31,12 @@ class DepartmentInteractorImpl: DepartmentInteractor {
         return try {
             Result(repository.editDepartment(department))
         } catch (e: Throwable) {
+            Log.e(LOG_TAG, e.message)
             Result(null, e)
         }
+    }
+
+    companion object {
+        const val LOG_TAG = "DepartmentInteractor"
     }
 }

@@ -1,5 +1,6 @@
 package ru.newuserkk.naukatesting.presentation.presenter.common
 
+import android.util.Log
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -20,12 +21,15 @@ abstract class AbstractItemAddPresenter<T: Serializable>(protected open val view
                 return@launch
             }
 
+            val item = itemResult.value
             if (edit) {
-                changeItemId(view.itemToEdit!!, itemResult.value)
+                changeItemId(oldItem = view.itemToEdit!!, newItem = item)
             }
 
+            Log.d(LOG_TAG, "item: $item")
+
             val result = withContext(Dispatchers.IO) {
-                addItem(itemResult.value, edit)
+                addItem(item, edit)
             }
             view.hideProgress()
             if (result.isSuccessful && result.value != null) {
@@ -42,4 +46,8 @@ abstract class AbstractItemAddPresenter<T: Serializable>(protected open val view
     protected abstract fun createItemFromOptions(options: AbstractItemAddActivity.ItemOptions): Result<T>
     protected abstract fun changeItemId(oldItem: T, newItem: T)
     protected abstract suspend fun addItem(item: T, edit: Boolean): Result<T>
+
+    companion object {
+        const val LOG_TAG = "AbstrItemAddPresenter"
+    }
 }

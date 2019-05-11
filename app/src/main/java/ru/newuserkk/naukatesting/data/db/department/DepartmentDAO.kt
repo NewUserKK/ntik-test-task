@@ -9,17 +9,17 @@ import ru.newuserkk.naukatesting.domain.department.model.Department
 @Dao
 interface DepartmentDAO {
     @Query("SELECT * FROM departments")
-    suspend fun getAll(): List<DepartmentEntity>
+    suspend fun getAll(): List<Department>
 
     @Query("SELECT * FROM departments WHERE name=:name")
-    suspend fun getDepartmentByName(name: String): DepartmentEntity
+    suspend fun getDepartmentByName(name: String): Department?
 
     @Query("SELECT * FROM departments WHERE id=:id")
-    suspend fun getDepartmentById(id: Long): DepartmentEntity
+    suspend fun getDepartmentById(id: Long): Department?
 
     @Insert
-    suspend fun add(department: DepartmentEntity?): Long
+    suspend fun add(department: Department?): Long
 
     @Update
-    suspend fun update(department: DepartmentEntity?): Int
+    suspend fun update(department: Department?): Int
 }
