@@ -4,8 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -40,7 +38,7 @@ abstract class AbstractItemAddActivity<T : Serializable> : AppCompatActivity() {
         itemToEdit = intent?.extras?.getSerializable(AbstractListActivity.TAG_ITEM_KEY) as? T
         if (itemToEdit != null) {
             title = getString(R.string.title_activity_add_item)
-            fillFields(itemToEdit!!)
+            editFillFields(itemToEdit!!)
             findViewById<View>(submitButtonResId).setOnClickListener {
                 Log.d(LOG_TAG, "item to edit: $itemToEdit")
                 presenter.addItem(getItemOptions(), edit = true)
@@ -54,7 +52,7 @@ abstract class AbstractItemAddActivity<T : Serializable> : AppCompatActivity() {
 
     }
 
-    abstract fun fillFields(item: T)
+    abstract fun editFillFields(item: T)
 
     abstract fun getItemOptions(): ItemOptions
 

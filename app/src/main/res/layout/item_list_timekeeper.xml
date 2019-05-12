@@ -7,7 +7,7 @@
               android:gravity="center"
               android:orientation="horizontal"
               android:layout_marginBottom="@dimen/item_list_vertical_margin"
-              style="@style/ListItemStyle">
+              style="@style/AppTheme.ListItemStyle">
 
     <TextView
             android:id="@+id/mark_employee_id"

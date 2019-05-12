@@ -28,7 +28,7 @@
     <string name="field_employee_first_name">First name:</string>
     <string name="field_employee_last_name">Last name:</string>
     <string name="field_employee_middle_name">Middle name:</string>
-    <string name="field_employee_birth_date">Birth date (dd.mm.yyyy):</string>
+    <string name="field_employee_birth_date">Birth date:</string>
     <string name="field_employee_department">Department:</string>
     <string name="field_employee_position">Position:</string>
     <string name="field_employee_address">Address:</string>

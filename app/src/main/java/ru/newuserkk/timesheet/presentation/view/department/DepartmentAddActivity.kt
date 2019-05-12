@@ -25,7 +25,7 @@ class DepartmentAddActivity : AbstractItemAddActivity<Department>() {
     override fun getSuccessMessage(): String = getString(R.string.ok)
     override fun getAddErrorMessage(): String = getString(R.string.department_add_error)
 
-    override fun fillFields(item: Department) {
+    override fun editFillFields(item: Department) {
         department_add_name_edit_text.setTextAndPosition(item.name)
     }
 

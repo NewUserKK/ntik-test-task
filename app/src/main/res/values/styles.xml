@@ -16,13 +16,13 @@
         <item name="android:background">@drawable/spinner_background</item>
     </style>
 
-    <style name="RecyclerViewStyle">
+    <style name="AppTheme.RecyclerViewStyle">
         <item name="android:nestedScrollingEnabled">false</item>
         <item name="android:layout_marginStart">2dp</item>
         <item name="android:layout_marginEnd">2dp</item>
     </style>
 
-    <style name="ListItemStyle">
+    <style name="AppTheme.ListItemStyle">
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
         <item name="android:foreground">?android:attr/selectableItemBackground</item>
