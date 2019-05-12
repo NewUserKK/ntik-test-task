@@ -23,8 +23,7 @@
 
         <activity
                 android:name=".presentation.view.timekeeper.TimekeeperCalendarActivity"
-                android:label="@string/title_activity_timekeeper_calendar"
-                android:screenOrientation="portrait">
+                android:label="@string/title_activity_timekeeper_calendar">
         </activity>
 
         <activity

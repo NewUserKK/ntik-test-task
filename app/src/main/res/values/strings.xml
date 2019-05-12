@@ -40,5 +40,13 @@
     <string name="field_employee_phone">Phone:</string>
     <string name="field_employee_select_date">Select</string>
     <string name="remove_item_fail">Failed to remove item!</string>
+    <string name="title_activity_add_item">Edit</string>
+    <string name="list_header_timekeeper_id">ID</string>
+    <string name="list_header_timekeeper_name">Name</string>
+    <string name="list_header_timekeeper_status">Status</string>
+    <string name="list_header_employee_id">ID</string>
+    <string name="list_header_employee_name">Name</string>
+    <string name="list_header_department_id">ID</string>
+    <string name="list_header_deparment_name">Name</string>
 
 </resources>

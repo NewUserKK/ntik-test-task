@@ -41,6 +41,7 @@ abstract class AbstractItemAddActivity<T: Serializable>: AppCompatActivity() {
 
         itemToEdit = intent?.extras?.getSerializable(AbstractListActivity.EDIT_ITEM_KEY) as? T
         if (itemToEdit != null) {
+            title = getString(R.string.title_activity_add_item)
             fillFields(itemToEdit!!)
             findViewById<View>(submitButtonResId).setOnClickListener {
                 Log.d(LOG_TAG, "item to edit: $itemToEdit")

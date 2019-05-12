@@ -1,13 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.recyclerview.widget.RecyclerView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/timekeeper_employee_list"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        style="@style/RecyclerViewStyle"
-        tools:listitem="@layout/item_list_timekeeper">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              style="@style/RecyclerViewStyle"
+              android:orientation="vertical">
 
-</androidx.recyclerview.widget.RecyclerView>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".15"
+                android:minWidth="100dp"
+                android:gravity="center"
+                android:text="@string/list_header_timekeeper_id"/>
+
+        <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".6"
+                android:minWidth="100dp"
+                android:gravity="center"
+                android:text="@string/list_header_timekeeper_name"/>
+
+        <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".15"
+                android:minWidth="100dp"
+                android:gravity="center"
+                android:lines="1"
+                android:ellipsize="end"
+                android:textSize="18sp"
+                android:text="@string/list_header_timekeeper_status"/>
+
+        <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".1" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/timekeeper_employee_list"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_list_timekeeper">
+
+    </androidx.recyclerview.widget.RecyclerView>
+</LinearLayout>
