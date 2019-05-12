@@ -17,10 +17,6 @@ class DepartmentListPresenter(view: DepartmentListActivity) :
 
     override val kodein by lazy { TimesheetApp.kodein }
 
-    override val coroutineContext: CoroutineContext
-        get() = Dispatchers.Main
-
-
     private val interactor: DepartmentInteractor by kodein.instance()
 
     override suspend fun getItems(): Result<List<Department>> {

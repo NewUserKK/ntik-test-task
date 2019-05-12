@@ -145,6 +145,11 @@ abstract class AbstractListActivity<T : Serializable> : AppCompatActivity() {
         adapter.notifyDataSetChanged()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.cancelJobs()
+    }
+
     companion object {
         const val ITEM_REQUEST_CODE = 0
         const val ITEM_RESULT_ADD = 0

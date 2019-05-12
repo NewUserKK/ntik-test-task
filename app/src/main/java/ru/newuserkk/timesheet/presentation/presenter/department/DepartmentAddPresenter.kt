@@ -21,9 +21,6 @@ class DepartmentAddPresenter(view: DepartmentAddActivity) :
 
     override val kodein by lazy { TimesheetApp.kodein }
 
-    override val coroutineContext: CoroutineContext
-        get() = Dispatchers.Main
-
     private val departmentInteractor: DepartmentInteractor by instance()
 
     override fun createItemFromOptions(options: AbstractItemAddActivity.ItemOptions): Result<Department> {

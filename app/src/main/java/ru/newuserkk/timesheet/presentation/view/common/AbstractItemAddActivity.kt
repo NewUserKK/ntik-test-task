@@ -116,5 +116,10 @@ abstract class AbstractItemAddActivity<T : Serializable> : AppCompatActivity() {
         super.finish()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.cancelJobs()
+    }
+
     interface ItemOptions
 }

@@ -23,9 +23,6 @@ class TimekeeperAddPresenter(override val view: TimekeeperAddActivity) :
 
     override val kodein by lazy { TimesheetApp.kodein }
 
-    override val coroutineContext: CoroutineContext
-        get() = Dispatchers.Main
-
     private val calendarInteractor: CalendarInteractor by kodein.instance()
     private val employeeInteractor: EmployeeInteractor by kodein.instance()
 

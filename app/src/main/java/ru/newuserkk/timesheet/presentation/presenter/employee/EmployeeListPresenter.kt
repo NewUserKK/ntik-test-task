@@ -17,9 +17,6 @@ class EmployeeListPresenter(view: EmployeeListActivity) :
 
     override val kodein by lazy { TimesheetApp.kodein }
 
-    override val coroutineContext: CoroutineContext
-        get() = Dispatchers.Main
-
 
     private val interactor: EmployeeInteractor by kodein.instance()
 

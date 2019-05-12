@@ -18,10 +18,6 @@ class TimekeeperListPresenter(view: TimekeeperListActivity, val date: Date) :
 
     override val kodein by lazy { TimesheetApp.kodein }
 
-    override val coroutineContext: CoroutineContext
-        get() = Dispatchers.Main
-
-
     private val calendarInteractor: CalendarInteractor by kodein.instance()
 
     override suspend fun getItems(): Result<List<MarkedEmployee>> {
