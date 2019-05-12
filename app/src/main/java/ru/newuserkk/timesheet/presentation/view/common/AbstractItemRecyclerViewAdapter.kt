@@ -9,7 +9,9 @@ abstract class AbstractItemRecyclerViewAdapter<T>(val values: MutableList<T> = m
     androidx.recyclerview.widget.RecyclerView.Adapter<AbstractItemRecyclerViewAdapter.AbstractViewHolder>() {
 
     protected abstract val listItemResId: Int
+
     var onItemClickListener: ((View) -> Unit)? = null
+    var onEditClickListener: ((View) -> Unit)? = null
     var onRemoveClickListener: ((View) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AbstractViewHolder {
@@ -26,6 +28,9 @@ abstract class AbstractItemRecyclerViewAdapter<T>(val values: MutableList<T> = m
             itemView.tag = item
             itemView.setOnClickListener(onItemClickListener)
 
+            editButtonView.tag = item
+            editButtonView.setOnClickListener(onEditClickListener)
+
             removeButtonView.tag = item
             removeButtonView.setOnClickListener(onRemoveClickListener)
         }
@@ -38,6 +43,7 @@ abstract class AbstractItemRecyclerViewAdapter<T>(val values: MutableList<T> = m
     abstract fun fillViewHolder(holder: AbstractViewHolder, position: Int, item: T)
 
     abstract class AbstractViewHolder(view: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view) {
+        abstract val editButtonView: ImageView
         abstract val removeButtonView: ImageView
     }
 }

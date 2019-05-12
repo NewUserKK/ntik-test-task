@@ -1,13 +1,13 @@
 package ru.newuserkk.timesheet.presentation.view.role
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
-import kotlinx.android.synthetic.main.activity_select_role.*
+import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_role_select.*
 import ru.newuserkk.timesheet.R
-import ru.newuserkk.timesheet.presentation.presenter.role.SelectRolePresenter
 import ru.newuserkk.timesheet.domain.role.model.Role
+import ru.newuserkk.timesheet.presentation.presenter.role.SelectRolePresenter
 import ru.newuserkk.timesheet.presentation.view.department.DepartmentListActivity
 import ru.newuserkk.timesheet.presentation.view.employee.EmployeeListActivity
 import ru.newuserkk.timesheet.presentation.view.timekeeper.TimekeeperCalendarActivity
@@ -19,7 +19,7 @@ class SelectRoleActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_select_role)
+        setContentView(R.layout.activity_role_select)
         setupSpinner()
         setupListeners()
     }

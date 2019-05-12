@@ -14,7 +14,6 @@
 
     <style name="Spinner" parent="Base.Widget.AppCompat.Spinner">
         <item name="android:background">@drawable/spinner_background</item>
-        <item name="android:minHeight">50dp</item>
     </style>
 
     <style name="RecyclerViewStyle">

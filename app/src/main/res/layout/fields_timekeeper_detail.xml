@@ -7,7 +7,6 @@
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/fields_vertical_margin"
             android:layout_marginBottom="@dimen/fields_vertical_margin"
             android:orientation="horizontal">
 
@@ -18,12 +17,10 @@
                 android:gravity="center"
                 android:layout_marginStart="@dimen/fields_horizontal_margin"/>
 
-        <Spinner
-                android:id="@+id/timekeeper_add_employee_spinner"
+        <TextView
+                android:id="@+id/timekeeper_detail_employee_value"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/Spinner"
-                android:layout_gravity="center"
                 android:layout_marginStart="@dimen/fields_horizontal_margin"
                 android:layout_marginEnd="@dimen/fields_horizontal_margin"/>
     </LinearLayout>
@@ -41,14 +38,11 @@
                 android:text="@string/field_timekeeper_status"
                 android:layout_marginStart="@dimen/fields_horizontal_margin"/>
 
-        <Spinner
-                android:id="@+id/timekeeper_add_status_spinner"
+        <TextView
+                android:id="@+id/timekeeper_detail_status_value"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/Spinner"
-                android:layout_gravity="center"
                 android:layout_marginStart="@dimen/fields_horizontal_margin"
                 android:layout_marginEnd="@dimen/fields_horizontal_margin"/>
-
     </LinearLayout>
 </LinearLayout>

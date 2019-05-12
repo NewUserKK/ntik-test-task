@@ -1,7 +1,7 @@
 package ru.newuserkk.timesheet.domain.employee
 
-import ru.newuserkk.timesheet.domain.employee.model.Employee
 import ru.newuserkk.timesheet.domain.common.Result
+import ru.newuserkk.timesheet.domain.employee.model.Employee
 import ru.newuserkk.timesheet.presentation.view.employee.EmployeeAddActivity
 
 interface EmployeeInteractor {

@@ -27,6 +27,7 @@ class DepartmentRecyclerViewAdapter(values: MutableList<Department>) :
         val idView: TextView = view.department_id
         val nameView: TextView = view.department_name
 
+        override val editButtonView: ImageView = view.department_edit_button
         override val removeButtonView: ImageView = view.department_remove_button
     }
 }

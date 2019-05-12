@@ -9,17 +9,15 @@ import ru.newuserkk.timesheet.presentation.view.common.AbstractListActivity
 
 class EmployeeListActivity : AbstractListActivity<Employee>() {
 
-    override val activityLayoutResId = R.layout.activity_employee_list
+    override val layoutResId = R.layout.activity_employee_list
     override val toolbarResId = R.id.employee_list_toolbar
     override val addButtonResId = R.id.employee_list_add_button
     override val listResId = R.id.employee_list
+
+    override val adapter: AbstractItemRecyclerViewAdapter<Employee> = EmployeeRecyclerViewAdapter(mutableListOf())
+
+    override val itemDetailActivityTypeToken = EmployeeDetailActivity::class.java
     override val itemAddActivityTypeToken = EmployeeAddActivity::class.java
-    override val adapter: AbstractItemRecyclerViewAdapter<Employee> =
-        EmployeeRecyclerViewAdapter(mutableListOf()).apply {
-            onRemoveClickListener = {
-                presenter.removeItem(it.tag as Employee)
-            }
-        }
 
     override fun initPresenter(): AbstractListPresenter<Employee> {
         return EmployeeListPresenter(this)

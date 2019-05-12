@@ -13,7 +13,7 @@
     <string name="timekeeper">Timekeeper</string>
     <string name="department_administrator">Department administrator</string>
     <string name="employee_administrator">Employee administrator</string>
-    <string name="department_add_name_text">Name:</string>
+    <string name="field_department_name">Name:</string>
     <string name="default_font">sans-serif-light</string>
     <string name="department_load_fail">Failed to load departments!</string>
     <string name="department_add_error">Failed to add department.</string>
@@ -21,7 +21,7 @@
     <string name="employees_load_fail">Failed to load employees!</string>
     <string name="add_employee_success">Successfully added employee!</string>
     <string name="timekeeper_add_status_error">Failed to add employee status!</string>
-    <string name="departmen_add_success">Successfully added department!</string>
+    <string name="department_add_success">Successfully added department!</string>
     <string name="timekeeper_employee_load_fail">Failed to load employees status!</string>
     <string name="field_timekeeper_employee">Employee:</string>
     <string name="field_timekeeper_status">Status:</string>
@@ -48,5 +48,7 @@
     <string name="list_header_employee_name">Name</string>
     <string name="list_header_department_id">ID</string>
     <string name="list_header_deparment_name">Name</string>
+    <string name="title_activity_detail">Details</string>
+    <string name="list_remove_success">Removed item!</string>
 
 </resources>

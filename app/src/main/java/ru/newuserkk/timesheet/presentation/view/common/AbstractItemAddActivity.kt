@@ -13,14 +13,14 @@ import ru.newuserkk.timesheet.R
 import ru.newuserkk.timesheet.presentation.presenter.common.AbstractItemAddPresenter
 import java.io.Serializable
 
-abstract class AbstractItemAddActivity<T: Serializable>: AppCompatActivity() {
+abstract class AbstractItemAddActivity<T : Serializable> : AppCompatActivity() {
 
     companion object {
         const val LOG_TAG = "AbstractItemAddActivity"
     }
 
     protected abstract val presenter: AbstractItemAddPresenter<T>
-    protected abstract val activityResId: Int
+    protected abstract val layoutResId: Int
     protected abstract val progressBarResId: Int
     protected abstract val contentResId: Int
     protected abstract val submitButtonResId: Int
@@ -35,9 +35,9 @@ abstract class AbstractItemAddActivity<T: Serializable>: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(activityResId)
+        setContentView(layoutResId)
 
-        itemToEdit = intent?.extras?.getSerializable(AbstractListActivity.EDIT_ITEM_KEY) as? T
+        itemToEdit = intent?.extras?.getSerializable(AbstractListActivity.TAG_ITEM_KEY) as? T
         if (itemToEdit != null) {
             title = getString(R.string.title_activity_add_item)
             fillFields(itemToEdit!!)
@@ -73,11 +73,9 @@ abstract class AbstractItemAddActivity<T: Serializable>: AppCompatActivity() {
     }
 
     fun showSuccessMessage() {
-        Toast.makeText(this, getSuccessMessage(), Toast.LENGTH_LONG).also {
-            val toastLayout = it.view as ViewGroup
-            val toastTextView = toastLayout.getChildAt(0) as TextView
-            toastTextView.textSize = 12f
-        }.show()
+        Toast.makeText(this, getSuccessMessage(), Toast.LENGTH_SHORT)
+            .small()
+            .show()
     }
 
     abstract fun getSuccessMessage(): String
@@ -92,6 +90,7 @@ abstract class AbstractItemAddActivity<T: Serializable>: AppCompatActivity() {
         Log.e(LOG_TAG, e.message)
         AlertDialog.Builder(this)
             .setMessage(message + "\nDetails: ${e.message}")
+            .setPositiveButton(getString(R.string.ok)) { _, _ -> }
             .show()
     }
 
@@ -109,7 +108,7 @@ abstract class AbstractItemAddActivity<T: Serializable>: AppCompatActivity() {
                 } else {
                     AbstractListActivity.ITEM_RESULT_ADD
                 }
-                
+
                 setResult(code, returnIntent)
             } else {
                 setResult(AbstractListActivity.ITEM_RESULT_NULL, returnIntent)

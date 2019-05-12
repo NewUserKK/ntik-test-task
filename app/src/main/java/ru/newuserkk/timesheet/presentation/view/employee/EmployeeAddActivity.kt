@@ -8,13 +8,14 @@ import ru.newuserkk.timesheet.domain.department.model.Department
 import ru.newuserkk.timesheet.domain.employee.model.Employee
 import ru.newuserkk.timesheet.presentation.presenter.employee.EmployeeAddPresenter
 import ru.newuserkk.timesheet.presentation.view.common.AbstractItemAddActivity
+import ru.newuserkk.timesheet.presentation.view.common.setTextAndPosition
 import java.text.SimpleDateFormat
 import java.util.*
 
 class EmployeeAddActivity : AbstractItemAddActivity<Employee>() {
 
     override val presenter = EmployeeAddPresenter(this)
-    override val activityResId: Int
+    override val layoutResId: Int
         get() = R.layout.activity_employee_add
     override val progressBarResId: Int
         get() = R.id.employee_add_progress_bar
@@ -58,25 +59,25 @@ class EmployeeAddActivity : AbstractItemAddActivity<Employee>() {
 
     override fun fillFields(item: Employee) {
         item.let {
-            employee_add_first_name_edit_text.setText(it.firstName)
-            employee_add_last_name_edit_text.setText(it.lastName)
-            employee_add_middle_name_edit_text.setText(it.middleName)
-            employee_add_birth_date_edit_text.setText(
+            employee_add_first_name_edit_text.setTextAndPosition(it.firstName)
+            employee_add_last_name_edit_text.setTextAndPosition(it.lastName)
+            employee_add_middle_name_edit_text.setTextAndPosition(it.middleName)
+            employee_add_birth_date_edit_text.setTextAndPosition(
                 SimpleDateFormat("dd.MM.yyyy", Locale.US).format(it.birthDate)
             )
-            employee_add_position_edit_text.setText(it.position)
+            employee_add_position_edit_text.setTextAndPosition(it.position)
             it.address.let { address ->
-                employee_add_country_edit_text.setText(address.country)
-                employee_add_city_edit_text.setText(address.city)
-                employee_add_street_edit_text.setText(address.street)
-                employee_add_house_number_edit_text.setText(address.house)
-                employee_add_flat_edit_text.setText(address.flat)
+                employee_add_country_edit_text.setTextAndPosition(address.country)
+                employee_add_city_edit_text.setTextAndPosition(address.city)
+                employee_add_street_edit_text.setTextAndPosition(address.street)
+                employee_add_house_number_edit_text.setTextAndPosition(address.house)
+                employee_add_flat_edit_text.setTextAndPosition(address.flat)
             }
-            employee_add_phone_edit_text.setText(it.phone)
+            employee_add_phone_edit_text.setTextAndPosition(it.phone)
         }
     }
 
-    override fun getSuccessMessage(): String = getString(R.string.add_employee_success)
+    override fun getSuccessMessage(): String = getString(R.string.ok)
     override fun getAddErrorMessage(): String = getString(R.string.add_employee_error)
     class EmployeeOptions(
         val firstName: String,

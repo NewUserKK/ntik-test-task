@@ -1,4 +1,6 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="item_list_vertical_margin">1dp</dimen>
+    <dimen name="fields_vertical_margin">10dp</dimen>
+    <dimen name="fields_horizontal_margin">10dp</dimen>
 </resources>

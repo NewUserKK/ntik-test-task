@@ -15,7 +15,7 @@ import java.util.*
 class TimekeeperAddActivity : AbstractItemAddActivity<MarkedEmployee>() {
 
     override val presenter = TimekeeperAddPresenter(this)
-    override val activityResId = R.layout.activity_timekeeper_add
+    override val layoutResId = R.layout.activity_timekeeper_add
     override val progressBarResId = R.id.timekeeper_add_progress_bar
     override val contentResId = R.id.timekeeper_add_content
     override val submitButtonResId = R.id.timekeeper_add_submit_button

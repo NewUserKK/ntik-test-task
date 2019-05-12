@@ -1,7 +1,7 @@
 package ru.newuserkk.timesheet.domain.timekeeper
 
-import ru.newuserkk.timesheet.domain.timekeeper.model.MarkedEmployee
 import ru.newuserkk.timesheet.domain.common.Result
+import ru.newuserkk.timesheet.domain.timekeeper.model.MarkedEmployee
 import ru.newuserkk.timesheet.presentation.view.timekeeper.TimekeeperAddActivity
 import java.util.*
 

@@ -35,6 +35,7 @@ abstract class AbstractListPresenter<T : Serializable>(protected val view: Abstr
 
             if (result.isSuccessful) {
                 view.removeItemFromAdapter(item)
+                view.showRemoveSuccessMessage()
             } else {
                 view.showRemoveError()
             }

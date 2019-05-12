@@ -7,30 +7,29 @@ import ru.newuserkk.timesheet.domain.timekeeper.model.MarkedEmployee
 import ru.newuserkk.timesheet.presentation.presenter.timekeeper.TimekeeperListPresenter
 import ru.newuserkk.timesheet.presentation.view.common.AbstractItemRecyclerViewAdapter
 import ru.newuserkk.timesheet.presentation.view.common.AbstractListActivity
+import ru.newuserkk.timesheet.presentation.view.common.setupActionBar
 import ru.newuserkk.timesheet.presentation.view.timekeeper.TimekeeperCalendarActivity.Companion.DATE_KEY
 import java.text.SimpleDateFormat
 import java.util.*
 
 class TimekeeperListActivity : AbstractListActivity<MarkedEmployee>() {
 
-    override val activityLayoutResId = R.layout.activity_timekeeper_list
+    override val layoutResId = R.layout.activity_timekeeper_list
     override val toolbarResId = R.id.timekeeper_list_toolbar
     override val addButtonResId = R.id.timekeeper_list_add_button
     override val listResId = R.id.timekeeper_employee_list
+
+    override val adapter: AbstractItemRecyclerViewAdapter<MarkedEmployee> = MarkedEmployeeRecyclerViewAdapter()
+
+    override val itemDetailActivityTypeToken = TimekeeperDetailActivity::class.java
     override val itemAddActivityTypeToken = TimekeeperAddActivity::class.java
-    override val adapter: AbstractItemRecyclerViewAdapter<MarkedEmployee> =
-        MarkedEmployeeRecyclerViewAdapter().apply {
-            onRemoveClickListener = {
-                presenter.removeItem(it.tag as MarkedEmployee)
-            }
-        }
+
 
     lateinit var date: Date
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
+        setupActionBar(supportActionBar)
 
         timekeeper_list_date.text = SimpleDateFormat("dd MMMM y", resources.configuration.locale)
             .format(date)
@@ -41,7 +40,7 @@ class TimekeeperListActivity : AbstractListActivity<MarkedEmployee>() {
         return TimekeeperListPresenter(this, date)
     }
 
-    override fun getAddActivityBundle(): Bundle? {
+    override fun getAddItemActivityBundle(): Bundle? {
         return Bundle().apply { putSerializable(TimekeeperCalendarActivity.DATE_KEY, date) }
     }
 

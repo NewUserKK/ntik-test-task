@@ -5,7 +5,6 @@ import ru.newuserkk.timesheet.data.repository.timekeeper.CalendarRoomRepository
 import ru.newuserkk.timesheet.domain.common.Result
 import ru.newuserkk.timesheet.domain.timekeeper.model.MarkedEmployee
 import ru.newuserkk.timesheet.presentation.view.timekeeper.TimekeeperAddActivity
-import java.lang.IllegalArgumentException
 import java.util.*
 
 class CalendarInteractorImpl: CalendarInteractor {

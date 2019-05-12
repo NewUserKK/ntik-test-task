@@ -4,7 +4,8 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.view.department.DepartmentEditActivity">
+        tools:context="ru.newuserkk.timesheet.presentation.view.timekeeper.TimekeeperDetailActivity">
 
-    <include layout="@layout/activity_department_add" />
+    <include layout="@layout/fields_timekeeper_detail" />
+
 </FrameLayout>

@@ -2,7 +2,6 @@ package ru.newuserkk.timesheet.presentation.view.department
 
 
 import ru.newuserkk.timesheet.R
-
 import ru.newuserkk.timesheet.domain.department.model.Department
 import ru.newuserkk.timesheet.presentation.presenter.common.AbstractListPresenter
 import ru.newuserkk.timesheet.presentation.presenter.department.DepartmentListPresenter
@@ -12,17 +11,13 @@ import ru.newuserkk.timesheet.presentation.view.common.AbstractListActivity
 class DepartmentListActivity : AbstractListActivity<Department>() {
 
     override var adapter: AbstractItemRecyclerViewAdapter<Department> =
-        DepartmentRecyclerViewAdapter(mutableListOf()).apply {
-            onRemoveClickListener = {
-                presenter.removeItem(it.tag as Department)
-            }
-        }
-    override val activityLayoutResId = R.layout.activity_department_list
+        DepartmentRecyclerViewAdapter(mutableListOf())
+    override val layoutResId = R.layout.activity_department_list
     override val toolbarResId = R.id.timekeeper_list_toolbar
     override val addButtonResId = R.id.department_list_add_button
     override val listResId = R.id.department_list
-    override val itemAddActivityTypeToken =
-        DepartmentAddActivity::class.java
+    override val itemDetailActivityTypeToken = DepartmentDetailActivity::class.java
+    override val itemAddActivityTypeToken = DepartmentAddActivity::class.java
 
     override fun initPresenter(): AbstractListPresenter<Department> {
         return DepartmentListPresenter(this)

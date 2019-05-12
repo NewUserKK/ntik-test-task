@@ -29,6 +29,7 @@ class MarkedEmployeeRecyclerViewAdapter(values: MutableList<MarkedEmployee> = mu
         val nameView: TextView = view.mark_employee_name
         val statusView: TextView = view.mark_status
 
+        override val editButtonView: ImageView = view.mark_edit_button
         override val removeButtonView: ImageView = view.mark_remove_button
     }
 }

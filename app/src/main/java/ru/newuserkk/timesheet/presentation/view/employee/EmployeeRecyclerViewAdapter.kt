@@ -27,6 +27,7 @@ class EmployeeRecyclerViewAdapter(values: MutableList<Employee>): AbstractItemRe
         val idView: TextView = view.mark_employee_id
         val nameView: TextView = view.mark_employee_name
 
+        override val editButtonView: ImageView = view.employee_edit_button
         override val removeButtonView: ImageView = view.employee_remove_button
     }
 }

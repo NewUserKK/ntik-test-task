@@ -21,7 +21,7 @@
         <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight=".6"
+                android:layout_weight=".5"
                 android:minWidth="100dp"
                 android:gravity="center"
                 android:text="@string/list_header_timekeeper_name"/>
@@ -40,7 +40,7 @@
         <Space
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight=".1" />
+                android:layout_weight=".2" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
