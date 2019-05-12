@@ -22,7 +22,7 @@
             android:id="@+id/mark_employee_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight=".6"
+            android:layout_weight=".5"
             android:gravity="center"
             tools:text="Костин Константин Алексеевич"/>
 
@@ -34,6 +34,13 @@
             android:gravity="center"
             android:minWidth="100dp"
             tools:text="ОТ"/>
+
+    <ImageView
+            android:id="@+id/mark_edit_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".1"
+            android:src="@drawable/pencil"/>
 
     <ImageView
             android:id="@+id/mark_remove_button"

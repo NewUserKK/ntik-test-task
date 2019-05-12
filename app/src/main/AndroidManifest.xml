@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
-          package="ru.newuserkk.naukatesting">
+          package="ru.newuserkk.timesheet">
 
     <application
-            android:name=".TimesheetApp"
+            android:name="ru.newuserkk.timesheet.TimesheetApp"
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
@@ -12,7 +12,7 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".presentation.view.role.SelectRoleActivity">
+        <activity android:name="ru.newuserkk.timesheet.presentation.view.role.SelectRoleActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -22,58 +22,58 @@
 
 
         <activity
-                android:name=".presentation.view.timekeeper.TimekeeperCalendarActivity"
+                android:name="ru.newuserkk.timesheet.presentation.view.timekeeper.TimekeeperCalendarActivity"
                 android:label="@string/title_activity_timekeeper_calendar">
         </activity>
 
         <activity
-                android:name=".presentation.view.timekeeper.TimekeeperListActivity"
+                android:name="ru.newuserkk.timesheet.presentation.view.timekeeper.TimekeeperListActivity"
                 android:label="@string/title_activity_timekeeper_list"
-                android:parentActivityName=".presentation.view.timekeeper.TimekeeperCalendarActivity"
+                android:parentActivityName="ru.newuserkk.timesheet.presentation.view.timekeeper.TimekeeperCalendarActivity"
                 android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
-                    android:value="ru.newuserkk.naukatesting.presentation.view.timekeeper.TimekeeperCalendarActivity"/>
+                    android:value="ru.newuserkk.timesheet.presentation.view.timekeeper.TimekeeperCalendarActivity"/>
         </activity>
 
-        <activity android:name=".presentation.view.timekeeper.TimekeeperAddActivity"
+        <activity android:name="ru.newuserkk.timesheet.presentation.view.timekeeper.TimekeeperAddActivity"
                 android:label="@string/title_activity_timekeeper_add"
-                android:parentActivityName=".presentation.view.timekeeper.TimekeeperListActivity">
+                android:parentActivityName="ru.newuserkk.timesheet.presentation.view.timekeeper.TimekeeperListActivity">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".presentation.view.timekeeper.TimekeeperListActivity" />
+                    android:value="ru.newuserkk.timesheet.presentation.view.timekeeper.TimekeeperListActivity" />
         </activity>
 
 
         <activity
-                android:name=".presentation.view.department.DepartmentListActivity"
+                android:name="ru.newuserkk.timesheet.presentation.view.department.DepartmentListActivity"
                 android:label="@string/title_activity_department_list"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
         <activity
-                android:name=".presentation.view.department.DepartmentAddActivity"
+                android:name="ru.newuserkk.timesheet.presentation.view.department.DepartmentAddActivity"
                 android:label="@string/title_activity_department_add"
-                android:parentActivityName=".presentation.view.department.DepartmentListActivity">
+                android:parentActivityName="ru.newuserkk.timesheet.presentation.view.department.DepartmentListActivity">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
-                    android:value="ru.newuserkk.naukatesting.presentation.view.department.DepartmentListActivity"/>
+                    android:value="ru.newuserkk.timesheet.presentation.view.department.DepartmentListActivity"/>
         </activity>
 
 
         <activity
-                android:name=".presentation.view.employee.EmployeeListActivity"
+                android:name="ru.newuserkk.timesheet.presentation.view.employee.EmployeeListActivity"
                 android:label="@string/title_activity_employee_list"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
         <activity
-                android:name=".presentation.view.employee.EmployeeAddActivity"
+                android:name="ru.newuserkk.timesheet.presentation.view.employee.EmployeeAddActivity"
                 android:label="@string/title_activity_add_employee"
-                android:parentActivityName=".presentation.view.employee.EmployeeListActivity">
+                android:parentActivityName="ru.newuserkk.timesheet.presentation.view.employee.EmployeeListActivity">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
-                    android:value="ru.newuserkk.naukatesting.presentation.view.employee.EmployeeListActivity"/>
+                    android:value="ru.newuserkk.timesheet.presentation.view.employee.EmployeeListActivity"/>
         </activity>
 
     </application>
