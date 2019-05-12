@@ -1,13 +1,18 @@
 package ru.newuserkk.timesheet.domain.department
 
 import android.util.Log
+import org.kodein.di.KodeinAware
+import org.kodein.di.generic.instance
+import ru.newuserkk.timesheet.TimesheetApp
 import ru.newuserkk.timesheet.data.repository.department.DepartmentRoomRepository
 import ru.newuserkk.timesheet.domain.common.Result
 import ru.newuserkk.timesheet.domain.department.model.Department
 
-class DepartmentInteractorImpl: DepartmentInteractor {
+class DepartmentInteractorImpl: DepartmentInteractor, KodeinAware {
 
-    private val repository: DepartmentRepository = DepartmentRoomRepository()
+    override val kodein by lazy { TimesheetApp.kodein }
+
+    private val repository: DepartmentRepository by kodein.instance()
 
     override suspend fun addDepartment(department: Department): Result<Department> {
         return try {

@@ -3,6 +3,9 @@ package ru.newuserkk.timesheet.presentation.presenter.timekeeper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.kodein.di.KodeinAware
+import org.kodein.di.generic.instance
+import ru.newuserkk.timesheet.TimesheetApp
 import ru.newuserkk.timesheet.domain.common.Result
 import ru.newuserkk.timesheet.domain.employee.EmployeeInteractor
 import ru.newuserkk.timesheet.domain.employee.EmployeeInteractorImpl
@@ -16,12 +19,15 @@ import ru.newuserkk.timesheet.presentation.view.timekeeper.TimekeeperAddActivity
 import kotlin.coroutines.CoroutineContext
 
 class TimekeeperAddPresenter(override val view: TimekeeperAddActivity) :
-    AbstractItemAddPresenter<MarkedEmployee>(view) {
+    AbstractItemAddPresenter<MarkedEmployee>(view), KodeinAware {
+
+    override val kodein by lazy { TimesheetApp.kodein }
+
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main
 
-    private val calendarInteractor: CalendarInteractor = CalendarInteractorImpl()
-    private val employeeInteractor: EmployeeInteractor = EmployeeInteractorImpl()
+    private val calendarInteractor: CalendarInteractor by kodein.instance()
+    private val employeeInteractor: EmployeeInteractor by kodein.instance()
 
     override fun createItemFromOptions(options: AbstractItemAddActivity.ItemOptions): Result<MarkedEmployee> {
         options as TimekeeperAddActivity.MarkedEmployeeOptions

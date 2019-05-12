@@ -1,6 +1,9 @@
 package ru.newuserkk.timesheet.domain.employee
 
 import android.util.Log
+import org.kodein.di.KodeinAware
+import org.kodein.di.generic.instance
+import ru.newuserkk.timesheet.TimesheetApp
 import ru.newuserkk.timesheet.data.repository.employee.EmployeeRoomRepository
 import ru.newuserkk.timesheet.domain.common.Result
 import ru.newuserkk.timesheet.domain.employee.model.Address
@@ -10,9 +13,11 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
-class EmployeeInteractorImpl : EmployeeInteractor {
+class EmployeeInteractorImpl : EmployeeInteractor, KodeinAware {
 
-    private val repository: EmployeeRepository = EmployeeRoomRepository()
+    override val kodein by lazy { TimesheetApp.kodein }
+
+    private val repository: EmployeeRepository by kodein.instance()
 
     override suspend fun addEmployee(employee: Employee): Result<Employee> {
         return try {

@@ -1,6 +1,9 @@
 package ru.newuserkk.timesheet.presentation.presenter.employee
 
 import kotlinx.coroutines.Dispatchers
+import org.kodein.di.KodeinAware
+import org.kodein.di.generic.instance
+import ru.newuserkk.timesheet.TimesheetApp
 import ru.newuserkk.timesheet.domain.common.Result
 import ru.newuserkk.timesheet.domain.employee.EmployeeInteractor
 import ru.newuserkk.timesheet.domain.employee.EmployeeInteractorImpl
@@ -9,12 +12,16 @@ import ru.newuserkk.timesheet.presentation.presenter.common.AbstractListPresente
 import ru.newuserkk.timesheet.presentation.view.employee.EmployeeListActivity
 import kotlin.coroutines.CoroutineContext
 
-class EmployeeListPresenter(view: EmployeeListActivity): AbstractListPresenter<Employee>(view) {
+class EmployeeListPresenter(view: EmployeeListActivity) :
+    AbstractListPresenter<Employee>(view), KodeinAware {
+
+    override val kodein by lazy { TimesheetApp.kodein }
 
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main
 
-    private val interactor: EmployeeInteractor = EmployeeInteractorImpl()
+
+    private val interactor: EmployeeInteractor by kodein.instance()
 
     override suspend fun getItems(): Result<List<Employee>> {
         return interactor.getEmployees()

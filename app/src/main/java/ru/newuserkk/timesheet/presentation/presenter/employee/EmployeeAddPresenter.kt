@@ -4,6 +4,9 @@ import android.util.Log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.kodein.di.KodeinAware
+import org.kodein.di.generic.instance
+import ru.newuserkk.timesheet.TimesheetApp
 import ru.newuserkk.timesheet.domain.common.Result
 import ru.newuserkk.timesheet.domain.department.DepartmentInteractor
 import ru.newuserkk.timesheet.domain.department.DepartmentInteractorImpl
@@ -15,12 +18,17 @@ import ru.newuserkk.timesheet.presentation.view.common.AbstractItemAddActivity
 import ru.newuserkk.timesheet.presentation.view.employee.EmployeeAddActivity
 import kotlin.coroutines.CoroutineContext
 
-class EmployeeAddPresenter(override val view: EmployeeAddActivity) : AbstractItemAddPresenter<Employee>(view) {
+class EmployeeAddPresenter(override val view: EmployeeAddActivity) :
+    AbstractItemAddPresenter<Employee>(view), KodeinAware {
+
+    override val kodein by lazy { TimesheetApp.kodein }
+
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main
 
-    private val departmentInteractor: DepartmentInteractor = DepartmentInteractorImpl()
-    private val employeeInteractor: EmployeeInteractor = EmployeeInteractorImpl()
+    private val departmentInteractor: DepartmentInteractor by kodein.instance()
+    private val employeeInteractor: EmployeeInteractor by kodein.instance()
+
 
     override fun createItemFromOptions(options: AbstractItemAddActivity.ItemOptions): Result<Employee> {
         options as EmployeeAddActivity.EmployeeOptions

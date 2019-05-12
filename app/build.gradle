@@ -41,6 +41,7 @@ dependencies {
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-coroutines:$room_version"
+    implementation 'org.kodein.di:kodein-di-generic-jvm:6.2.0'
     testImplementation 'junit:junit:4.12'
     debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
     androidTestImplementation 'androidx.test:runner:1.2.0-alpha04'

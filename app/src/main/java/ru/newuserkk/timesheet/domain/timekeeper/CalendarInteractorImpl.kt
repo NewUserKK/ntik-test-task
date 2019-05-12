@@ -1,15 +1,20 @@
 package ru.newuserkk.timesheet.domain.timekeeper
 
 import android.util.Log
+import org.kodein.di.KodeinAware
+import org.kodein.di.generic.instance
+import ru.newuserkk.timesheet.TimesheetApp
 import ru.newuserkk.timesheet.data.repository.timekeeper.CalendarRoomRepository
 import ru.newuserkk.timesheet.domain.common.Result
 import ru.newuserkk.timesheet.domain.timekeeper.model.MarkedEmployee
 import ru.newuserkk.timesheet.presentation.view.timekeeper.TimekeeperAddActivity
 import java.util.*
 
-class CalendarInteractorImpl: CalendarInteractor {
+class CalendarInteractorImpl: CalendarInteractor, KodeinAware {
 
-    private val calendarRepository: CalendarRepository = CalendarRoomRepository()
+    override val kodein by lazy { TimesheetApp.kodein }
+
+    private val calendarRepository: CalendarRepository by kodein.instance()
 
     override suspend fun getEmployeesByDate(date: Date): Result<List<MarkedEmployee>> {
         return try {
