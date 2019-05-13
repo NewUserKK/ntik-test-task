@@ -23,13 +23,15 @@
 
         <activity
                 android:name=".presentation.view.timekeeper.TimekeeperCalendarActivity"
-                android:label="@string/title_activity_timekeeper_calendar">
+                android:label="@string/title_activity_timekeeper_calendar"
+                android:launchMode="singleTop">
         </activity>
         <activity
                 android:name=".presentation.view.timekeeper.TimekeeperListActivity"
                 android:label="@string/title_activity_timekeeper_list"
                 android:parentActivityName=".presentation.view.timekeeper.TimekeeperCalendarActivity"
-                android:theme="@style/AppTheme.NoActionBar">
+                android:theme="@style/AppTheme.NoActionBar"
+                android:launchMode="singleTop">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value="ru.newuserkk.timesheet.presentation.view.timekeeper.TimekeeperCalendarActivity"/>
@@ -55,6 +57,7 @@
         <activity
                 android:name=".presentation.view.department.DepartmentListActivity"
                 android:label="@string/title_activity_department_list"
+                android:launchMode="singleTop"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
@@ -78,6 +81,7 @@
         <activity
                 android:name=".presentation.view.employee.EmployeeListActivity"
                 android:label="@string/title_activity_employee_list"
+                android:launchMode="singleTop"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity

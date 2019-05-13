@@ -95,7 +95,7 @@ abstract class AbstractListActivity<T : Serializable> : AppCompatActivity() {
         if (requestCode == ITEM_REQUEST_CODE) {
             when (resultCode) {
                 ITEM_RESULT_ADD -> {
-                    val item = data?.extras?.get(ITEM_RESULT_KEY) as T
+                    val item = data?.extras?.get(ITEM_RESULT_KEY) as? T ?: return
                     adapter.apply {
                         values.add(item)
                         notifyItemInserted(itemCount)
@@ -103,7 +103,7 @@ abstract class AbstractListActivity<T : Serializable> : AppCompatActivity() {
                 }
 
                 ITEM_RESULT_EDIT -> {
-                    val item = data?.extras?.get(ITEM_RESULT_KEY) as T
+                    val item = data?.extras?.get(ITEM_RESULT_KEY) as? T ?: return
                     adapter.values[editItemPosition] = item
                     adapter.notifyItemChanged(editItemPosition)
                 }
