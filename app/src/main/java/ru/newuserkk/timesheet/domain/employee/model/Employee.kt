@@ -14,6 +14,9 @@ import java.util.*
             childColumns = ["department_id"],
             onDelete = ForeignKey.CASCADE
         )
+    ],
+    indices = [
+        Index("department_id")
     ]
 )
 data class Employee(

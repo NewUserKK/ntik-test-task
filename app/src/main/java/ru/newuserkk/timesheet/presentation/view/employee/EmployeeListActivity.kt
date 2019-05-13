@@ -13,11 +13,14 @@ class EmployeeListActivity : AbstractListActivity<Employee>() {
     override val toolbarResId = R.id.employee_list_toolbar
     override val addButtonResId = R.id.employee_list_add_button
     override val listResId = R.id.employee_list
-
-    override val adapter: AbstractItemRecyclerViewAdapter<Employee> = EmployeeRecyclerViewAdapter(mutableListOf())
+    override val contentResId = R.id.employee_list_content
+    override val progressBarResId = R.id.employee_list_progress_bar
 
     override val itemDetailActivityTypeToken = EmployeeDetailActivity::class.java
     override val itemAddActivityTypeToken = EmployeeAddActivity::class.java
+
+    override val adapter: AbstractItemRecyclerViewAdapter<Employee> = EmployeeRecyclerViewAdapter(mutableListOf())
+
 
     override fun initPresenter(): AbstractListPresenter<Employee> {
         return EmployeeListPresenter(this)

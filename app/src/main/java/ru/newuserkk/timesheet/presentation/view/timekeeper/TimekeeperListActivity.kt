@@ -18,11 +18,13 @@ class TimekeeperListActivity : AbstractListActivity<MarkedEmployee>() {
     override val toolbarResId = R.id.timekeeper_list_toolbar
     override val addButtonResId = R.id.timekeeper_list_add_button
     override val listResId = R.id.timekeeper_employee_list
-
-    override val adapter: AbstractItemRecyclerViewAdapter<MarkedEmployee> = MarkedEmployeeRecyclerViewAdapter()
+    override val contentResId = R.id.timekeeper_list_content
+    override val progressBarResId = R.id.timekeeper_list_progress_bar
 
     override val itemDetailActivityTypeToken = TimekeeperDetailActivity::class.java
     override val itemAddActivityTypeToken = TimekeeperAddActivity::class.java
+
+    override val adapter: AbstractItemRecyclerViewAdapter<MarkedEmployee> = MarkedEmployeeRecyclerViewAdapter()
 
 
     lateinit var date: Date

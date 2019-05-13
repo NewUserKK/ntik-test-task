@@ -60,6 +60,7 @@ abstract class AbstractItemAddActivity<T : Serializable> : AppCompatActivity() {
         this.result = result
     }
 
+
     fun showProgress() {
         findViewById<View>(progressBarResId).visibility = View.VISIBLE
         findViewById<View>(contentResId).visibility = View.GONE
@@ -69,6 +70,7 @@ abstract class AbstractItemAddActivity<T : Serializable> : AppCompatActivity() {
         findViewById<View>(progressBarResId).visibility = View.GONE
         findViewById<View>(contentResId).visibility = View.VISIBLE
     }
+
 
     fun showSuccessMessage() {
         Toast.makeText(this, getSuccessMessage(), Toast.LENGTH_SHORT)
@@ -91,6 +93,7 @@ abstract class AbstractItemAddActivity<T : Serializable> : AppCompatActivity() {
             .setPositiveButton(getString(R.string.ok)) { _, _ -> }
             .show()
     }
+
 
     override fun finish() {
         result.let { result ->

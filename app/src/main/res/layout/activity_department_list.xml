@@ -21,7 +21,11 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/content_department_list"/>
+    <include layout="@layout/progress_bar"
+            android:id="@+id/department_list_progress_bar"/>
+
+    <include layout="@layout/content_department_list"
+            android:id="@+id/department_list_content"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/department_list_add_button"

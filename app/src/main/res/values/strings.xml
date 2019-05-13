@@ -33,7 +33,7 @@
     <string name="field_employee_position">Position:</string>
     <string name="field_employee_address">Address:</string>
     <string name="field_employee_country">Country:</string>
-    <string name="field_employee_city">City</string>
+    <string name="field_employee_city">City:</string>
     <string name="field_employee_street">Street:</string>
     <string name="field_employee_house">House:</string>
     <string name="field_employee_flat">Flat:</string>

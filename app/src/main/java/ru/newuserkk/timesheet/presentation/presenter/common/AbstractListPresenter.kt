@@ -15,9 +15,11 @@ abstract class AbstractListPresenter<T : Serializable>(
 
     fun fillList(values: MutableList<T>) {
         launch {
-            val result = withContext(Dispatchers.IO) {
+            view.showProgress()
+            val result = withContext(Dispatchers.IO + job) {
                 getItems()
             }
+            view.hideProgress()
 
             if (result.isSuccessful && result.value != null) {
                 values.clear()
@@ -32,7 +34,7 @@ abstract class AbstractListPresenter<T : Serializable>(
 
     fun removeItem(item: T) {
         launch {
-            val result = withContext(Dispatchers.IO) {
+            val result = withContext(Dispatchers.IO + job) {
                 removeItemImpl(item)
             }
 

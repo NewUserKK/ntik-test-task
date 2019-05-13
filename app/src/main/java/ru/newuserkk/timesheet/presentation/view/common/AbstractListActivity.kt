@@ -19,6 +19,8 @@ abstract class AbstractListActivity<T : Serializable> : AppCompatActivity() {
     protected abstract val toolbarResId: Int
     protected abstract val addButtonResId: Int
     protected abstract val listResId: Int
+    protected abstract val contentResId: Int
+    protected abstract val progressBarResId: Int
     protected abstract val itemDetailActivityTypeToken: Class<out AbstractItemDetailActivity<T>>
     protected abstract val itemAddActivityTypeToken: Class<out AbstractItemAddActivity<T>>
 
@@ -29,6 +31,7 @@ abstract class AbstractListActivity<T : Serializable> : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layoutResId)
+
         presenter = initPresenter()
 
         setSupportActionBar(findViewById(toolbarResId))
@@ -58,12 +61,14 @@ abstract class AbstractListActivity<T : Serializable> : AppCompatActivity() {
 
     open fun getAddItemActivityBundle(): Bundle? = null
 
+
     private fun setupRecyclerView() {
         val list = findViewById<RecyclerView>(listResId)
         list.adapter = adapter
         list.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         presenter.fillList(adapter.values)
     }
+
 
     private fun startShowItemActivity(item: T) {
         val intent = Intent(this, itemDetailActivityTypeToken).apply {
@@ -112,10 +117,27 @@ abstract class AbstractListActivity<T : Serializable> : AppCompatActivity() {
         }
     }
 
+
+    fun notifyDataSetChanged() {
+        adapter.notifyDataSetChanged()
+    }
+
     fun removeItemFromAdapter(item: T) {
         adapter.values.remove(item)
         adapter.notifyDataSetChanged()
     }
+
+
+    fun showProgress() {
+        findViewById<View>(progressBarResId).visibility = View.VISIBLE
+        findViewById<View>(contentResId).visibility = View.GONE
+    }
+
+    fun hideProgress() {
+        findViewById<View>(progressBarResId).visibility = View.GONE
+        findViewById<View>(contentResId).visibility = View.VISIBLE
+    }
+
 
     fun showListFillError() {
         AlertDialog.Builder(this)
@@ -141,14 +163,12 @@ abstract class AbstractListActivity<T : Serializable> : AppCompatActivity() {
 
     abstract fun getRemoveErrorMessage(): String
 
-    fun notifyDataSetChanged() {
-        adapter.notifyDataSetChanged()
-    }
 
     override fun onDestroy() {
         super.onDestroy()
         presenter.cancelJobs()
     }
+
 
     companion object {
         const val ITEM_REQUEST_CODE = 0
